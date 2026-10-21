@@ -1,0 +1,18 @@
+{
+  "name": "powercenter-to-dbt-development",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Pinned BMAD development tooling for the Infinite Lambda take-home exercise.",
+  "engines": {
+    "node": ">=20.12.0"
+  },
+  "scripts": {
+    "setup:bmad": "bmad-method install --yes --modules bmm --tools codex --no-shims --user-name Saar --communication-language English --document-output-language English --output-folder _bmad-output"
+  },
+  "devDependencies": {
+    "bmad-method": "6.12.4"
+  },
+  "overrides": {
+    "csv-parse": "7.0.2"
+  }
+}

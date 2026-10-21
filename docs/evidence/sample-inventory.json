@@ -1,0 +1,115 @@
+{
+  "source_sha256": "0c34e0ed2965e117b5de54ca2b1d1333286beb928a6bc63eaf131b04982a3522",
+  "source_definitions": 12,
+  "target_definitions": 16,
+  "mapping_order": "XML document order only, not workflow execution order.",
+  "mappings": [
+    {
+      "name": "m_FL_JS_STAGING_FULL",
+      "transformation_counts": {
+        "Custom Transformation": 1,
+        "Expression": 8,
+        "Joiner": 1,
+        "Router": 1,
+        "Sorter": 6,
+        "Source Qualifier": 7
+      },
+      "connector_count": 165,
+      "targets": [
+        {
+          "instance": "STG_CUSTOMERS",
+          "definition": "STG_CUSTOMERS"
+        },
+        {
+          "instance": "STG_LOCATIONS",
+          "definition": "STG_LOCATIONS"
+        },
+        {
+          "instance": "STG_ORDERS",
+          "definition": "STG_ORDERS"
+        },
+        {
+          "instance": "STG_ORDER_ITEMS",
+          "definition": "STG_ORDER_ITEMS"
+        },
+        {
+          "instance": "STG_PRODUCTS",
+          "definition": "STG_PRODUCTS"
+        },
+        {
+          "instance": "STG_SUPPLIES",
+          "definition": "STG_SUPPLIES"
+        }
+      ]
+    },
+    {
+      "name": "m_FL_JS_MARTS_ENRICHED",
+      "transformation_counts": {
+        "Aggregator": 5,
+        "Custom Transformation": 1,
+        "Expression": 13,
+        "Filter": 1,
+        "Joiner": 8,
+        "Router": 1,
+        "Sorter": 7,
+        "Source Qualifier": 9
+      },
+      "connector_count": 624,
+      "targets": [
+        {
+          "instance": "CUSTOMER_360",
+          "definition": "CUSTOMER_360"
+        },
+        {
+          "instance": "ORDER_FINANCIALS1",
+          "definition": "ORDER_FINANCIALS"
+        },
+        {
+          "instance": "ORDER_ITEM_ENRICHED",
+          "definition": "ORDER_ITEM_ENRICHED"
+        },
+        {
+          "instance": "PRODUCT_DAILY_PERFORMANCE",
+          "definition": "PRODUCT_DAILY_PERFORMANCE"
+        },
+        {
+          "instance": "STORE_DAILY_KPIS",
+          "definition": "STORE_DAILY_KPIS"
+        }
+      ]
+    },
+    {
+      "name": "m_FL_JS_MARTS_CORE",
+      "transformation_counts": {
+        "Aggregator": 4,
+        "Expression": 4,
+        "Joiner": 7,
+        "Sorter": 2,
+        "Source Qualifier": 12
+      },
+      "connector_count": 277,
+      "targets": [
+        {
+          "instance": "CUSTOMERS",
+          "definition": "CUSTOMERS"
+        },
+        {
+          "instance": "ORDERS",
+          "definition": "ORDERS"
+        },
+        {
+          "instance": "ORDER_ITEMS",
+          "definition": "ORDER_ITEMS"
+        },
+        {
+          "instance": "PRODUCTS",
+          "definition": "PRODUCTS"
+        },
+        {
+          "instance": "SUPPLIES",
+          "definition": "SUPPLIES"
+        }
+      ]
+    }
+  ]
+}

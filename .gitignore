@@ -1,0 +1,28 @@
+# Local dependencies and caches
+node_modules/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Local credentials and machine settings
+.env
+.env.*
+!.env.example
+*.user.toml
+.DS_Store
+
+# Generated dbt / DuckDB outputs
+target/
+dbt_packages/
+logs/
+*.duckdb
+*.duckdb.wal
+
+# Temporary local work; keep BMAD plans and review evidence tracked
+work/
+tmp/

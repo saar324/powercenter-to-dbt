@@ -1,0 +1,57 @@
+name: Setup and converter checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  DBT_SEND_ANONYMOUS_USAGE_STATS: "false"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: "24"
+          cache: npm
+      - uses: astral-sh/setup-uv@94527f2e458b27549849d47d273a16bec83a01e9 # v7
+        with:
+          version: "0.13.4"
+          enable-cache: true
+      - name: Install locked development tools
+        run: |
+          npm ci --ignore-scripts --no-fund
+          uv sync --locked --all-groups
+      - name: Check BMAD configuration and supplied files
+        run: |
+          uv run --locked --all-groups python _bmad/scripts/resolve_config.py --project-root "$PWD"
+          uv run --locked --all-groups python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          provenance = json.loads(Path("fixtures/powercenter/provenance.json").read_text())
+          for item in provenance["files"]:
+              assert hashlib.sha256(Path(item["path"]).read_bytes()).hexdigest() == item["sha256"]
+          root = ET.parse("fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml").getroot()
+          assert len(root.findall(".//MAPPING")) == 3
+          assert len(list(Path(".agents/skills").glob("*/SKILL.md"))) == 29
+          print("Setup integrity verified. These are not converter acceptance tests.")
+          PY
+      - name: Check converter style
+        run: uv run --locked --all-groups ruff check .
+      - name: Run converter tests when present
+        if: ${{ hashFiles('tests/**/test_*.py', 'tests/**/*_test.py') != '' }}
+        run: uv run --locked --all-groups pytest
+      - name: Report pending converter tests
+        if: ${{ hashFiles('tests/**/test_*.py', 'tests/**/*_test.py') == '' }}
+        run: echo "::notice::No converter tests exist yet. This run verifies setup only; product verification is pending."

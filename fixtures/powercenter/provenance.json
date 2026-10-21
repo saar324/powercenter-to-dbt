@@ -1,0 +1,26 @@
+{
+  "source_repository": "https://github.com/infinitelambda/flowline-pwc-demo",
+  "source_commit": "550a222cf73ecca3bd423b1f5770461914889615",
+  "retrieved_on": "2026-10-21",
+  "files": [
+    {
+      "path": "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+      "upstream_path": "FLOWLINE_DEMO_JAFFLESHOP.xml",
+      "sha256": "0c34e0ed2965e117b5de54ca2b1d1333286beb928a6bc63eaf131b04982a3522",
+      "size_bytes": 728727,
+      "unchanged_from_upstream": true
+    },
+    {
+      "path": "fixtures/powercenter/UPSTREAM_README.md",
+      "upstream_path": "README.md",
+      "sha256": "e31ea930b65f92c1adf5d9d162a0a3eb427c72c85507d7089323f417922c691e",
+      "size_bytes": 1213,
+      "unchanged_from_upstream": true
+    }
+  ],
+  "reference_project": {
+    "repository": "https://github.com/dbt-labs/jaffle_shop_duckdb",
+    "commit": "20cc904370818ceab08cf19f8fd196e9e81def88",
+    "role": "Reference only; schema differs from supplied XML."
+  }
+}
