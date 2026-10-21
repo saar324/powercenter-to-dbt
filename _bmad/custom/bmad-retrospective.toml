@@ -1,0 +1,2 @@
+[workflow]
+on_complete = "Apply the assignment documentation instructions in AGENTS.md. Check the README against every item in the supplied assignment's What to submit list. Link existing BMAD decisions, implementation, verification, review, prompt, and process evidence rather than duplicating it. Preserve the existing setup-error note. State missing evidence honestly; do not invent it or start implementation to fill a documentation gap."

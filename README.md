@@ -28,6 +28,8 @@ npm run setup:bmad
 
 Open this repository as the coding tool's project root. BMAD's own help is available through the installed `bmad-help` skill.
 
+Assignment documentation is governed by [AGENTS.md](AGENTS.md). Project overrides in `_bmad/custom/` remind Build and the retrospective to maintain the required submission evidence. Existing BMAD records are reused rather than duplicated.
+
 The repository setup check verifies tooling configuration and unchanged supplied files only.
 
 ## Agent error caught during setup

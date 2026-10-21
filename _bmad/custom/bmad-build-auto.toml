@@ -1,0 +1,2 @@
+[workflow]
+on_complete = "Apply the assignment documentation instructions in AGENTS.md before presenting this work unit as complete. Keep the README's affected submission evidence current and link to this run's native BMAD records. Preserve actual prompts and any newly caught agent mistake without duplicating records. Do not create product decisions or claim evidence that does not exist."
