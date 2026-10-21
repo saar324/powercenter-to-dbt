@@ -17,10 +17,5 @@
       "size_bytes": 1213,
       "unchanged_from_upstream": true
     }
-  ],
-  "reference_project": {
-    "repository": "https://github.com/dbt-labs/jaffle_shop_duckdb",
-    "commit": "20cc904370818ceab08cf19f8fd196e9e81def88",
-    "role": "Reference only; schema differs from supplied XML."
-  }
+  ]
 }

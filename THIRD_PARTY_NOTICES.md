@@ -15,7 +15,3 @@ The installed files in `.agents/skills/` and `_bmad/` originate from BMAD Method
 - Upstream: https://github.com/infinitelambda/flowline-pwc-demo
 - Revision and checksums: `fixtures/powercenter/provenance.json`.
 - No license file was present in the inspected sample repository. This notice attributes the material and does not assign it a new license.
-
-## Jaffle Shop reference
-
-The ignored local reference checkout originates from `dbt-labs/jaffle_shop_duckdb`. It is not vendored into this repository. Its upstream repository contains an Apache-2.0 license. The inspected revision is recorded in `references/README.md`.

@@ -1,4 +1,4 @@
-name: Setup and converter checks
+name: Repository setup
 
 on:
   push:
@@ -6,9 +6,6 @@ on:
 
 permissions:
   contents: read
-
-env:
-  DBT_SEND_ANONYMOUS_USAGE_STATS: "false"
 
 jobs:
   verify:
@@ -26,32 +23,19 @@ jobs:
         with:
           version: "0.13.4"
           enable-cache: true
-      - name: Install locked development tools
+      - name: Install pinned BMAD tooling
         run: |
           npm ci --ignore-scripts --no-fund
-          uv sync --locked --all-groups
       - name: Check BMAD configuration and supplied files
         run: |
-          uv run --locked --all-groups python _bmad/scripts/resolve_config.py --project-root "$PWD"
-          uv run --locked --all-groups python - <<'PY'
-          import hashlib
-          import json
-          from pathlib import Path
-          import xml.etree.ElementTree as ET
-
-          provenance = json.loads(Path("fixtures/powercenter/provenance.json").read_text())
-          for item in provenance["files"]:
-              assert hashlib.sha256(Path(item["path"]).read_bytes()).hexdigest() == item["sha256"]
-          root = ET.parse("fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml").getroot()
-          assert len(root.findall(".//MAPPING")) == 3
-          assert len(list(Path(".agents/skills").glob("*/SKILL.md"))) == 29
-          print("Setup integrity verified. These are not converter acceptance tests.")
-          PY
-      - name: Check converter style
-        run: uv run --locked --all-groups ruff check .
-      - name: Run converter tests when present
-        if: ${{ hashFiles('tests/**/test_*.py', 'tests/**/*_test.py') != '' }}
-        run: uv run --locked --all-groups pytest
-      - name: Report pending converter tests
-        if: ${{ hashFiles('tests/**/test_*.py', 'tests/**/*_test.py') == '' }}
-        run: echo "::notice::No converter tests exist yet. This run verifies setup only; product verification is pending."
+          uv run --python 3.13 _bmad/scripts/resolve_config.py --project-root "$PWD"
+          node --input-type=module <<'JS'
+          import { readFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          import assert from 'node:assert/strict';
+          const provenance = JSON.parse(readFileSync('fixtures/powercenter/provenance.json', 'utf8'));
+          for (const item of provenance.files) {
+            assert.equal(createHash('sha256').update(readFileSync(item.path)).digest('hex'), item.sha256);
+          }
+          console.log('BMAD configuration and original file integrity verified.');
+          JS

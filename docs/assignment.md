@@ -1,61 +1,72 @@
-# Assignment requirements
+# Take-home exercise: Informatica PowerCenter to dbt converter
 
-This is a requirements summary of the supplied take-home brief. It is not a copy of recruiter correspondence and is not yet a BMAD specification.
+The text below is transcribed from the supplied assignment description. The recruiter email excerpt is separate at the end. No analysis or implementation guidance has been added.
 
-## Objective
+This exercise is part of our interview process for the Product Engineer role. Plan for about four hours of work. You have one week from receipt to return it.
 
-Build a small tool that reads an Informatica PowerCenter mapping XML file and produces an equivalent dbt model. Any implementation language is allowed. The supplied XML is the starting input. Conversion logic must derive the output from the XML, not reproduce hard-coded Jaffle Shop SQL.
+## What we are asking
 
-PowerCenter represents data movement and transformations as mappings. dbt expresses warehouse transformations as SQL models. The task is to understand the former and generate the latter with sensible, documented limits.
+Build a small tool that converts an Informatica PowerCenter mapping into an equivalent dbt model. We have attached one sample PowerCenter mapping file in XML to work from. Download the demo XML workflow here:
 
-## Required work
+https://github.com/infinitelambda/flowline-pwc-demo
 
-1. Inspect the sample XML and explain what its mapping does.
-2. Implement a converter that derives equivalent dbt SQL from the XML.
-3. Include tests. The linked Jaffle Shop project can be used as a reference where applicable.
-4. Handle a reasonable subset within the time available. Full PowerCenter coverage is not expected.
+The mapping mirrors the dbt jaffle shop demo project, which is public. You can use that project as a reference target: run it, look at its models, and check your converter's output against it. Build a converter that derives the dbt model from the XML. Do not hard-code the jaffle shop output, because we are assessing the conversion logic, not the final SQL. You are not expected to know either tool in advance. Part of what we want to see is how you get up to speed on an unfamiliar system, so the reading below is enough to start.
 
-## Coding-agent use
+## Background
 
-The brief explicitly expects coding-agent use. The submission must include:
+Informatica PowerCenter is an ETL tool. A mapping describes how data moves from source tables to target tables through a chain of transformations (filters, joins, lookups, aggregations, and so on). Mappings can be exported as XML, which is the format we have given you.
 
-- The prompts used, starting with the initial prompt.
-- A full conversation export if the coding tool supports it and it can be shared without unrelated private content.
-- A short account of the process followed with the agent.
-- An actual example of something the agent got wrong, plus how it was caught.
+- Mappings overview: https://docs.informatica.com/data-integration/powercenter/10-5/designer-guide/mappings/mappings-overview.html
+- Transformation guide: https://docs.informatica.com/data-integration/powercenter/10-5/transformation-guide/preface.html
 
-BMAD was selected by the candidate as the development method. It is not a requirement from Infinite Lambda.
+dbt transforms data already in a warehouse using SQL. A dbt model is a single SQL select statement in a .sql file that dbt turns into a table or view. Models can reference each other, and you can attach tests and documentation.
 
-## Submission
-
-Submit a GitHub repository or a zipped folder. A private repository needs access for the reviewers. The brief contains a placeholder for reviewer GitHub handles; actual handles are not available in the supplied material.
-
-The short README must cover:
-
-- How to run the tool.
-- Assumptions and deliberately unsupported cases.
-- Where the converter is most likely to produce incorrect output.
-- An observed agent mistake and its detection.
-- Agent prompts and the process used.
-
-Assessment focuses on understanding the submitted code, explaining conversion choices and failure modes, and clear reasoning in the README.
-
-## Time and deadline
-
-- Expected effort: approximately four hours. The brief asks candidates not to over-invest.
-- The recruiter email specifies **23 October 2026**. The assignment page separately says one week from receipt. Use the earlier, explicit email date unless clarified.
-- No deadline time or timezone is specified.
-- Submission and the requested recruiter notification are separate, later actions. Neither has been performed.
-
-## Supplied public resources
-
-- Sample XML: https://github.com/infinitelambda/flowline-pwc-demo
-- DuckDB Jaffle Shop reference: https://github.com/dbt-labs/jaffle_shop_duckdb
-- PowerCenter mappings: https://docs.informatica.com/data-integration/powercenter/10-5/designer-guide/mappings/mappings-overview.html
-- PowerCenter transformations: https://docs.informatica.com/data-integration/powercenter/10-5/transformation-guide/preface.html
-- dbt introduction: https://docs.getdbt.com/docs/introduction
-- dbt models: https://docs.getdbt.com/docs/build/models
+- What is dbt: https://docs.getdbt.com/docs/introduction
+- About dbt models: https://docs.getdbt.com/docs/build/models
 - SQL models: https://docs.getdbt.com/docs/build/sql-models
-- dbt guides: https://docs.getdbt.com/guides
+- Quickstart guides: https://docs.getdbt.com/guides
+- Jaffle shop reference project (runs locally with DuckDB in about a minute): https://github.com/dbt-labs/jaffle_shop_duckdb
 
-The private assignment/submission URL and personal contact information are intentionally not included.
+## The task
+
+- Read the sample PowerCenter XML and work out what the mapping does.
+- Build a converter, in any language you choose, that reads a PowerCenter mapping XML and produces an equivalent dbt model.
+- Include tests. You can check your output against the jaffle shop reference project.
+- Handle what you reasonably can in the time. We care more about how you reason about the problem than about full coverage.
+
+## Using coding agents
+
+We expect you to use coding agents such as Claude Code or Cursor. This is how the team works day to day, and we want to see how you use them. If you do not have access to a tool, tell us and we may be able to provide access or refund you for your spend.
+
+## What to submit
+
+A GitHub repository (public, or private with access granted to [GitHub handles]) or a zipped folder, with a short README that covers:
+
+- How to run it.
+- What you assumed, and what you chose not to handle.
+- Where the converter is most likely to produce wrong output.
+- Where a coding agent got something wrong, and how you caught it.
+- The prompts you gave the coding agent, starting with your initial prompt. If your tool can export the full agent conversation, include it as a file in the repository.
+- A short outline of the process you followed with the agent to build the solution.
+
+## What we are looking for
+
+- You understand the code you submit and can explain any part of it.
+- Sensible handling of the conversion, with a clear view of where it breaks.
+- Clear reasoning in the README.
+
+## Logistics
+
+- Effort: about 04 hours. Please do not over-invest.
+- Deadline: one week from receipt.
+- Questions: contact Chau.
+
+## Recruiter email excerpt — 20 October 2026
+
+- Estimated effort: approximately 4 hours. Please do not over-invest.
+- Deadline: Oct 23, 2026.
+- Submit your Github repository or a zipped folder using the provided link or by email.
+
+Please notify me once you have submitted it.
+
+Personal contact details and the private submission URL are omitted from this repository copy.
