@@ -1,0 +1,14 @@
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[NULL-small integer--32768-32767-SMALLINT] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[NULL-integer--2147483648-2147483647-INTEGER] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[NULL-bigint--9223372036854775808-9223372036854775807-BIGINT] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[0-small integer--32768-32767-SMALLINT] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[0-integer--2147483648-2147483647-INTEGER] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[0-bigint--9223372036854775808-9223372036854775807-BIGINT] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[ERROR('transformation error')-small integer--32768-32767-SMALLINT] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[ERROR('transformation error')-integer--2147483648-2147483647-INTEGER] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[ERROR('transformation error')-bigint--9223372036854775808-9223372036854775807-BIGINT] [call]: passed
+tests/test_reporting.py::test_collection_failure_records_run_outcome_without_test_cases [call]: passed
+command: uv run pytest -q tests/test_semantics.py::test_integer_ranges_and_output_error_defaults tests/test_reporting.py::test_collection_failure_records_run_outcome_without_test_cases
+revision: 9369d443d9d6bdef7a5a552d4747950e045d21c9+code-sha256:675594da1da100fb75f6ab86e38a1abc318363881414bc6b4cecf9bed4a08650
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 0

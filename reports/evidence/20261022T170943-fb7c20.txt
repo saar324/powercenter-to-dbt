@@ -1,0 +1,53 @@
+tests/test_semantics.py::test_structural_expression_results[IIF(NULL = 1, 1, 0)-0] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[IIF(ISNULL(NULL), 7, 2)-7] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[1 + 2 * 3-7] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[(1 + 2) * 3-9] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[IIF('it''s' = 'it''s', -1, 0)--1] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[IIF(NULL = 'Y' OR NULL = '1', 1, 0)-0] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[UPPER(LTRIM(RTRIM(' jaffle ')))-JAFFLE] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[FOO(1)] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[IIF(1, 2)] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[x; DROP TABLE a] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[missing + 1] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[COUNT(x)] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[a || b] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[IIF(1=1, 1, )] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[1998-01-02 17:45:46-2003-01-01-expected0] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[1998-01-02 17:45:46-1999-01-01-expected1] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[1998-01-02 17:45:46-2100-01-01-expected2] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[2000-02-29 22:15:01-2099-12-31-expected3] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[2000-02-29 22:15:01-2100-01-01-None] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[None-2026-01-01-None] [call]: passed
+tests/test_semantics.py::test_production_dates_use_runtime_clock [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[NULL-None-decimal] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[NULL-None-double] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[NULL-None-number] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[0-expected1-decimal] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[0-expected1-double] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[0-expected1-number] [call]: passed
+tests/test_semantics.py::test_error_default_fails_visibly [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[-True-None] [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[-False-] [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[   -True-   ] [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[None-True-None] [call]: passed
+tests/test_semantics.py::test_trim_empty_survives_intermediate_but_target_normalizes [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[0.005-expected0] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[-0.005-expected1] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[9.994-expected2] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[9.995-None] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[None-None] [call]: passed
+tests/test_semantics.py::test_double_scale_zero_keeps_fraction_and_decimal_cents_rounds_separately [call]: passed
+tests/test_semantics.py::test_nonfinite_numbers_fail_visibly_at_storage[inf] [call]: passed
+tests/test_semantics.py::test_nonfinite_numbers_fail_visibly_at_storage[-inf] [call]: passed
+tests/test_semantics.py::test_nonfinite_numbers_fail_visibly_at_storage[nan] [call]: passed
+tests/test_semantics.py::test_output_string_error_default_preserves_null_and_handles_overlength [call]: passed
+tests/test_semantics.py::test_unsupported_types_do_not_emit[binary] [call]: passed
+tests/test_semantics.py::test_unsupported_types_do_not_emit[xml] [call]: passed
+tests/test_semantics.py::test_unsupported_types_do_not_emit[unknown] [call]: passed
+tests/test_semantics.py::test_imported_literals_cannot_inject_dbt_templates['{{ run_query("select 1") }}'] [call]: passed
+tests/test_semantics.py::test_imported_literals_cannot_inject_dbt_templates['{% for x in y %}'] [call]: passed
+tests/test_semantics.py::test_imported_literals_cannot_inject_dbt_templates['{# hidden #}'] [call]: passed
+command: uv run pytest -q tests/test_semantics.py
+revision: 9369d443d9d6bdef7a5a552d4747950e045d21c9+code-sha256:321bad5c870770bb2119a8de53aefa6b6bc2526908ff70bd08b6e9488f86528f
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 0

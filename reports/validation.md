@@ -1,0 +1,31 @@
+# Measured validation
+
+Final full invocation: `uv run pytest -q`, run `20261022T172637-34c669` on 22 October 2026. **140 passed, 0 failed, 0 error, 0 skipped** (140 test-case executions; one separate successful invocation record). Earlier runs remain historical; they are not mixed into this result.
+
+Tested snapshot: `9369d443d9d6bdef7a5a552d4747950e045d21c9+code-sha256:675594da1da100fb75f6ab86e38a1abc318363881414bc6b4cecf9bed4a08650`. The suffix hashes product source, tests, examples, Python manifest/lock and CI files; it identifies the uncommitted implementation precisely. Documentation/report writes are outside that code fingerprint. Environment: `Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1`. CI is configured but has not been run remotely.
+
+Input: supplied XML SHA-256 `0c34e0ed2965e117b5de54ca2b1d1333286beb928a6bc63eaf131b04982a3522`. Both supplied-file hashes are checked. Mutations record their own XML hashes; scalar cases identify inline inputs and test-source hashes. Earlier rows initially labelled synthetic/scalar checks with the base XML hash; that reporter defect was corrected before this final run. Those earlier labels are preserved as history, not exact synthetic-input provenance.
+
+| Measure | Actual evidence |
+| --- | --- |
+| Required complete results | 5/5 nonempty target cases match independently specified column order, DuckDB output types, all values and duplicate counts. |
+| Empty-input complete results | 5/5 required target cases match the independent empty result and output schema. |
+| XML mutation checks | 10 passed, with actual dbt execution: expression/wiring, source and target renaming, a new target instance, sort options, Joiner condition, Aggregator expression, unused bound-port regression, double error-default regression and reversed physical target-field order. These remain separate from the 10 baseline/empty result cases. |
+| Supplied-fixture output inventory | 9/16 targets emitted with example configuration; 7/16 explicitly unsupported. Emission is not execution evidence. |
+| Executed and independently checked paths | 5/16 supplied target paths. The four other emitted paths remain unverified. |
+| Preparation | Actual first and repeated dbt runs for all five outputs; absent-table guards, resolved target identity, delete-before-create SQL order and customer stale-row removal passed. |
+
+The final [test transcript](evidence/20261022T172637-34c669.txt), [first dbt run](evidence/20261022T172637-34c669-dbt-first.txt), [repeat run](evidence/20261022T172637-34c669-dbt-repeat.txt), [cleanup SQL order](evidence/20261022T172637-34c669-cleanup-order.txt), [fresh README smoke run](evidence/20261022T172637-34c669-readme-smoke.txt), [all-target CLI outcome](evidence/20261022T172637-34c669-all-targets.txt) and [full inventory](evidence/final-inventory.json) support these measures. The [CSV](test-runs.csv) is the authoritative invocation history. Native commands, corrections and review status are in the [Build record](../_bmad-output/implementation-artifacts/spec-powercenter-basic-conversion.md#implementation-notes).
+
+The required paths preserve both the product and order crossed cents/dollars wiring, master-outer detail preservation, duplicate multiplication, ordinary null-key equality and all-null aggregate handling. Boundary tests cover two-digit dates under controlled 1900/2000/2100-century contexts, invalid leap-day NULL fallback, midnight, strings at storage/intermediate boundaries, decimal rounding/overflow, finite numbers and error-default versus legitimate-null behavior. Sort direction, null placement and ASCII case sensitivity are checked separately from unordered result equality. Conversion determinism, destination preservation, dependency errors and unsupported/security rejection are also measured. Passing a rejection test does not add supported conversion coverage.
+
+Seven paths are deliberately unsupported: core ORDERS reaches unsupported COUNT(*) syntax; staging STG_LOCATIONS reaches TRUNC; all five enriched marts reach stateful local variables. Other unsupported settings/functions/types and imported dbt templates are rejected contextually. This export's repository metadata is not a verified PowerCenter release range, and no PowerCenter service executed these test inputs. Result checks establish the declared bounded policy on controlled data, not universal source-runtime equivalence.
+
+Practical next work:
+
+- **Evidence:** four emitted paths lack independent result checks → add controlled fixtures and actual dbt comparisons for STG_ORDER_ITEMS plus core ORDER_ITEMS/PRODUCTS/SUPPLIES → accept only after complete columns/types/values/duplicate counts and relevant edge cases match.
+- **Evidence:** seven targets stop at explicit unsupported operations → specify one operation's source type/null/state/order rules before extending the parser/emitter → require an XML mutation, boundary tests and a complete-path dbt comparison; retain rejection for unimplemented variants.
+- **Evidence:** there is no executed source oracle, and only bounded ASCII/numeric/date conditions are verified → obtain matched PowerCenter input/output evidence for floating ties, code pages/collation, session settings and row-error recovery → compare complete results under recorded source and target runtime versions.
+- **Evidence:** only this PowerCenter export layout is exercised → obtain representative versioned exports or one official second-product format (for example SSIS DTSX) → add a source-specific reader and equivalent complete-result fixtures, or reject that format explicitly. XML syntax alone is not compatibility.
+
+Native review is complete. Confirmed review findings were corrected and regression-tested: incompatible writer/session modes, integer widths, malformed independent metadata, ambiguous ordinals, passthrough output shape, wrong configuration types, unsupported aggregate shapes, expression complexity and pytest collection reporting. Invocation rows use `test_type=run` and are excluded from test-case totals. Deliberately failed isolated collection probes verify the reporter; they are separate from this final full invocation. The review triage retains every finding, including one rejected provenance enhancement.

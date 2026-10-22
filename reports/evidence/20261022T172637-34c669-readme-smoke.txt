@@ -1,0 +1,41 @@
+command: ['/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/pwc-to-dbt', '/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml', '--bindings', '/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/examples/sample-bindings.json', '--output', '/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pwc-final-readme-hcr06rgn/project', '--target', 'REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_CUSTOMERS', '--target', 'REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS', '--target', 'REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_PRODUCTS', '--target', 'REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES', '--target', 'REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS']
+exit: 0
+emitted: REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS: SQL generated; result verification is separate
+emitted: REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_CUSTOMERS: SQL generated; result verification is separate
+emitted: REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS: SQL generated; result verification is separate
+emitted: REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_PRODUCTS: SQL generated; result verification is separate
+emitted: REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES: SQL generated; result verification is separate
+
+command: ['/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/python', '/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/examples/load_demo.py', '/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pwc-final-readme-hcr06rgn/project/converter.duckdb']
+exit: 0
+
+command: ['/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/dbt', 'run', '--project-dir', '/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pwc-final-readme-hcr06rgn/project', '--profiles-dir', '/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pwc-final-readme-hcr06rgn/project', '--no-use-colors']
+exit: 0
+17:27:07  Running with dbt=1.12.6
+17:27:07  Registered adapter: duckdb=1.10.1
+17:27:07  Unable to do partial parsing because saved manifest not found. Starting full parse.
+17:27:08  Found 5 models, 5 sources, 488 macros
+17:27:08  
+17:27:08  Concurrency: 1 threads (target='local')
+17:27:08  
+17:27:08  1 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+17:27:08  PWC_CLEAR "converter"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+17:27:08  1 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+17:27:08  2 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+17:27:08  PWC_CLEAR "converter"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=absent
+17:27:08  2 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [OK in 0.02s]
+17:27:08  3 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [RUN]
+17:27:08  PWC_CLEAR "converter"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products" action=absent
+17:27:08  3 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [OK in 0.02s]
+17:27:08  4 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [RUN]
+17:27:08  PWC_CLEAR "converter"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies" action=absent
+17:27:08  4 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [OK in 0.02s]
+17:27:08  5 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+17:27:08  PWC_CLEAR "converter"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=absent
+17:27:08  5 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [OK in 0.02s]
+17:27:08  
+17:27:08  Finished running 5 table models in 0 hours 0 minutes and 0.18 seconds (0.18s).
+17:27:08  
+17:27:08  Completed successfully
+17:27:08  
+17:27:08  Done. PASS=5 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5

@@ -1,0 +1,4 @@
+# Preserve raw test transcripts; whitespace in captured output is evidence.
+reports/evidence/*.txt -whitespace
+# csv.DictWriter uses standard CRLF record endings.
+reports/test-runs.csv whitespace=cr-at-eol

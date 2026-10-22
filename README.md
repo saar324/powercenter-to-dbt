@@ -1,59 +1,75 @@
-# Infinite Lambda take-home exercise
+# PowerCenter to dbt
 
-This repository contains the supplied assignment materials, BMAD tooling and current requirements records. Converter implementation has not started.
+A deterministic Python CLI converts supported PowerCenter XML paths into a runnable DuckDB dbt project. It derives expressions, joins, aggregates, types, target column order and wiring from the XML. It inventories all 16 targets in the supplied export and keeps complete independent outputs when other targets fail.
 
-- [Assignment instructions](docs/assignment.md)
-- [Original supplied XML](fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml)
-- [Original upstream README](fixtures/powercenter/UPSTREAM_README.md)
-- [Source provenance and checksums](fixtures/powercenter/provenance.json)
+The five required paths have actual dbt execution and independent complete-result checks. [Measured validation](reports/validation.md) separates test outcomes, result comparisons and fixture coverage. This is a bounded converter; there is no executed PowerCenter oracle or universal equivalence claim.
 
-The task has entered native Build preparation after PRD,architecture,stories and sprint-readiness checks. Saar approved the Python 3.13 command-line stack with uv and pytest/DuckDB/dbt-duckdb validation; the [native stack record](./_bmad-output/specs/spec-powercenter-to-dbt/source-compatibility.md#converter-implementation-stack) contains the choices and rationale. The five-target core, DuckDB output, row-comparison rule and conversion of supported preparation commands are approved in the PRD; engineering verification and the native implementation contract remain pending; Saar approved the consolidated PRD in U64 and the overall architecture in U75. Reusable rules are not limited to five target names. The user has requested measured CSV reporting and a concise validation/next-work summary; their contract is captured below. Removed setup proposals are not approved inputs.
+## Run it
 
-- [Consolidated PRD for review](./_bmad-output/planning-artifacts/prds/prd-powercenter-to-dbt-2026-10-22/prd.md) — approved by Saar in U64; remaining engineering checks are explicit.
-- [Pre-approval research and learning notes](research/README.md) — XML walkthrough, Jaffle Shop primer, conversion design, semantic tests and input handling, with primary sources.
-- [Reviewed architecture](./_bmad-output/planning-artifacts/architecture/architecture-powercenter-to-dbt-2026-10-22/ARCHITECTURE-SPINE.md) — shared graph, conversion boundaries, output ownership and verification contract.
-- [Current native specification](./_bmad-output/specs/spec-powercenter-to-dbt/SPEC.md) — individually approved PRD decisions are reconciled; final PRD signoff is recorded; semantic verification and native implementation preparation remain pending.
-- [Source compatibility and reference boundaries](./_bmad-output/specs/spec-powercenter-to-dbt/source-compatibility.md)
-- [Validation and reporting contract](./_bmad-output/specs/spec-powercenter-to-dbt/validation-and-reporting.md)
-- [Available actual prompts](docs/agent-prompts.md) — curated record with stated omissions, not a full conversation export.
-
-The effort target is about four hours from 16:34 Europe/Sofia on 22 October 2026, including understanding, planning, agent coordination, testing and documentation. Saar clarified in U43 that 20:30 is a target, not a hard cutoff: 20:40 is acceptable, and work in progress can be finished when needed. Keep the effort near four hours and prioritize a complete tested minimum over optional coverage. No converter tests or accuracy measurements have been produced yet. The final submission will add actual converter run instructions, verified limitations and results as they exist; setup commands below are not converter run instructions.
-
-## Tools and agent process
-
-- Coding tool: Codex desktop app.
-- Access: Saar's personal Codex 20× plan, as reported by Saar.
-- Development workflow: project-local BMAD Method 6.12.4.
-
-The subscription label is recorded separately from the model. Saar described GPT 5.6, high thinking and fast execution in the [prompt record](docs/agent-prompts.md) (U23); these are user-provided settings, not independently captured runtime metadata. Record actual model/settings per run when available.
-
-## BMAD setup
-
-BMAD Method 6.12.4 is installed for Codex in `.agents/skills/` and `_bmad/`.
-Native requirements and append-only memory are in `_bmad-output/specs/spec-powercenter-to-dbt/`. Native Build has been entered; product implementation and implementation review have not run yet.
-
-To restore the pinned installer dependencies:
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run from the repository root. `uv` restores the locked Python 3.13 environment.
 
 ```sh
-npm ci --ignore-scripts
+uv sync --locked
+uv run pytest -q
+uv run pwc-to-dbt --help
 ```
 
-To reinstall BMAD if needed:
+Convert the five required targets into a fresh destination:
 
 ```sh
-npm run setup:bmad
+uv run pwc-to-dbt fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml \
+  --bindings examples/sample-bindings.json \
+  --output .generated/demo \
+  --target REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_CUSTOMERS \
+  --target REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS \
+  --target REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_PRODUCTS \
+  --target REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES \
+  --target REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS
+uv run python examples/load_demo.py .generated/demo/converter.duckdb
+PWC_DUCKDB_PATH="$PWD/.generated/demo/converter.duckdb" \
+  uv run dbt run --project-dir .generated/demo --profiles-dir .generated/demo
 ```
 
-Open this repository as the coding tool's project root. BMAD's own help is available through the installed `bmad-help` skill.
+The loader creates synthetic data, including duplicate, null, unmatched and numeric/date boundary rows. It refuses to replace an existing database. Use a different fresh directory to repeat the conversion; the CLI also refuses nonempty destinations. Run the last dbt command again to exercise existing-table cleanup. `uv run pytest -q` performs the independent comparisons and stale-row lifecycle checks automatically.
 
-Assignment documentation is governed by [AGENTS.md](AGENTS.md). Project overrides in `_bmad/custom/` remind Build and the retrospective to maintain the required submission evidence. Existing BMAD records are reused rather than duplicated.
+Use `--inventory` to list exact target identities. Repeat `--target` to select outputs; bound producers are included automatically. Omit `--target` to attempt all targets. Unsupported/blocked paths produce exit 1 and remain visible in `conversion-manifest.json`; fatal input/configuration errors produce exit 2. Emission is not result verification.
 
-The submission will include the relevant development record: BMAD tooling and shared configuration, requirements and native history, research, prompts, implementation and reviews, tests and measured reports, CI, and dependency manifests and lockfiles. Installed packages, virtual environments, tool caches, credentials and machine-only settings are excluded. Any private third-party context in the conversation is redacted and identified as such.
+`examples/sample-bindings.json` explicitly connects exact source instances to generated targets. It also declares original target schemas absent from target definitions, checked against the cleanup relation. These declarations are example configuration, not relation-name inference. Unbound inputs become declared dbt sources and must be supplied separately.
 
-The repository setup check verifies tooling configuration and unchanged supplied files only.
+## Assumptions and omissions
 
-## Agent error caught during setup
+- Supported relational steps are single-stream Source Qualifiers with empty overrides, pure Expressions, ordinary equality/boolean Joiner conditions for normal and master-outer joins, grouped Aggregators, and Sorters. Supported expression functions and arities are explicit in `expressions.py`. Stateful local variables, Routers, Custom Transformations, arbitrary SQL and session overrides are rejected on affected paths.
+- The bounded storage policy handles Oracle strings and exported numeric metadata: empty strings become null at source/target storage boundaries; intermediate empty strings remain distinct. Bare `NUMBER` and `double` use double precision under the export's recorded high-precision-NO sessions. Declared decimal precision/scale are rounded then cast at separate boundaries. Tests verify the declared policy, not every Oracle/PowerCenter rounding mode.
+- YY dates resolve in the DuckDB runtime's current century, with midnight for this format. Tests also inject century contexts, including invalid leap days and the reached NULL error default. No production year is fixed in the converter.
+- ASCII string comparisons/case conversion and the tested null/sort rules are verified. Other code pages, non-ASCII collation, time zones, large numeric accumulation, and source-runtime row rejection/recovery are unverified. ERROR-default failures stop the query; they do not reproduce PowerCenter bad-row files.
+- Only target-bound `TRUNCATE TABLE` preparation with an explicitly resolved original relation is translated. The writer generates guarded `delete from {{ this }}` hooks for table models. Conversion never opens a database or executes imported SQL. Workflow commands remain reported as unconverted. XML entities/internal DTD subsets and imported dbt template delimiters are rejected; external DTDs are not fetched.
+
+The XML crosses both product-price and order cents/dollars target connectors. The converter preserves those connections. The master-outer customer join preserves grouped-order detail rows, including unmatched groups with null master customer fields; it does not add idle customers. These differences make a conventional Jaffle Shop model an unsuitable oracle without matched rules and inputs.
+
+## Where wrong output is most likely
+
+The main risks are untested source-runtime behavior at binary-floating rounding boundaries, non-ASCII/collation rules, session/runtime options absent from the tested subset, and row-error recovery. Related Informatica documentation supports the chosen bounded rules; the export does not establish a PowerCenter product-release compatibility range. [Source compatibility](./_bmad-output/specs/spec-powercenter-to-dbt/source-compatibility.md), [semantic research](research/06-core-semantics-check.md) and [validation/next work](reports/validation.md) explain evidence limits and concrete follow-up tests. Unsupported paths are not silently approximated.
+
+## Agent errors and detection
+
+Actual dbt execution caught an invalid first implementation of error defaults: DuckDB rejects TRY around volatile `error()` calls. Boundary tests then caught a decimal cast that rejected a representable value before rounding. An independent audit caught projection of an unused, unvalidated bound-source field and a double-default guard that let an error escape TRY. The [native implementation record](./_bmad-output/implementation-artifacts/spec-powercenter-basic-conversion.md#implementation-notes) records detection and corrections; regression tests cover them. Earlier failed runs remain in [the CSV](reports/test-runs.csv).
+
+### Agent error caught during setup
 
 During setup, the coding agent added analysis and proposed implementation choices when I had asked only for repository preparation. I caught this by reviewing the repository files and questioning what had already been added. I asked the agent to remove those additions and the converter-specific scaffolding, keeping the supplied materials and BMAD setup. The cleanup is recorded in commit `270a3d8`. This occurred before converter implementation.
 
-See [third-party notices](THIRD_PARTY_NOTICES.md).
+## Prompts and actual process
+
+The [available actual prompt record](docs/agent-prompts.md) starts with the initial prompt and distinguishes user and delegated-agent wording. It states missing history and redactions. A supported full conversation export was not available through the tools used; this curated record is not presented as a full export. Confidential third-party context, personal contact details and the private submission URL are excluded.
+
+Saar used his personal Codex 20× plan, as he reported. His stated model and settings are recorded in the prompt log; runtime model metadata was not available.
+
+The work used Codex desktop and project-local BMAD Method 6.12.4: preserve the supplied material; research the XML and source semantics; reconcile and approve the native requirements and architecture; prepare and approve the distinct Build spec; implement the shared contracts and separate pipeline stages; execute dbt and independent tests; correct observed failures and audit findings; prepare this reproducible handoff. Actual native review status is retained in the Build record. No submission or employer message is performed by these commands.
+
+Read the code in data-flow order: `mapping.py` → `xml_reader.py` → `dependencies.py` → `expressions.py`/`sql.py` → `project.py`; `cli.py` coordinates them. Tests own synthetic input and expected results independently of the converter.
+
+- [Assignment](docs/assignment.md), [supplied XML](fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml), [provenance/hashes](fixtures/powercenter/provenance.json)
+- [Canonical SPEC and companions](./_bmad-output/specs/spec-powercenter-to-dbt/SPEC.md), [architecture](./_bmad-output/planning-artifacts/architecture/architecture-powercenter-to-dbt-2026-10-22/ARCHITECTURE-SPINE.md), [Build implementation/review record](./_bmad-output/implementation-artifacts/spec-powercenter-basic-conversion.md)
+- [Actual run CSV](reports/test-runs.csv), [validation summary](reports/validation.md), [CI](.github/workflows/tests.yml), [third-party notices](THIRD_PARTY_NOTICES.md)
+
+The repository includes native BMAD/research/prompt evidence and dependency lockfiles. Installed dependencies, caches, credentials and generated local databases are excluded. `npm ci --ignore-scripts` restores the existing pinned BMAD installer dependencies if needed; it is separate from the Python converter environment. No model/settings claim is inferred from the user's subscription description.

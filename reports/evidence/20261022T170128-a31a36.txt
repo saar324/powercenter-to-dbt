@@ -1,0 +1,326 @@
+tests/test_dbt_results.py::test_complete_staging_customers [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x106ac0640>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-712'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+>       evidence.write_text(first.stdout + first.stderr)
+
+tests/test_dbt_results.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:555: in write_text
+    return PathBase.write_text(self, data, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_abc.py:651: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt'
+
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+tests/test_dbt_results.py::test_complete_staging_orders [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x106ac0640>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-712'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+>       evidence.write_text(first.stdout + first.stderr)
+
+tests/test_dbt_results.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:555: in write_text
+    return PathBase.write_text(self, data, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_abc.py:651: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt'
+
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+tests/test_dbt_results.py::test_complete_staging_products [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x106ac0640>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-712'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+>       evidence.write_text(first.stdout + first.stderr)
+
+tests/test_dbt_results.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:555: in write_text
+    return PathBase.write_text(self, data, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_abc.py:651: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt'
+
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+tests/test_dbt_results.py::test_complete_staging_supplies [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x106ac0640>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-712'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+>       evidence.write_text(first.stdout + first.stderr)
+
+tests/test_dbt_results.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:555: in write_text
+    return PathBase.write_text(self, data, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_abc.py:651: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt'
+
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+tests/test_dbt_results.py::test_complete_core_customers [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x106ac0640>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-712'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+>       evidence.write_text(first.stdout + first.stderr)
+
+tests/test_dbt_results.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:555: in write_text
+    return PathBase.write_text(self, data, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_abc.py:651: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt'
+
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+tests/test_dbt_results.py::test_first_repeat_cleanup_stale_rows_and_order [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x106ac0640>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-712'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+>       evidence.write_text(first.stdout + first.stderr)
+
+tests/test_dbt_results.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:555: in write_text
+    return PathBase.write_text(self, data, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_abc.py:651: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt'
+
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+tests/test_dbt_results.py::test_mapping_sort_is_explicit_and_observed [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x106ac0640>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-712'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+>       evidence.write_text(first.stdout + first.stderr)
+
+tests/test_dbt_results.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:555: in write_text
+    return PathBase.write_text(self, data, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_abc.py:651: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/reports/evidence/20261022T170128-a31a36-dbt-first.txt'
+
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+command: uv run pytest -q tests/test_dbt_results.py
+revision: 9369d443d9d6bdef7a5a552d4747950e045d21c9+code-sha256:2ff6c4be6999fc50b83c4ef8fc631fc4575721f6bcbcaf2fbbe863d1ff3aff4b
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 1

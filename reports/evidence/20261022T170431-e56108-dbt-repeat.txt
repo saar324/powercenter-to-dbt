@@ -1,0 +1,27 @@
+17:04:34  Running with dbt=1.12.6
+17:04:35  Registered adapter: duckdb=1.10.1
+17:04:35  Found 5 models, 5 sources, 488 macros
+17:04:35  
+17:04:35  Concurrency: 1 threads (target='local')
+17:04:35  
+17:04:35  1 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+17:04:35  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=delete
+17:04:35  1 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.05s]
+17:04:35  2 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+17:04:35  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=delete
+17:04:35  2 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [OK in 0.02s]
+17:04:35  3 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [RUN]
+17:04:35  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products" action=delete
+17:04:35  3 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [OK in 0.02s]
+17:04:35  4 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [RUN]
+17:04:35  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies" action=delete
+17:04:35  4 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [OK in 0.03s]
+17:04:35  5 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+17:04:35  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=delete
+17:04:35  5 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [OK in 0.03s]
+17:04:35  
+17:04:35  Finished running 5 table models in 0 hours 0 minutes and 0.21 seconds (0.21s).
+17:04:35  
+17:04:35  Completed successfully
+17:04:35  
+17:04:35  Done. PASS=5 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5

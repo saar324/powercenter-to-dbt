@@ -1,0 +1,98 @@
+tests/test_dbt_results.py::test_complete_staging_customers [call]: passed
+tests/test_dbt_results.py::test_complete_staging_orders [call]: failed
+executed = (PosixPath('/private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-714/actual-dbt0/proje...name': 'varchar2', 'precision': 500, 'scale': 0}, 'name': 'PRODUCT_DESCRIPTION'}, ...], 'dependencies': [], ...}, ...})
+
+    @pytest.mark.result(target=STAGING + 'STG_ORDERS')
+    def test_complete_staging_orders(executed):
+>       check_result(executed, STAGING + 'STG_ORDERS',
+                     ['ORDER_ID', 'CUSTOMER_ID', 'LOCATION_ID', 'ORDERED_AT_DAY', 'SUBTOTAL_CENTS', 'TAX_PAID_CENTS', 'ORDER_TOTAL_CENTS', 'SUBTOTAL', 'TAX_PAID', 'ORDER_TOTAL'],
+                     [('o1', 'c1', 'l1', DAYS['old'], 125.0, 25.0, D('151.00'), 1.25, 0.25, D('1.51')),
+                      ('o2', 'c1', 'l1', DAYS['leap'], -5.0, -1.0, D('-7.00'), -0.05, -0.01, D('-0.07')),
+                      ('o2', 'c1', 'l1', DAYS['leap'], -5.0, -1.0, D('-7.00'), -0.05, -0.01, D('-0.07')),
+                      ('o3', 'missing', 'l2', DAYS['other'], None, None, None, None, None, None),
+                      (None, None, None, None, 0.0, 0.0, D('0.00'), 0.0, 0.0, D('0.00')),
+                      ('o4', 'c2', 'l2', DAYS['last'], 1.0, -1.0, D('1.00'), 0.01, -0.01, D('0.01'))])
+
+tests/test_dbt_results.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_dbt_results.py:45: in check_result
+    with duckdb.connect(str(database)) as db:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+executed = (PosixPath('/private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-714/actual-dbt0/proje...name': 'varchar2', 'precision': 500, 'scale': 0}, 'name': 'PRODUCT_DESCRIPTION'}, ...], 'dependencies': [], ...}, ...})
+target = 'REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS'
+columns = ['ORDER_ID', 'CUSTOMER_ID', 'LOCATION_ID', 'ORDERED_AT_DAY', 'SUBTOTAL_CENTS', 'TAX_PAID_CENTS', ...]
+rows = [('o1', 'c1', 'l1', datetime.datetime(2098, 1, 2, 0, 0), 125.0, 25.0, ...), ('o2', 'c1', 'l1', datetime.datetime(2000,....), (None, None, None, None, 0.0, 0.0, ...), ('o4', 'c2', 'l2', datetime.datetime(2025, 12, 31, 0, 0), 1.0, -1.0, ...)]
+
+    def check_result(executed, target, columns, rows):
+        _, database, _, _, _, model_rows = executed
+        name = model_rows[target]['alias']
+        with duckdb.connect(str(database)) as db:
+            cursor = db.execute(f'SELECT * FROM converted."{name}"')
+            assert [column[0] for column in cursor.description] == columns
+>           assert Counter(cursor.fetchall()) == Counter(rows)
+E           AssertionError: assert Counter({('o2...('0.00')): 1}) == Counter({('o2...('0.01')): 1})
+E             
+E             Omitting 2 identical items, use -vv to show
+E             Left contains 3 more items:
+E             {('o1', 'c1', 'l1', datetime.datetime(2098, 1, 2, 0, 0), 1.25, 0.25, Decimal('1.51'), 125.0, 25.0, Decimal('151.00')): 1,
+E              ('o2', 'c1', 'l1', datetime.datetime(2000, 2, 29, 0, 0), -0.05, -0.01, Decimal('-0.07'), -5.0, -1.0, Decimal('-7.00')): 2,
+E              ('o4', 'c2', 'l2', datetime.datetime(2025, 12, 31, 0, 0), 0.01, -0.01, Decimal('0.01'), 1.0, -1.0, Decimal('1.00')): 1}
+E             Right contains 3 more items:...
+E             
+E             ...Full output truncated (4 lines hidden), use '-vv' to show
+
+tests/test_dbt_results.py:48: AssertionError
+tests/test_dbt_results.py::test_complete_staging_products [call]: passed
+tests/test_dbt_results.py::test_complete_staging_supplies [call]: passed
+tests/test_dbt_results.py::test_complete_core_customers [call]: failed
+executed = (PosixPath('/private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-714/actual-dbt0/proje...name': 'varchar2', 'precision': 500, 'scale': 0}, 'name': 'PRODUCT_DESCRIPTION'}, ...], 'dependencies': [], ...}, ...})
+
+    @pytest.mark.result(target=CORE + 'CUSTOMERS')
+    def test_complete_core_customers(executed):
+>       check_result(executed, CORE + 'CUSTOMERS',
+                     ['CUSTOMER_ID', 'CUSTOMER_NAME', 'LIFETIME_ORDERS', 'FIRST_ORDER_DATE', 'LAST_ORDER_DATE', 'LIFETIME_SPEND', 'LIFETIME_SPEND_PRETAX', 'LIFETIME_TAX_PAID', 'CUSTOMER_TYPE'],
+                     [('c1', 'Aster', 3.0, DAYS['leap'], DAYS['old'], D('1.37'), D('1.15'), D('0.23'), 'returning'),
+                      ('c1', 'Aster', 3.0, DAYS['leap'], DAYS['old'], D('1.37'), D('1.15'), D('0.23'), 'returning'),
+                      ('c2', 'Birch', 1.0, DAYS['last'], DAYS['last'], D('0.01'), D('0.01'), D('-0.01'), 'new'),
+                      (None, None, 1.0, DAYS['other'], DAYS['other'], D('0.00'), D('0.00'), D('0.00'), 'new'),
+                      (None, None, 0.0, None, None, D('0.00'), D('0.00'), D('0.00'), 'new')])
+
+tests/test_dbt_results.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_dbt_results.py:45: in check_result
+    with duckdb.connect(str(database)) as db:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+executed = (PosixPath('/private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-714/actual-dbt0/proje...name': 'varchar2', 'precision': 500, 'scale': 0}, 'name': 'PRODUCT_DESCRIPTION'}, ...], 'dependencies': [], ...}, ...})
+target = 'REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS'
+columns = ['CUSTOMER_ID', 'CUSTOMER_NAME', 'LIFETIME_ORDERS', 'FIRST_ORDER_DATE', 'LAST_ORDER_DATE', 'LIFETIME_SPEND', ...]
+rows = [('c1', 'Aster', 3.0, datetime.datetime(2000, 2, 29, 0, 0), datetime.datetime(2098, 1, 2, 0, 0), Decimal('1.37'), ...)...0, 0), datetime.datetime(2024, 5, 6, 0, 0), Decimal('0.00'), ...), (None, None, 0.0, None, None, Decimal('0.00'), ...)]
+
+    def check_result(executed, target, columns, rows):
+        _, database, _, _, _, model_rows = executed
+        name = model_rows[target]['alias']
+        with duckdb.connect(str(database)) as db:
+            cursor = db.execute(f'SELECT * FROM converted."{name}"')
+            assert [column[0] for column in cursor.description] == columns
+>           assert Counter(cursor.fetchall()) == Counter(rows)
+E           AssertionError: assert Counter({('c1...), 'new'): 1}) == Counter({('c1...), 'new'): 1})
+E             
+E             Omitting 2 identical items, use -vv to show
+E             Left contains 2 more items:
+E             {('c1', 'Aster', 3.0, datetime.datetime(2000, 2, 29, 0, 0), datetime.datetime(2098, 1, 2, 0, 0), Decimal('137.00'), Decimal('115.00'), Decimal('23.00'), 'returning'): 2,
+E              ('c2', 'Birch', 1.0, datetime.datetime(2025, 12, 31, 0, 0), datetime.datetime(2025, 12, 31, 0, 0), Decimal('1.00'), Decimal('1.00'), Decimal('-1.00'), 'new'): 1}
+E             Right contains 2 more items:
+E             {('c1', 'Aster', 3.0, datetime.datetime(2000, 2, 29, 0, 0), datetime.datetime(2098, 1, 2, 0, 0), Decimal('1.37'), Decimal('1.15'), Decimal('0.23'), 'returning'): 2,...
+E             
+E             ...Full output truncated (2 lines hidden), use '-vv' to show
+
+tests/test_dbt_results.py:48: AssertionError
+tests/test_dbt_results.py::test_first_repeat_cleanup_stale_rows_and_order [call]: passed
+tests/test_dbt_results.py::test_mapping_sort_is_explicit_and_observed [call]: passed
+command: uv run pytest -q tests/test_dbt_results.py
+revision: 9369d443d9d6bdef7a5a552d4747950e045d21c9+code-sha256:a0427ce236188888561bc78b4b01fab44a3cc1b093cb3e871369c77a573d5e02
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 1

@@ -1,0 +1,291 @@
+tests/test_semantics.py::test_structural_expression_results[IIF(NULL = 1, 1, 0)-0] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[IIF(ISNULL(NULL), 7, 2)-7] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[1 + 2 * 3-7] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[(1 + 2) * 3-9] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[IIF('it''s' = 'it''s', -1, 0)--1] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[IIF(NULL = 'Y' OR NULL = '1', 1, 0)-0] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[UPPER(LTRIM(RTRIM(' jaffle ')))-JAFFLE] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[FOO(1)] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[IIF(1, 2)] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[x; DROP TABLE a] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[missing + 1] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[COUNT(x)] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[a || b] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[IIF(1=1, 1, )] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[1998-01-02 17:45:46-2003-01-01-expected0] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[1998-01-02 17:45:46-1999-01-01-expected1] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[1998-01-02 17:45:46-2100-01-01-expected2] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[2000-02-29 22:15:01-2099-12-31-expected3] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[2000-02-29 22:15:01-2100-01-01-None] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[None-2026-01-01-None] [call]: passed
+tests/test_semantics.py::test_production_dates_use_runtime_clock [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[NULL-None-decimal] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[NULL-None-double] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[NULL-None-number] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[0-expected1-decimal] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[0-expected1-double] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[0-expected1-number] [call]: passed
+tests/test_semantics.py::test_error_default_fails_visibly [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[-True-None] [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[-False-] [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[   -True-   ] [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[None-True-None] [call]: passed
+tests/test_semantics.py::test_trim_empty_survives_intermediate_but_target_normalizes [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[0.005-expected0] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[-0.005-expected1] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[9.994-expected2] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[9.995-None] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[None-None] [call]: passed
+tests/test_semantics.py::test_double_scale_zero_keeps_fraction_and_decimal_cents_rounds_separately [call]: passed
+tests/test_semantics.py::test_nonfinite_numbers_fail_visibly_at_storage[inf] [call]: passed
+tests/test_semantics.py::test_nonfinite_numbers_fail_visibly_at_storage[-inf] [call]: passed
+tests/test_semantics.py::test_nonfinite_numbers_fail_visibly_at_storage[nan] [call]: passed
+tests/test_semantics.py::test_output_string_error_default_preserves_null_and_handles_overlength [call]: passed
+tests/test_semantics.py::test_unsupported_types_do_not_emit[binary] [call]: passed
+tests/test_semantics.py::test_unsupported_types_do_not_emit[xml] [call]: passed
+tests/test_semantics.py::test_unsupported_types_do_not_emit[unknown] [call]: passed
+tests/test_semantics.py::test_imported_literals_cannot_inject_dbt_templates['{{ run_query("select 1") }}'] [call]: passed
+tests/test_semantics.py::test_imported_literals_cannot_inject_dbt_templates['{% for x in y %}'] [call]: passed
+tests/test_semantics.py::test_imported_literals_cannot_inject_dbt_templates['{# hidden #}'] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[NULL-small integer--32768-32767-SMALLINT] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[NULL-integer--2147483648-2147483647-INTEGER] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[NULL-bigint--9223372036854775808-9223372036854775807-BIGINT] [call]: failed
+datatype = 'bigint', lower = -9223372036854775808, upper = 9223372036854775807
+duck_type = 'BIGINT', default = 'NULL'
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize('datatype,lower,upper,duck_type', [
+        ('small integer', -32768, 32767, 'SMALLINT'),
+        ('integer', -2147483648, 2147483647, 'INTEGER'),
+        ('bigint', -9223372036854775808, 9223372036854775807, 'BIGINT'),
+    ])
+    @pytest.mark.parametrize('default', ['NULL', '0', "ERROR('transformation error')"])
+    def test_integer_ranges_and_output_error_defaults(datatype, lower, upper, duck_type, default):
+        port = output(datatype=datatype, precision=19, scale=0, default=default)
+        sql = convert('x', port, output_default=True)
+>       with duckdb.connect() as db:
+             ^^^^^^^^^^^^^^^^
+
+tests/test_semantics.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+datatype = 'bigint', lower = -9223372036854775808, upper = 9223372036854775807
+duck_type = 'BIGINT', default = 'NULL'
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize('datatype,lower,upper,duck_type', [
+        ('small integer', -32768, 32767, 'SMALLINT'),
+        ('integer', -2147483648, 2147483647, 'INTEGER'),
+        ('bigint', -9223372036854775808, 9223372036854775807, 'BIGINT'),
+    ])
+    @pytest.mark.parametrize('default', ['NULL', '0', "ERROR('transformation error')"])
+    def test_integer_ranges_and_output_error_defaults(datatype, lower, upper, duck_type, default):
+        port = output(datatype=datatype, precision=19, scale=0, default=default)
+        sql = convert('x', port, output_default=True)
+        with duckdb.connect() as db:
+            cursor = db.execute(f'SELECT {sql} FROM (SELECT ?::DECIMAL(38,0) x UNION ALL SELECT ?::DECIMAL(38,0) UNION ALL SELECT NULL)', [lower, upper])
+            assert str(cursor.description[0][1]) == duck_type
+            assert cursor.fetchall() == [(lower,), (upper,), (None,)]
+            for invalid in (lower - 1, upper + 1):
+                if default.startswith('ERROR'):
+                    with pytest.raises(duckdb.Error):
+                        db.execute(f'SELECT {sql} FROM (SELECT ?::DECIMAL(38,0) x)', [invalid]).fetchall()
+                else:
+                    expected = None if default == 'NULL' else 0
+>                   assert db.execute(f'SELECT {sql} FROM (SELECT ?::DECIMAL(38,0) x)', [invalid]).fetchone() == (expected,)
+E                   assert (-9223372036854775808,) == (None,)
+E                     
+E                     At index 0 diff: -9223372036854775808 != None
+E                     Use -v to get more diff
+
+tests/test_semantics.py:161: AssertionError
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[0-small integer--32768-32767-SMALLINT] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[0-integer--2147483648-2147483647-INTEGER] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[0-bigint--9223372036854775808-9223372036854775807-BIGINT] [call]: failed
+datatype = 'bigint', lower = -9223372036854775808, upper = 9223372036854775807
+duck_type = 'BIGINT', default = '0'
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize('datatype,lower,upper,duck_type', [
+        ('small integer', -32768, 32767, 'SMALLINT'),
+        ('integer', -2147483648, 2147483647, 'INTEGER'),
+        ('bigint', -9223372036854775808, 9223372036854775807, 'BIGINT'),
+    ])
+    @pytest.mark.parametrize('default', ['NULL', '0', "ERROR('transformation error')"])
+    def test_integer_ranges_and_output_error_defaults(datatype, lower, upper, duck_type, default):
+        port = output(datatype=datatype, precision=19, scale=0, default=default)
+        sql = convert('x', port, output_default=True)
+>       with duckdb.connect() as db:
+             ^^^^^^^^^^^^^^^^
+
+tests/test_semantics.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+datatype = 'bigint', lower = -9223372036854775808, upper = 9223372036854775807
+duck_type = 'BIGINT', default = '0'
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize('datatype,lower,upper,duck_type', [
+        ('small integer', -32768, 32767, 'SMALLINT'),
+        ('integer', -2147483648, 2147483647, 'INTEGER'),
+        ('bigint', -9223372036854775808, 9223372036854775807, 'BIGINT'),
+    ])
+    @pytest.mark.parametrize('default', ['NULL', '0', "ERROR('transformation error')"])
+    def test_integer_ranges_and_output_error_defaults(datatype, lower, upper, duck_type, default):
+        port = output(datatype=datatype, precision=19, scale=0, default=default)
+        sql = convert('x', port, output_default=True)
+        with duckdb.connect() as db:
+            cursor = db.execute(f'SELECT {sql} FROM (SELECT ?::DECIMAL(38,0) x UNION ALL SELECT ?::DECIMAL(38,0) UNION ALL SELECT NULL)', [lower, upper])
+            assert str(cursor.description[0][1]) == duck_type
+            assert cursor.fetchall() == [(lower,), (upper,), (None,)]
+            for invalid in (lower - 1, upper + 1):
+                if default.startswith('ERROR'):
+                    with pytest.raises(duckdb.Error):
+                        db.execute(f'SELECT {sql} FROM (SELECT ?::DECIMAL(38,0) x)', [invalid]).fetchall()
+                else:
+                    expected = None if default == 'NULL' else 0
+>                   assert db.execute(f'SELECT {sql} FROM (SELECT ?::DECIMAL(38,0) x)', [invalid]).fetchone() == (expected,)
+E                   assert (-9223372036854775808,) == (0,)
+E                     
+E                     At index 0 diff: -9223372036854775808 != 0
+E                     Use -v to get more diff
+
+tests/test_semantics.py:161: AssertionError
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[ERROR('transformation error')-small integer--32768-32767-SMALLINT] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[ERROR('transformation error')-integer--2147483648-2147483647-INTEGER] [call]: passed
+tests/test_semantics.py::test_integer_ranges_and_output_error_defaults[ERROR('transformation error')-bigint--9223372036854775808-9223372036854775807-BIGINT] [call]: failed
+datatype = 'bigint', lower = -9223372036854775808, upper = 9223372036854775807
+duck_type = 'BIGINT', default = "ERROR('transformation error')"
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize('datatype,lower,upper,duck_type', [
+        ('small integer', -32768, 32767, 'SMALLINT'),
+        ('integer', -2147483648, 2147483647, 'INTEGER'),
+        ('bigint', -9223372036854775808, 9223372036854775807, 'BIGINT'),
+    ])
+    @pytest.mark.parametrize('default', ['NULL', '0', "ERROR('transformation error')"])
+    def test_integer_ranges_and_output_error_defaults(datatype, lower, upper, duck_type, default):
+        port = output(datatype=datatype, precision=19, scale=0, default=default)
+        sql = convert('x', port, output_default=True)
+>       with duckdb.connect() as db:
+             ^^^^^^^^^^^^^^^^
+
+tests/test_semantics.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+datatype = 'bigint', lower = -9223372036854775808, upper = 9223372036854775807
+duck_type = 'BIGINT', default = "ERROR('transformation error')"
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize('datatype,lower,upper,duck_type', [
+        ('small integer', -32768, 32767, 'SMALLINT'),
+        ('integer', -2147483648, 2147483647, 'INTEGER'),
+        ('bigint', -9223372036854775808, 9223372036854775807, 'BIGINT'),
+    ])
+    @pytest.mark.parametrize('default', ['NULL', '0', "ERROR('transformation error')"])
+    def test_integer_ranges_and_output_error_defaults(datatype, lower, upper, duck_type, default):
+        port = output(datatype=datatype, precision=19, scale=0, default=default)
+        sql = convert('x', port, output_default=True)
+        with duckdb.connect() as db:
+            cursor = db.execute(f'SELECT {sql} FROM (SELECT ?::DECIMAL(38,0) x UNION ALL SELECT ?::DECIMAL(38,0) UNION ALL SELECT NULL)', [lower, upper])
+            assert str(cursor.description[0][1]) == duck_type
+            assert cursor.fetchall() == [(lower,), (upper,), (None,)]
+            for invalid in (lower - 1, upper + 1):
+                if default.startswith('ERROR'):
+>                   with pytest.raises(duckdb.Error):
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                   Failed: DID NOT RAISE <class '_duckdb.Error'>
+
+tests/test_semantics.py:157: Failed
+tests/test_semantics.py::test_expression_complexity_is_a_conversion_error[UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER(UPPER('x'))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))] [call]: passed
+tests/test_semantics.py::test_expression_complexity_is_a_conversion_error[1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1] [call]: passed
+tests/test_graph_cli.py::test_inventory_is_complete_and_exact [call]: passed
+tests/test_graph_cli.py::test_core_selection_includes_exact_bound_producer_closure [call]: passed
+tests/test_graph_cli.py::test_unbound_inputs_are_declared_external [call]: passed
+tests/test_graph_cli.py::test_unknown_or_short_selection_rejected[CUSTOMERS] [call]: passed
+tests/test_graph_cli.py::test_unknown_or_short_selection_rejected[REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/ABSENT] [call]: passed
+tests/test_graph_cli.py::test_unknown_bindings_rejected[STG_ORDERS-REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS] [call]: passed
+tests/test_graph_cli.py::test_unknown_bindings_rejected[REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/STG_ORDERS2-REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/ABSENT] [call]: passed
+tests/test_graph_cli.py::test_unknown_config_and_duplicate_json_keys [call]: passed
+tests/test_graph_cli.py::test_missing_connector_blocks_only_affected_and_consumers [call]: passed
+tests/test_graph_cli.py::test_missing_port_diagnostic [call]: passed
+tests/test_graph_cli.py::test_cycle_is_detected [call]: passed
+tests/test_graph_cli.py::test_incompatible_binding_and_missing_consumed_column [call]: passed
+tests/test_graph_cli.py::test_unsupported_blocks_producer_and_retains_independent_outputs[unknown_expression] [call]: passed
+tests/test_graph_cli.py::test_unsupported_blocks_producer_and_retains_independent_outputs[unknown_transformation] [call]: passed
+tests/test_graph_cli.py::test_unsupported_blocks_producer_and_retains_independent_outputs[required_preparation] [call]: passed
+tests/test_graph_cli.py::test_required_qualifier_override_is_not_ignored [call]: passed
+tests/test_graph_cli.py::test_collision_is_rejected [call]: passed
+tests/test_graph_cli.py::test_entity_declarations_refused[<!DOCTYPE POWERMART [<!ENTITY e "expand">]><POWERMART>&e;</POWERMART>] [call]: passed
+tests/test_graph_cli.py::test_entity_declarations_refused[<!DOCTYPE POWERMART [<!ENTITY e SYSTEM "file:///nonexistent">]><POWERMART>&e;</POWERMART>] [call]: passed
+tests/test_graph_cli.py::test_external_dtd_is_never_fetched [call]: passed
+tests/test_graph_cli.py::test_malformed_and_unknown_roots_rejected[<broken>] [call]: passed
+tests/test_graph_cli.py::test_malformed_and_unknown_roots_rejected[<OTHER/>] [call]: passed
+tests/test_graph_cli.py::test_destination_refusal_preserves_existing_files [call]: passed
+tests/test_graph_cli.py::test_deterministic_files_include_manifest_and_empty_directory [call]: passed
+tests/test_graph_cli.py::test_cli_success_partial_failure_and_inventory [call]: passed
+tests/test_graph_cli.py::test_cleanup_requires_correct_explicit_original_relation [call]: passed
+tests/test_graph_cli.py::test_supplied_hashes_are_unchanged [call]: passed
+tests/test_graph_cli.py::test_conversion_never_opens_database_or_executes_imported_sql [call]: passed
+tests/test_graph_cli.py::test_installed_cli_help [call]: passed
+tests/test_graph_cli.py::test_session_required_preparation_override_is_not_ignored [call]: passed
+tests/test_graph_cli.py::test_unknown_storage_semantics_are_rejected [call]: passed
+tests/test_graph_cli.py::test_cross_mapping_binding_cycle_is_rejected [call]: passed
+tests/test_graph_cli.py::test_incompatible_session_modes_preserve_independent_outputs[Insert-NO] [call]: passed
+tests/test_graph_cli.py::test_incompatible_session_modes_preserve_independent_outputs[Treat source rows as-Delete] [call]: passed
+tests/test_graph_cli.py::test_incompatible_session_modes_preserve_independent_outputs[Incremental Aggregation-YES] [call]: passed
+tests/test_graph_cli.py::test_malformed_metadata_keeps_independent_selected_paths[source] [call]: passed
+tests/test_graph_cli.py::test_malformed_metadata_keeps_independent_selected_paths[transformation] [call]: passed
+tests/test_graph_cli.py::test_malformed_metadata_keeps_independent_selected_paths[target] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[None-SOURCE] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[None-TARGET] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[0-SOURCE] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[0-TARGET] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[-1-SOURCE] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[-1-TARGET] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[bad-SOURCE] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[bad-TARGET] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[2-SOURCE] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[2-TARGET] [call]: passed
+tests/test_graph_cli.py::test_output_only_qualifier_port_is_contextually_unsupported [call]: passed
+tests/test_graph_cli.py::test_falsey_nonobject_configuration_is_rejected[configuration0] [call]: passed
+tests/test_graph_cli.py::test_falsey_nonobject_configuration_is_rejected[False] [call]: passed
+tests/test_graph_cli.py::test_falsey_nonobject_configuration_is_rejected[0] [call]: passed
+tests/test_graph_cli.py::test_falsey_nonobject_configuration_is_rejected[] [call]: passed
+tests/test_graph_cli.py::test_aggregator_rejects_ungrouped_and_nested_aggregate_shapes[ORDER_TOTAL] [call]: passed
+tests/test_graph_cli.py::test_aggregator_rejects_ungrouped_and_nested_aggregate_shapes[SUM(ORDER_TOTAL) + TAX_PAID] [call]: passed
+tests/test_graph_cli.py::test_aggregator_rejects_ungrouped_and_nested_aggregate_shapes[SUM(SUM(ORDER_TOTAL))] [call]: passed
+tests/test_graph_cli.py::test_deep_expression_keeps_independent_outputs [call]: passed
+tests/test_reporting.py::test_collection_failure_records_run_outcome_without_test_cases [call]: failed
+tmp_path = PosixPath('/private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-723/test_collection_failure_record0')
+request = <FixtureRequest for <Function test_collection_failure_records_run_outcome_without_test_cases>>
+
+    def test_collection_failure_records_run_outcome_without_test_cases(tmp_path, request):
+        broken = tmp_path / 'test_broken.py'
+        payload = b'import missing_module_for_collection_regression\n'
+        broken.write_bytes(payload)
+        request.node.actual_input_id = 'inline-collection-module:sha256:' + hashlib.sha256(payload).hexdigest()
+        report = ROOT / 'reports/test-runs.csv'
+        previous_runs = {row['run_id'] for row in csv.DictReader(report.open())} if report.exists() else set()
+        result = subprocess.run([sys.executable, '-m', 'pytest', '--noconftest', '-p', 'tests.conftest', '-q', str(broken)],
+                                cwd=ROOT, capture_output=True, text=True, timeout=30)
+        assert result.returncode == 2, result.stdout + result.stderr
+        rows = [row for row in csv.DictReader(report.open()) if row['run_id'] not in previous_runs]
+        assert len(rows) == 1, rows
+        row = rows[0]
+        assert row['test_type'] == 'run' and row['case_id'] == '__pytest_invocation__'
+        assert row['status'] == 'error'
+        assert 'test_case_records=0' in row['detail'] and 'collection_failures=1' in row['detail']
+>       assert hashlib.sha256(payload).hexdigest() in row['input_id']
+E       AssertionError: assert '0ff425f0886a6839f1fa7b1cdf0e2c2e92a7ee949379373505fefc97714af314' in 'collection:test_broken.py'
+E        +  where '0ff425f0886a6839f1fa7b1cdf0e2c2e92a7ee949379373505fefc97714af314' = <built-in method hexdigest of _hashlib.HASH object at 0x10b4c44b0>()
+E        +    where <built-in method hexdigest of _hashlib.HASH object at 0x10b4c44b0> = <sha256 _hashlib.HASH object @ 0x10b4c44b0>.hexdigest
+E        +      where <sha256 _hashlib.HASH object @ 0x10b4c44b0> = <built-in function openssl_sha256>(b'import missing_module_for_collection_regression\n')
+E        +        where <built-in function openssl_sha256> = hashlib.sha256
+
+tests/test_reporting.py:27: AssertionError
+tests/test_mutations.py::test_target_fieldnumber_overrides_physical_xml_order [call]: passed
+command: uv run pytest -q tests/test_semantics.py tests/test_graph_cli.py tests/test_reporting.py tests/test_mutations.py::test_target_fieldnumber_overrides_physical_xml_order
+revision: 9369d443d9d6bdef7a5a552d4747950e045d21c9+code-sha256:08f4cddfc8baff60f53a7191cc03ad5adde5cff060d26a8b5c78f678cb78e310
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 1

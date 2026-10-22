@@ -1,0 +1,899 @@
+{
+  "export_metadata": {
+    "CREATION_DATE": "12/31/2025 20:27:14",
+    "REPOSITORY_VERSION": "187.96"
+  },
+  "format_version": 1,
+  "input_sha256": "0c34e0ed2965e117b5de54ca2b1d1333286beb928a6bc63eaf131b04982a3522",
+  "inventory": [
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/ORDERS"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/ORDER_ITEMS"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/PRODUCTS"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/SUPPLIES"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/CUSTOMER_360"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/ORDER_FINANCIALS1"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/ORDER_ITEM_ENRICHED"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/PRODUCT_DAILY_PERFORMANCE"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/STORE_DAILY_KPIS"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_CUSTOMERS"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_LOCATIONS"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDER_ITEMS"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_PRODUCTS"
+    },
+    {
+      "selection": "included",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES"
+    }
+  ],
+  "outcomes": [
+    {
+      "alias": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers",
+      "artifact": "models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql",
+      "columns": [
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "CUSTOMER_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 200,
+            "scale": 0
+          },
+          "name": "CUSTOMER_NAME"
+        },
+        {
+          "datatype": {
+            "name": "number",
+            "precision": 15,
+            "scale": 0
+          },
+          "name": "LIFETIME_ORDERS"
+        },
+        {
+          "datatype": {
+            "name": "date",
+            "precision": 19,
+            "scale": 0
+          },
+          "name": "FIRST_ORDER_DATE"
+        },
+        {
+          "datatype": {
+            "name": "date",
+            "precision": 19,
+            "scale": 0
+          },
+          "name": "LAST_ORDER_DATE"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "LIFETIME_SPEND"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "LIFETIME_SPEND_PRETAX"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "LIFETIME_TAX_PAID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 20,
+            "scale": 0
+          },
+          "name": "CUSTOMER_TYPE"
+        }
+      ],
+      "dependencies": [
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_CUSTOMERS",
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS"
+      ],
+      "model_name": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers",
+      "preparations": [
+        {
+          "operation": "clear",
+          "origin": "target instance Pre SQL",
+          "original_relation": {
+            "database_type": "Oracle",
+            "schema": "MART",
+            "schema_origin": "explicit configuration",
+            "table": "CUSTOMERS"
+          }
+        }
+      ],
+      "reason": "SQL generated; result verification is separate",
+      "requested": true,
+      "required_sort": [],
+      "schema": "converted",
+      "status": "emitted",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS"
+    },
+    {
+      "artifact": null,
+      "dependencies": [
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDER_ITEMS",
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_PRODUCTS",
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES"
+      ],
+      "reason": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/ORDERS: instance AGG_ITEMS_BY_ORDER: Unexpected token '*'",
+      "requested": true,
+      "status": "unsupported",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/ORDERS"
+    },
+    {
+      "alias": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__order_items",
+      "artifact": "models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__order_items.sql",
+      "columns": [
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "ORDER_ITEM_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "ORDER_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "PRODUCT_ID"
+        },
+        {
+          "datatype": {
+            "name": "date",
+            "precision": 19,
+            "scale": 0
+          },
+          "name": "ORDERED_AT_DAY"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "PRODUCT_NAME"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "PRODUCT_TYPE"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "PRODUCT_PRICE"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 1,
+            "scale": 0
+          },
+          "name": "IS_FOOD_ITEM"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 1,
+            "scale": 0
+          },
+          "name": "IS_DRINK_ITEM"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "SUPPLY_COST_PER_PRODUCT"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 1,
+            "scale": 0
+          },
+          "name": "HAS_PERISHABLE_SUPPLY"
+        }
+      ],
+      "dependencies": [
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDER_ITEMS",
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_PRODUCTS",
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES"
+      ],
+      "model_name": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__order_items",
+      "preparations": [
+        {
+          "operation": "clear",
+          "origin": "target instance Pre SQL",
+          "original_relation": {
+            "database_type": "Oracle",
+            "schema": "MART",
+            "schema_origin": "explicit configuration",
+            "table": "ORDER_ITEMS"
+          }
+        }
+      ],
+      "reason": "SQL generated; result verification is separate",
+      "requested": true,
+      "required_sort": [],
+      "schema": "converted",
+      "status": "emitted",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/ORDER_ITEMS"
+    },
+    {
+      "alias": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__products",
+      "artifact": "models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__products.sql",
+      "columns": [
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "PRODUCT_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "PRODUCT_NAME"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "PRODUCT_TYPE"
+        },
+        {
+          "datatype": {
+            "name": "number",
+            "precision": 15,
+            "scale": 0
+          },
+          "name": "PRODUCT_PRICE_CENTS"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "PRODUCT_PRICE"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 500,
+            "scale": 0
+          },
+          "name": "PRODUCT_DESCRIPTION"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 1,
+            "scale": 0
+          },
+          "name": "IS_FOOD_ITEM"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 1,
+            "scale": 0
+          },
+          "name": "IS_DRINK_ITEM"
+        }
+      ],
+      "dependencies": [
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_PRODUCTS"
+      ],
+      "model_name": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__products",
+      "preparations": [
+        {
+          "operation": "clear",
+          "origin": "target instance Pre SQL",
+          "original_relation": {
+            "database_type": "Oracle",
+            "schema": "MART",
+            "schema_origin": "explicit configuration",
+            "table": "PRODUCTS"
+          }
+        }
+      ],
+      "reason": "SQL generated; result verification is separate",
+      "requested": true,
+      "required_sort": [],
+      "schema": "converted",
+      "status": "emitted",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/PRODUCTS"
+    },
+    {
+      "alias": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__supplies",
+      "artifact": "models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__supplies.sql",
+      "columns": [
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "SUPPLY_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "SUPPLY_NAME"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "SUPPLY_COST_CENTS"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "SUPPLY_COST"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 1,
+            "scale": 0
+          },
+          "name": "IS_PERISHABLE"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "PRODUCT_ID"
+        }
+      ],
+      "dependencies": [
+        "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES"
+      ],
+      "model_name": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__supplies",
+      "preparations": [
+        {
+          "operation": "clear",
+          "origin": "target instance Pre SQL",
+          "original_relation": {
+            "database_type": "Oracle",
+            "schema": "MART",
+            "schema_origin": "explicit configuration",
+            "table": "SUPPLIES"
+          }
+        }
+      ],
+      "reason": "SQL generated; result verification is separate",
+      "requested": true,
+      "required_sort": [],
+      "schema": "converted",
+      "status": "emitted",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/SUPPLIES"
+    },
+    {
+      "artifact": null,
+      "dependencies": [],
+      "reason": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/CUSTOMER_360: instance EXP_ITEM_CALCULATIONS: stateful local-variable ports",
+      "requested": true,
+      "status": "unsupported",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/CUSTOMER_360"
+    },
+    {
+      "artifact": null,
+      "dependencies": [],
+      "reason": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/ORDER_FINANCIALS1: instance EXP_ITEM_CALCULATIONS: stateful local-variable ports",
+      "requested": true,
+      "status": "unsupported",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/ORDER_FINANCIALS1"
+    },
+    {
+      "artifact": null,
+      "dependencies": [],
+      "reason": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/ORDER_ITEM_ENRICHED: instance EXP_ITEM_CALCULATIONS: stateful local-variable ports",
+      "requested": true,
+      "status": "unsupported",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/ORDER_ITEM_ENRICHED"
+    },
+    {
+      "artifact": null,
+      "dependencies": [],
+      "reason": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/PRODUCT_DAILY_PERFORMANCE: instance EXP_ITEM_CALCULATIONS: stateful local-variable ports",
+      "requested": true,
+      "status": "unsupported",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/PRODUCT_DAILY_PERFORMANCE"
+    },
+    {
+      "artifact": null,
+      "dependencies": [],
+      "reason": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/STORE_DAILY_KPIS: instance EXP_ITEM_CALCULATIONS: stateful local-variable ports",
+      "requested": true,
+      "status": "unsupported",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_ENRICHED/STORE_DAILY_KPIS"
+    },
+    {
+      "alias": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers",
+      "artifact": "models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers.sql",
+      "columns": [
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "CUSTOMER_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 200,
+            "scale": 0
+          },
+          "name": "CUSTOMER_NAME"
+        }
+      ],
+      "dependencies": [],
+      "model_name": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers",
+      "preparations": [
+        {
+          "operation": "clear",
+          "origin": "target instance Pre SQL",
+          "original_relation": {
+            "database_type": "Oracle",
+            "schema": "STG",
+            "schema_origin": "explicit configuration",
+            "table": "STG_CUSTOMERS"
+          }
+        }
+      ],
+      "reason": "SQL generated; result verification is separate",
+      "requested": true,
+      "required_sort": [],
+      "schema": "converted",
+      "status": "emitted",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_CUSTOMERS"
+    },
+    {
+      "artifact": null,
+      "dependencies": [],
+      "reason": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_LOCATIONS: instance EXP_LOCATIONS: Unsupported function or arity TRUNC/1",
+      "requested": true,
+      "status": "unsupported",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_LOCATIONS"
+    },
+    {
+      "alias": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders",
+      "artifact": "models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql",
+      "columns": [
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "ORDER_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "CUSTOMER_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "LOCATION_ID"
+        },
+        {
+          "datatype": {
+            "name": "date",
+            "precision": 19,
+            "scale": 0
+          },
+          "name": "ORDERED_AT_DAY"
+        },
+        {
+          "datatype": {
+            "name": "number",
+            "precision": 15,
+            "scale": 0
+          },
+          "name": "SUBTOTAL_CENTS"
+        },
+        {
+          "datatype": {
+            "name": "number",
+            "precision": 15,
+            "scale": 0
+          },
+          "name": "TAX_PAID_CENTS"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "ORDER_TOTAL_CENTS"
+        },
+        {
+          "datatype": {
+            "name": "number",
+            "precision": 15,
+            "scale": 0
+          },
+          "name": "SUBTOTAL"
+        },
+        {
+          "datatype": {
+            "name": "number",
+            "precision": 15,
+            "scale": 0
+          },
+          "name": "TAX_PAID"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "ORDER_TOTAL"
+        }
+      ],
+      "dependencies": [],
+      "model_name": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders",
+      "preparations": [
+        {
+          "operation": "clear",
+          "origin": "target instance Pre SQL",
+          "original_relation": {
+            "database_type": "Oracle",
+            "schema": "STG",
+            "schema_origin": "explicit configuration",
+            "table": "STG_ORDERS"
+          }
+        }
+      ],
+      "reason": "SQL generated; result verification is separate",
+      "requested": true,
+      "required_sort": [
+        "target_input.\"ORDER_ID\" ASC NULLS LAST"
+      ],
+      "schema": "converted",
+      "status": "emitted",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS"
+    },
+    {
+      "alias": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_order_items",
+      "artifact": "models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_order_items.sql",
+      "columns": [
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "ORDER_ITEM_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "ORDER_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "PRODUCT_ID"
+        }
+      ],
+      "dependencies": [],
+      "model_name": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_order_items",
+      "preparations": [
+        {
+          "operation": "clear",
+          "origin": "target instance Pre SQL",
+          "original_relation": {
+            "database_type": "Oracle",
+            "schema": "STG",
+            "schema_origin": "explicit configuration",
+            "table": "STG_ORDER_ITEMS"
+          }
+        }
+      ],
+      "reason": "SQL generated; result verification is separate",
+      "requested": true,
+      "required_sort": [],
+      "schema": "converted",
+      "status": "emitted",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDER_ITEMS"
+    },
+    {
+      "alias": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products",
+      "artifact": "models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql",
+      "columns": [
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "PRODUCT_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "PRODUCT_NAME"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "PRODUCT_TYPE"
+        },
+        {
+          "datatype": {
+            "name": "number",
+            "precision": 15,
+            "scale": 0
+          },
+          "name": "PRODUCT_PRICE_CENTS"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "PRODUCT_PRICE"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 500,
+            "scale": 0
+          },
+          "name": "PRODUCT_DESCRIPTION"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 1,
+            "scale": 0
+          },
+          "name": "IS_FOOD_ITEM"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 1,
+            "scale": 0
+          },
+          "name": "IS_DRINK_ITEM"
+        }
+      ],
+      "dependencies": [],
+      "model_name": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products",
+      "preparations": [
+        {
+          "operation": "clear",
+          "origin": "target instance Pre SQL",
+          "original_relation": {
+            "database_type": "Oracle",
+            "schema": "STG",
+            "schema_origin": "explicit configuration",
+            "table": "STG_PRODUCTS"
+          }
+        }
+      ],
+      "reason": "SQL generated; result verification is separate",
+      "requested": true,
+      "required_sort": [],
+      "schema": "converted",
+      "status": "emitted",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_PRODUCTS"
+    },
+    {
+      "alias": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies",
+      "artifact": "models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql",
+      "columns": [
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "SUPPLY_ID"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 100,
+            "scale": 0
+          },
+          "name": "SUPPLY_NAME"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "SUPPLY_COST_CENTS"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 12,
+            "scale": 2
+          },
+          "name": "SUPPLY_COST"
+        },
+        {
+          "datatype": {
+            "name": "number(p,s)",
+            "precision": 1,
+            "scale": 0
+          },
+          "name": "IS_PERISHABLE"
+        },
+        {
+          "datatype": {
+            "name": "varchar2",
+            "precision": 50,
+            "scale": 0
+          },
+          "name": "PRODUCT_ID"
+        }
+      ],
+      "dependencies": [],
+      "model_name": "repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies",
+      "preparations": [
+        {
+          "operation": "clear",
+          "origin": "target instance Pre SQL",
+          "original_relation": {
+            "database_type": "Oracle",
+            "schema": "STG",
+            "schema_origin": "explicit configuration",
+            "table": "STG_SUPPLIES"
+          }
+        }
+      ],
+      "reason": "SQL generated; result verification is separate",
+      "requested": true,
+      "required_sort": [],
+      "schema": "converted",
+      "status": "emitted",
+      "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES"
+    }
+  ],
+  "unconverted_workflow_commands": [
+    "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/cmd_FL_JS_CREATE_RPT_VIEWS: workflow Command not executed",
+    "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/postsession_failure_variable_assignment: workflow Command not executed",
+    "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/postsession_failure_variable_assignment: workflow Command not executed",
+    "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/postsession_success_variable_assignment: workflow Command not executed",
+    "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/postsession_success_variable_assignment: workflow Command not executed",
+    "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/presession_variable_assignment: workflow Command not executed",
+    "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/presession_variable_assignment: workflow Command not executed"
+  ],
+  "verification": "emission only; execution and result equivalence require separate tests"
+}

@@ -1,0 +1,19 @@
+[project]
+name = "pwc-to-dbt"
+version = "0.1.0"
+description = "A bounded PowerCenter XML to DuckDB dbt converter"
+requires-python = ">=3.13,<3.14"
+dependencies = ["duckdb==1.4.4", "dbt-duckdb==1.10.1"]
+
+[dependency-groups]
+dev = ["pytest==9.0.2"]
+
+[project.scripts]
+pwc-to-dbt = "pwc_to_dbt.cli:main"
+
+[build-system]
+requires = ["hatchling==1.28.0"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

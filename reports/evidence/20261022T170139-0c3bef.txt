@@ -1,0 +1,585 @@
+tests/test_dbt_results.py::test_complete_staging_customers [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x10b515810>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-713'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text(first.stdout + first.stderr)
+>       assert first.returncode == 0, first.stdout + first.stderr
+E       AssertionError: 17:01:40  Running with dbt=1.12.6
+E         17:01:40  Registered adapter: duckdb=1.10.1
+E         17:01:40  Unable to do partial parsing because saved manifest not found. Starting full parse.
+E         17:01:40  Found 5 models, 6 sources, 488 macros
+E         17:01:40  
+E         17:01:40  Concurrency: 1 threads (target='local')
+E         17:01:40  
+E         17:01:40  1 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+E         17:01:40  1 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+E         17:01:40  2 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=absent
+E         17:01:40  2 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [ERROR in 0.01s]
+E         17:01:40  3 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products" action=absent
+E         17:01:41  3 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [ERROR in 0.01s]
+E         17:01:41  4 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies" action=absent
+E         17:01:41  4 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [ERROR in 0.01s]
+E         17:01:41  5 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=absent
+E         17:01:41  5 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [ERROR in 0.01s]
+E         17:01:41  
+E         17:01:41  Finished running 5 table models in 0 hours 0 minutes and 0.16 seconds (0.16s).
+E         17:01:41  
+E         17:01:41  Completed with 4 errors, 0 partial successes, and 0 warnings:
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E           Catalog Error: Table with name STG_ORDERS does not exist!
+E           Did you mean "RAW.RAW_ORDERS"?
+E           
+E           LINE 38: FROM "controlled"."STG"."STG_ORDERS"
+E                         ^
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql
+E         17:01:41  
+E         17:01:41  Done. PASS=1 WARN=0 ERROR=4 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
+E         <frozen runpy>:130: RuntimeWarning: 'dbt.cli.main' found in sys.modules after import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/python', '-m', 'dbt.cli.ma...r import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour\n").returncode
+
+tests/test_dbt_results.py:37: AssertionError
+tests/test_dbt_results.py::test_complete_staging_orders [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x10b515810>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-713'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text(first.stdout + first.stderr)
+>       assert first.returncode == 0, first.stdout + first.stderr
+E       AssertionError: 17:01:40  Running with dbt=1.12.6
+E         17:01:40  Registered adapter: duckdb=1.10.1
+E         17:01:40  Unable to do partial parsing because saved manifest not found. Starting full parse.
+E         17:01:40  Found 5 models, 6 sources, 488 macros
+E         17:01:40  
+E         17:01:40  Concurrency: 1 threads (target='local')
+E         17:01:40  
+E         17:01:40  1 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+E         17:01:40  1 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+E         17:01:40  2 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=absent
+E         17:01:40  2 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [ERROR in 0.01s]
+E         17:01:40  3 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products" action=absent
+E         17:01:41  3 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [ERROR in 0.01s]
+E         17:01:41  4 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies" action=absent
+E         17:01:41  4 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [ERROR in 0.01s]
+E         17:01:41  5 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=absent
+E         17:01:41  5 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [ERROR in 0.01s]
+E         17:01:41  
+E         17:01:41  Finished running 5 table models in 0 hours 0 minutes and 0.16 seconds (0.16s).
+E         17:01:41  
+E         17:01:41  Completed with 4 errors, 0 partial successes, and 0 warnings:
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E           Catalog Error: Table with name STG_ORDERS does not exist!
+E           Did you mean "RAW.RAW_ORDERS"?
+E           
+E           LINE 38: FROM "controlled"."STG"."STG_ORDERS"
+E                         ^
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql
+E         17:01:41  
+E         17:01:41  Done. PASS=1 WARN=0 ERROR=4 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
+E         <frozen runpy>:130: RuntimeWarning: 'dbt.cli.main' found in sys.modules after import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/python', '-m', 'dbt.cli.ma...r import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour\n").returncode
+
+tests/test_dbt_results.py:37: AssertionError
+tests/test_dbt_results.py::test_complete_staging_products [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x10b515810>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-713'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text(first.stdout + first.stderr)
+>       assert first.returncode == 0, first.stdout + first.stderr
+E       AssertionError: 17:01:40  Running with dbt=1.12.6
+E         17:01:40  Registered adapter: duckdb=1.10.1
+E         17:01:40  Unable to do partial parsing because saved manifest not found. Starting full parse.
+E         17:01:40  Found 5 models, 6 sources, 488 macros
+E         17:01:40  
+E         17:01:40  Concurrency: 1 threads (target='local')
+E         17:01:40  
+E         17:01:40  1 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+E         17:01:40  1 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+E         17:01:40  2 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=absent
+E         17:01:40  2 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [ERROR in 0.01s]
+E         17:01:40  3 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products" action=absent
+E         17:01:41  3 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [ERROR in 0.01s]
+E         17:01:41  4 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies" action=absent
+E         17:01:41  4 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [ERROR in 0.01s]
+E         17:01:41  5 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=absent
+E         17:01:41  5 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [ERROR in 0.01s]
+E         17:01:41  
+E         17:01:41  Finished running 5 table models in 0 hours 0 minutes and 0.16 seconds (0.16s).
+E         17:01:41  
+E         17:01:41  Completed with 4 errors, 0 partial successes, and 0 warnings:
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E           Catalog Error: Table with name STG_ORDERS does not exist!
+E           Did you mean "RAW.RAW_ORDERS"?
+E           
+E           LINE 38: FROM "controlled"."STG"."STG_ORDERS"
+E                         ^
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql
+E         17:01:41  
+E         17:01:41  Done. PASS=1 WARN=0 ERROR=4 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
+E         <frozen runpy>:130: RuntimeWarning: 'dbt.cli.main' found in sys.modules after import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/python', '-m', 'dbt.cli.ma...r import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour\n").returncode
+
+tests/test_dbt_results.py:37: AssertionError
+tests/test_dbt_results.py::test_complete_staging_supplies [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x10b515810>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-713'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text(first.stdout + first.stderr)
+>       assert first.returncode == 0, first.stdout + first.stderr
+E       AssertionError: 17:01:40  Running with dbt=1.12.6
+E         17:01:40  Registered adapter: duckdb=1.10.1
+E         17:01:40  Unable to do partial parsing because saved manifest not found. Starting full parse.
+E         17:01:40  Found 5 models, 6 sources, 488 macros
+E         17:01:40  
+E         17:01:40  Concurrency: 1 threads (target='local')
+E         17:01:40  
+E         17:01:40  1 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+E         17:01:40  1 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+E         17:01:40  2 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=absent
+E         17:01:40  2 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [ERROR in 0.01s]
+E         17:01:40  3 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products" action=absent
+E         17:01:41  3 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [ERROR in 0.01s]
+E         17:01:41  4 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies" action=absent
+E         17:01:41  4 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [ERROR in 0.01s]
+E         17:01:41  5 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=absent
+E         17:01:41  5 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [ERROR in 0.01s]
+E         17:01:41  
+E         17:01:41  Finished running 5 table models in 0 hours 0 minutes and 0.16 seconds (0.16s).
+E         17:01:41  
+E         17:01:41  Completed with 4 errors, 0 partial successes, and 0 warnings:
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E           Catalog Error: Table with name STG_ORDERS does not exist!
+E           Did you mean "RAW.RAW_ORDERS"?
+E           
+E           LINE 38: FROM "controlled"."STG"."STG_ORDERS"
+E                         ^
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql
+E         17:01:41  
+E         17:01:41  Done. PASS=1 WARN=0 ERROR=4 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
+E         <frozen runpy>:130: RuntimeWarning: 'dbt.cli.main' found in sys.modules after import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/python', '-m', 'dbt.cli.ma...r import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour\n").returncode
+
+tests/test_dbt_results.py:37: AssertionError
+tests/test_dbt_results.py::test_complete_core_customers [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x10b515810>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-713'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text(first.stdout + first.stderr)
+>       assert first.returncode == 0, first.stdout + first.stderr
+E       AssertionError: 17:01:40  Running with dbt=1.12.6
+E         17:01:40  Registered adapter: duckdb=1.10.1
+E         17:01:40  Unable to do partial parsing because saved manifest not found. Starting full parse.
+E         17:01:40  Found 5 models, 6 sources, 488 macros
+E         17:01:40  
+E         17:01:40  Concurrency: 1 threads (target='local')
+E         17:01:40  
+E         17:01:40  1 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+E         17:01:40  1 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+E         17:01:40  2 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=absent
+E         17:01:40  2 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [ERROR in 0.01s]
+E         17:01:40  3 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products" action=absent
+E         17:01:41  3 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [ERROR in 0.01s]
+E         17:01:41  4 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies" action=absent
+E         17:01:41  4 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [ERROR in 0.01s]
+E         17:01:41  5 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=absent
+E         17:01:41  5 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [ERROR in 0.01s]
+E         17:01:41  
+E         17:01:41  Finished running 5 table models in 0 hours 0 minutes and 0.16 seconds (0.16s).
+E         17:01:41  
+E         17:01:41  Completed with 4 errors, 0 partial successes, and 0 warnings:
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E           Catalog Error: Table with name STG_ORDERS does not exist!
+E           Did you mean "RAW.RAW_ORDERS"?
+E           
+E           LINE 38: FROM "controlled"."STG"."STG_ORDERS"
+E                         ^
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql
+E         17:01:41  
+E         17:01:41  Done. PASS=1 WARN=0 ERROR=4 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
+E         <frozen runpy>:130: RuntimeWarning: 'dbt.cli.main' found in sys.modules after import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/python', '-m', 'dbt.cli.ma...r import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour\n").returncode
+
+tests/test_dbt_results.py:37: AssertionError
+tests/test_dbt_results.py::test_first_repeat_cleanup_stale_rows_and_order [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x10b515810>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-713'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text(first.stdout + first.stderr)
+>       assert first.returncode == 0, first.stdout + first.stderr
+E       AssertionError: 17:01:40  Running with dbt=1.12.6
+E         17:01:40  Registered adapter: duckdb=1.10.1
+E         17:01:40  Unable to do partial parsing because saved manifest not found. Starting full parse.
+E         17:01:40  Found 5 models, 6 sources, 488 macros
+E         17:01:40  
+E         17:01:40  Concurrency: 1 threads (target='local')
+E         17:01:40  
+E         17:01:40  1 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+E         17:01:40  1 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+E         17:01:40  2 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=absent
+E         17:01:40  2 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [ERROR in 0.01s]
+E         17:01:40  3 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products" action=absent
+E         17:01:41  3 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [ERROR in 0.01s]
+E         17:01:41  4 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies" action=absent
+E         17:01:41  4 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [ERROR in 0.01s]
+E         17:01:41  5 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=absent
+E         17:01:41  5 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [ERROR in 0.01s]
+E         17:01:41  
+E         17:01:41  Finished running 5 table models in 0 hours 0 minutes and 0.16 seconds (0.16s).
+E         17:01:41  
+E         17:01:41  Completed with 4 errors, 0 partial successes, and 0 warnings:
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E           Catalog Error: Table with name STG_ORDERS does not exist!
+E           Did you mean "RAW.RAW_ORDERS"?
+E           
+E           LINE 38: FROM "controlled"."STG"."STG_ORDERS"
+E                         ^
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql
+E         17:01:41  
+E         17:01:41  Done. PASS=1 WARN=0 ERROR=4 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
+E         <frozen runpy>:130: RuntimeWarning: 'dbt.cli.main' found in sys.modules after import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/python', '-m', 'dbt.cli.ma...r import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour\n").returncode
+
+tests/test_dbt_results.py:37: AssertionError
+tests/test_dbt_results.py::test_mapping_sort_is_explicit_and_observed [setup]: error
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x10b515810>, _basetemp=PosixPath...ers/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-713'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope='module')
+    def executed(tmp_path_factory):
+        directory = tmp_path_factory.mktemp('actual-dbt')
+        project = directory / 'project'
+        database = directory / 'controlled.duckdb'
+        _, _, artifacts, outcomes, manifest = convert_to(project)
+        assert len(artifacts) == 5, [(str(k), o.status, o.reason) for k, o in outcomes.items()]
+        loader_spec = importlib.util.spec_from_file_location('demo_loader', ROOT / 'examples/load_demo.py')
+        loader = importlib.util.module_from_spec(loader_spec)
+        loader_spec.loader.exec_module(loader)
+        loader.load(database)
+        environment = os.environ | {'PWC_DUCKDB_PATH': str(database), 'DO_NOT_TRACK': '1', 'DBT_SEND_ANONYMOUS_USAGE_STATS': 'false'}
+        command = [sys.executable, '-m', 'dbt.cli.main', 'run', '--project-dir', str(project), '--profiles-dir', str(project), '--no-use-colors']
+        first = subprocess.run(command, text=True, capture_output=True, env=environment, timeout=120)
+        evidence = ROOT / 'reports/evidence' / (RUN + '-dbt-first.txt')
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_text(first.stdout + first.stderr)
+>       assert first.returncode == 0, first.stdout + first.stderr
+E       AssertionError: 17:01:40  Running with dbt=1.12.6
+E         17:01:40  Registered adapter: duckdb=1.10.1
+E         17:01:40  Unable to do partial parsing because saved manifest not found. Starting full parse.
+E         17:01:40  Found 5 models, 6 sources, 488 macros
+E         17:01:40  
+E         17:01:40  Concurrency: 1 threads (target='local')
+E         17:01:40  
+E         17:01:40  1 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+E         17:01:40  1 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+E         17:01:40  2 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=absent
+E         17:01:40  2 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [ERROR in 0.01s]
+E         17:01:40  3 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [RUN]
+E         17:01:40  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products" action=absent
+E         17:01:41  3 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [ERROR in 0.01s]
+E         17:01:41  4 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies" action=absent
+E         17:01:41  4 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [ERROR in 0.01s]
+E         17:01:41  5 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+E         17:01:41  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=absent
+E         17:01:41  5 of 5 ERROR creating sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [ERROR in 0.01s]
+E         17:01:41  
+E         17:01:41  Finished running 5 table models in 0 hours 0 minutes and 0.16 seconds (0.16s).
+E         17:01:41  
+E         17:01:41  Completed with 4 errors, 0 partial successes, and 0 warnings:
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql)
+E           Binder Error: TRY can not be used in combination with a volatile function
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies.sql
+E         17:01:41  
+E         17:01:41  [ERROR]: in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E         17:01:41    Runtime Error in model repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers (models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql)
+E           Catalog Error: Table with name STG_ORDERS does not exist!
+E           Did you mean "RAW.RAW_ORDERS"?
+E           
+E           LINE 38: FROM "controlled"."STG"."STG_ORDERS"
+E                         ^
+E         17:01:41  
+E         17:01:41    compiled code at target/compiled/powercenter_converted/models/repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers.sql
+E         17:01:41  
+E         17:01:41  Done. PASS=1 WARN=0 ERROR=4 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
+E         <frozen runpy>:130: RuntimeWarning: 'dbt.cli.main' found in sys.modules after import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/python', '-m', 'dbt.cli.ma...r import of package 'dbt.cli', but prior to execution of 'dbt.cli.main'; this may result in unpredictable behaviour\n").returncode
+
+tests/test_dbt_results.py:37: AssertionError
+command: uv run pytest -q tests/test_dbt_results.py
+revision: 9369d443d9d6bdef7a5a552d4747950e045d21c9+code-sha256:954652e1542ff8bf502c99f03e14df429be7bc9c4b308802c3ed2402ace32424
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 1

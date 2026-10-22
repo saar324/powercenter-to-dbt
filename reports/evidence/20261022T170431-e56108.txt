@@ -1,0 +1,150 @@
+tests/test_dbt_results.py::test_complete_staging_customers [call]: passed
+tests/test_dbt_results.py::test_complete_staging_orders [call]: passed
+tests/test_dbt_results.py::test_complete_staging_products [call]: passed
+tests/test_dbt_results.py::test_complete_staging_supplies [call]: passed
+tests/test_dbt_results.py::test_complete_core_customers [call]: passed
+tests/test_dbt_results.py::test_first_repeat_cleanup_stale_rows_and_order [call]: passed
+tests/test_dbt_results.py::test_mapping_sort_is_explicit_and_observed [call]: passed
+tests/test_graph_cli.py::test_inventory_is_complete_and_exact [call]: passed
+tests/test_graph_cli.py::test_core_selection_includes_exact_bound_producer_closure [call]: passed
+tests/test_graph_cli.py::test_unbound_inputs_are_declared_external [call]: passed
+tests/test_graph_cli.py::test_unknown_or_short_selection_rejected[CUSTOMERS] [call]: passed
+tests/test_graph_cli.py::test_unknown_or_short_selection_rejected[REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/ABSENT] [call]: passed
+tests/test_graph_cli.py::test_unknown_bindings_rejected[STG_ORDERS-REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS] [call]: passed
+tests/test_graph_cli.py::test_unknown_bindings_rejected[REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/STG_ORDERS2-REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/ABSENT] [call]: passed
+tests/test_graph_cli.py::test_unknown_config_and_duplicate_json_keys [call]: passed
+tests/test_graph_cli.py::test_missing_connector_blocks_only_affected_and_consumers [call]: passed
+tests/test_graph_cli.py::test_missing_port_diagnostic [call]: passed
+tests/test_graph_cli.py::test_cycle_is_detected [call]: passed
+tests/test_graph_cli.py::test_incompatible_binding_and_missing_consumed_column [call]: passed
+tests/test_graph_cli.py::test_unsupported_blocks_producer_and_retains_independent_outputs[unknown_expression] [call]: passed
+tests/test_graph_cli.py::test_unsupported_blocks_producer_and_retains_independent_outputs[unknown_transformation] [call]: passed
+tests/test_graph_cli.py::test_unsupported_blocks_producer_and_retains_independent_outputs[required_preparation] [call]: passed
+tests/test_graph_cli.py::test_required_qualifier_override_is_not_ignored [call]: passed
+tests/test_graph_cli.py::test_collision_is_rejected [call]: passed
+tests/test_graph_cli.py::test_entity_declarations_refused[<!DOCTYPE POWERMART [<!ENTITY e "expand">]><POWERMART>&e;</POWERMART>] [call]: passed
+tests/test_graph_cli.py::test_entity_declarations_refused[<!DOCTYPE POWERMART [<!ENTITY e SYSTEM "file:///nonexistent">]><POWERMART>&e;</POWERMART>] [call]: passed
+tests/test_graph_cli.py::test_external_dtd_is_never_fetched [call]: passed
+tests/test_graph_cli.py::test_malformed_and_unknown_roots_rejected[<broken>] [call]: passed
+tests/test_graph_cli.py::test_malformed_and_unknown_roots_rejected[<OTHER/>] [call]: passed
+tests/test_graph_cli.py::test_destination_refusal_preserves_existing_files [call]: passed
+tests/test_graph_cli.py::test_deterministic_files_include_manifest_and_empty_directory [call]: passed
+tests/test_graph_cli.py::test_cli_success_partial_failure_and_inventory [call]: passed
+tests/test_graph_cli.py::test_cleanup_requires_correct_explicit_original_relation [call]: passed
+tests/test_mutations.py::test_xml_mutations_change_actual_dbt_results[expression] [call]: passed
+tests/test_mutations.py::test_xml_mutations_change_actual_dbt_results[wiring] [call]: passed
+tests/test_mutations.py::test_xml_mutations_change_actual_dbt_results[source_and_target_names] [call]: passed
+tests/test_mutations.py::test_xml_mutations_change_actual_dbt_results[new_target_instance] [call]: passed
+tests/test_mutations.py::test_sort_direction_null_and_case_settings_follow_xml [call]: passed
+tests/test_semantics.py::test_structural_expression_results[IIF(NULL = 1, 1, 0)-0] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[IIF(ISNULL(NULL), 7, 2)-7] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[1 + 2 * 3-7] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[(1 + 2) * 3-9] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[IIF('it''s' = 'it''s', -1, 0)--1] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[IIF(NULL = 'Y' OR NULL = '1', 1, 0)-0] [call]: passed
+tests/test_semantics.py::test_structural_expression_results[UPPER(LTRIM(RTRIM(' jaffle ')))-JAFFLE] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[FOO(1)] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[IIF(1, 2)] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[x; DROP TABLE a] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[missing + 1] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[COUNT(x)] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[a || b] [call]: passed
+tests/test_semantics.py::test_unknown_expressions_are_rejected[IIF(1=1, 1, )] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[1998-01-02 17:45:46-2003-01-01-expected0] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[1998-01-02 17:45:46-1999-01-01-expected1] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[1998-01-02 17:45:46-2100-01-01-expected2] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[2000-02-29 22:15:01-2099-12-31-expected3] [call]: passed
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[2000-02-29 22:15:01-2100-01-01-None] [call]: failed
+value = '2000-02-29 22:15:01', context = '2100-01-01', expected = None
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize('value,context,expected', [
+        ('1998-01-02 17:45:46', '2003-01-01', datetime(2098, 1, 2)),
+        ('1998-01-02 17:45:46', '1999-01-01', datetime(1998, 1, 2)),
+        ('1998-01-02 17:45:46', '2100-01-01', datetime(2198, 1, 2)),
+        ('2000-02-29 22:15:01', '2099-12-31', datetime(2000, 2, 29)),
+        ('2000-02-29 22:15:01', '2100-01-01', None),
+        (None, '2026-01-01', None),
+    ])
+    def test_current_century_midnight_leap_day_and_null_default(value, context, expected):
+        expression = translate("TO_DATE(TO_CHAR(ORDERED_AT, 'DD-MM-YY'), 'DD-MM-YY')", {'ORDERED_AT': 'stamp'}, runtime_date=f"DATE '{context}'")
+        converted = convert(expression, output(datatype='date/time', precision=29, scale=9))
+>       with duckdb.connect() as db:
+             ^^^^^^^^^^^^^^^^
+
+tests/test_semantics.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = '2000-02-29 22:15:01', context = '2100-01-01', expected = None
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize('value,context,expected', [
+        ('1998-01-02 17:45:46', '2003-01-01', datetime(2098, 1, 2)),
+        ('1998-01-02 17:45:46', '1999-01-01', datetime(1998, 1, 2)),
+        ('1998-01-02 17:45:46', '2100-01-01', datetime(2198, 1, 2)),
+        ('2000-02-29 22:15:01', '2099-12-31', datetime(2000, 2, 29)),
+        ('2000-02-29 22:15:01', '2100-01-01', None),
+        (None, '2026-01-01', None),
+    ])
+    def test_current_century_midnight_leap_day_and_null_default(value, context, expected):
+        expression = translate("TO_DATE(TO_CHAR(ORDERED_AT, 'DD-MM-YY'), 'DD-MM-YY')", {'ORDERED_AT': 'stamp'}, runtime_date=f"DATE '{context}'")
+        converted = convert(expression, output(datatype='date/time', precision=29, scale=9))
+        with duckdb.connect() as db:
+>           assert db.execute(f'SELECT {converted} FROM (SELECT CAST(? AS TIMESTAMP) AS stamp)', [value]).fetchone() == (expected,)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           _duckdb.ConversionException: Conversion Error: Date out of range: 2100-2-29
+
+tests/test_semantics.py:48: ConversionException
+tests/test_semantics.py::test_current_century_midnight_leap_day_and_null_default[None-2026-01-01-None] [call]: passed
+tests/test_semantics.py::test_production_dates_use_runtime_clock [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[NULL-None] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[0-expected1] [call]: passed
+tests/test_semantics.py::test_error_default_fails_visibly [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[-True-None] [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[-False-] [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[   -True-   ] [call]: passed
+tests/test_semantics.py::test_oracle_storage_and_intermediate_empty_strings[None-True-None] [call]: passed
+tests/test_semantics.py::test_trim_empty_survives_intermediate_but_target_normalizes [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[0.005-expected0] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[-0.005-expected1] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[9.994-expected2] [call]: failed
+value = '9.994', expected = Decimal('9.99')
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize('value,expected', [('0.005', D('0.01')), ('-0.005', D('-0.01')), ('9.994', D('9.99')), ('9.995', None), (None, None)])
+    def test_declared_decimal_rounding_and_precision_limit(value, expected):
+        sql = convert('x', output(precision=3, scale=2), output_default=True)
+>       with duckdb.connect() as db:
+             ^^^^^^^^^^^^^^^^
+
+tests/test_semantics.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+value = '9.994', expected = Decimal('9.99')
+
+    @pytest.mark.boundary
+    @pytest.mark.parametrize('value,expected', [('0.005', D('0.01')), ('-0.005', D('-0.01')), ('9.994', D('9.99')), ('9.995', None), (None, None)])
+    def test_declared_decimal_rounding_and_precision_limit(value, expected):
+        sql = convert('x', output(precision=3, scale=2), output_default=True)
+        with duckdb.connect() as db:
+>           assert db.execute(f'SELECT {sql} FROM (SELECT ?::DECIMAL(8,4) AS x)', [value]).fetchone() == (expected,)
+E           AssertionError: assert (None,) == (Decimal('9.99'),)
+E             
+E             At index 0 diff: None != Decimal('9.99')
+E             Use -v to get more diff
+
+tests/test_semantics.py:99: AssertionError
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[9.995-None] [call]: passed
+tests/test_semantics.py::test_declared_decimal_rounding_and_precision_limit[None-None] [call]: passed
+tests/test_semantics.py::test_double_scale_zero_keeps_fraction_and_decimal_cents_rounds_separately [call]: passed
+tests/test_semantics.py::test_nonfinite_numbers_fail_visibly_at_storage[inf] [call]: passed
+tests/test_semantics.py::test_nonfinite_numbers_fail_visibly_at_storage[-inf] [call]: passed
+tests/test_semantics.py::test_nonfinite_numbers_fail_visibly_at_storage[nan] [call]: passed
+tests/test_semantics.py::test_output_string_error_default_preserves_null_and_handles_overlength [call]: passed
+tests/test_semantics.py::test_unsupported_types_do_not_emit[binary] [call]: passed
+tests/test_semantics.py::test_unsupported_types_do_not_emit[xml] [call]: passed
+tests/test_semantics.py::test_unsupported_types_do_not_emit[unknown] [call]: passed
+command: uv run pytest -q
+revision: 9369d443d9d6bdef7a5a552d4747950e045d21c9+code-sha256:d073cbd52bf4b85610549f7e1b3d1a366602e258df3537bfa2fc73fdd32104ba
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 1

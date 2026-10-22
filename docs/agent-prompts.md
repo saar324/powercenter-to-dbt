@@ -760,3 +760,164 @@ D37 — scope_and_roadmap_review:
 ```text
 Native Build step01 synchronous epic-context compilation. Read fully and follow /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad/render/bmad-build/powercenter-to-dbt-c30b15f9c5ab/c02bcee220b53d180edc/compile-epic-context.md. epic_num=1; epics_file=/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad-output/planning-artifacts/epics.md; planning_artifacts=/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad-output/planning-artifacts; output=/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad-output/implementation-artifacts/epic-1-context.md. Current owner intent is the single cohesive basic converter outcome covering Epic1's three incremental stories, not unrelated shippable products. Include approved SPEC companions and all ADs/source-semantics evidence/basic evidence gates. Do not code or expand scope. Write exact required header, return path and compact completeness result. We will wait for this file before Build planning.
 ```
+
+D38 — conversation_audit, native Build draft self-review support:
+
+```text
+Native Build step02 concise spec self-review support only. Read /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad-output/implementation-artifacts/spec-powercenter-basic-conversion.md against AGENTS.md, docs/assignment.md and epic-1-context.md in same implementation-artifacts folder. Check material missing requirements, contradictions, invented intent or acceptance gaps; no generic polish or research. Spec is draft, no product changes authorized through native checkpoint yet. Return at most three material findings or clean. No edits, no extra agents.
+```
+
+A22 — native Build Checkpoint 1 (summary of accompanying explanation; exact question below):
+
+```text
+The Build spec is ready; opening it on the side was requested (the app returned queued). It covers the approved converter, the five required result checks, preparation steps, and all submission evidence. It adds no scope. It has 1,533 tokens; the independent check found no material gaps. Product code has not started.
+
+Before approving, you can open the spec file in an editor or ask me questions and tell me what to change. You can also use bmad-advanced-elicitation or bmad-party-mode, ideally in another session to avoid context bloat.
+
+Choices: Approve and continue; Approve and stop; Review spec.
+
+This approval comes from the installed BMAD Build workflow, step-02-plan.md, Checkpoint 1: “HALT and give the user a choice”. It is the implementation-spec checkpoint, separate from your approved PRD and architecture.
+```
+
+Exact ask-tool question:
+
+```text
+Can I start coding from the Build spec? It follows the design you approved. BMAD requires this implementation-spec checkpoint before coding.
+```
+
+Options: `Approve and continue`; `Approve and stop`; `Review spec`.
+
+U76 — native Build implementation-spec approval:
+
+```text
+Approve and continue
+```
+
+D39 — native Build implementation handoff:
+
+```text
+Read /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad-output/implementation-artifacts/spec-powercenter-basic-conversion.md fully and implement it — the spec is the sole source of truth. Load every file listed in its frontmatter context: before you start.
+
+When done, report what you changed, how you verified it, and anything left incomplete or risky.
+```
+
+D40 — basic_converter_build:
+
+```text
+The parent is already executing native Build step03; your task is its implementation handoff. Please report progress through agent messages so I can keep Saar informed.
+```
+
+U77 — user direction:
+
+```text
+use more sub agents (5-10) to speed up the development process
+```
+
+D41 — conversation_audit:
+
+```text
+Saar explicitly requested 5–10 subagents to speed this approved implementation; platform permits three workers at once. Perform a focused READ-ONLY preliminary SQL correctness audit while the implementation agent finishes docs. Repo /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt. Read AGENTS.md, implementation-artifacts/spec-powercenter-basic-conversion.md under _bmad-output, research/06-core-semantics-check.md, src/pwc_to_dbt/{expressions,sql,dependencies,mapping}.py and relevant tests. Find concrete cases where supported inputs emit wrong SQL/results or unsupported semantics are silently accepted, especially joins, target casts, sort-field naming, error defaults and partial dependencies. Return at most five actionable findings with exact evidence/reproduction, or clean. No edits or broad scope expansion. This is preliminary support, not a claim the later native Build review gate has passed.
+```
+
+D42 — documentation_verification:
+
+```text
+Saar explicitly requested more agents to speed this approved implementation. Perform a focused READ-ONLY test/evidence audit while implementation finishes docs. Repo /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt. Compare approved _bmad-output/implementation-artifacts/spec-powercenter-basic-conversion.md and research/06-core-semantics-check.md against tests/, reports/test-runs.csv, examples/ and current code. Verify five independent expected results, meaningful XML mutations, actual dbt cleanup lifecycle, numeric/date/null/duplicate/unsupported boundaries, test outcome recording/revision fidelity. Find concrete blind spots or false success/accuracy claims, not desired extra coverage. Return at most five actionable findings with evidence/reproduction, or clean. No edits; docs/report may still be in progress. Do not declare final native review gate passed.
+```
+
+D43 — basic_converter_build:
+
+```text
+Saar now explicitly requested more parallel agents. I launched two read-only preliminary audits (SQL correctness and tests/evidence) while you finish implementation/docs. They will not edit your files. Please finish the current handoff; we will integrate findings through verification/review.
+```
+
+U78 — user direction:
+
+```text
+make sure you apwn subagents with porpose (not just to fill 5-10 sub agnets)
+```
+
+D44 — basic_converter_build:
+
+```text
+Preliminary test audit concrete gaps from documentation_verification: FR-6 requires mutation checks per core operation category; current actual dbt XML mutations cover projection/expression/wiring/sort but no Joiner or Aggregator mutation. No empty-input complete-path test found. Please verify the requirement and add meaningful independent expected-result tests for those gaps before final measured run. Saar clarified: use agents with purpose, not to fill a count.
+```
+
+D45 — basic_converter_build:
+
+```text
+SQL audit reproduced a concrete bug: planner validates only consumed fields on a bound source, but sql.generate source CTE selects every source-definition port. Adding unused UNUSED_COLUMN to core source STG_CUSTOMERS with no connector leaves binding valid and emitted, then execution fails BinderException because producer lacks UNUSED_COLUMN. Restrict bound-source projection to required/checked consumed fields (or an explicit validated contract) and add regression. No auditor edits.
+```
+
+D46 — basic_converter_build:
+
+```text
+Test/evidence audit final additional findings: (1) conftest defaults every case to original XML hash, but entity/malformed cases have different bytes and scalar tests do not read XML. Record actual payload hashes for generated XML and explicit scalar/case identities; earlier rows remain historical, report correction honestly. (2) result checker compares names and values only; Decimal('125.00') == 125.0 can hide type errors. Add independently specified database output types for each required result. Existing expected datasets and actual cleanup evidence are substantive. No auditor edits.
+```
+
+D47 — basic_converter_build:
+
+```text
+SQL auditor second reproduced bug: double/number output error defaults fail. Executing convert(translate('x/y', {'x':'x','y':'y'}), Port('x',DataType('double',12,2),'OUTPUT',default='0'), output_default=True) over VALUES (1::DOUBLE,0::DOUBLE),(2,1) raises ConversionException 'pwc: division by zero' instead of [(0.0,),(2.0,)]. Decimal variant succeeds; existing default test only decimal. Reached COST default0 and other double NULL-default outputs need regression/fix or contextual unsupported rejection for variants. Auditor says repeated isfinite/CAST guard interacts with TRY/error folding. No edits.
+```
+
+D48 — scope_and_roadmap_review:
+
+```text
+Purposeful read-only handoff documentation audit, authorized by Saar's request for useful parallel agents. Repo /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt. README.md is now written; implementation agent is finishing reports/validation.md and fresh-directory command smoke. Compare docs/assignment.md and AGENTS.md with README.md, examples/, docs/agent-prompts.md and available reports. Check all six employer submission requirements, runnable documented commands, truthful support/accuracy limits, no confidentiality leakage, and concise concrete next work. Distinguish still-pending reporter work from defects. Do not edit or add parallel logs; return at most five concrete necessary fixes or clean, with paths. No broad research or new scope.
+```
+
+D49 — native build_blind_review:
+
+```text
+Conduct a review of CONTENT.
+Look for what's missing, not only what's wrong.
+Compute your finding floor N from the diff file's size: N = min(floor(sqrt(kB) + 1), 10), where kB is the file's size in kilobytes. State the arithmetic in one line, then find at least N issues to fix or improve.
+Output a Markdown list of findings only — no severity, priority, or ranking.
+If the content is empty, stop and say so.
+If you have zero findings, re-check and keep thinking; do not stop with an empty list.
+
+CONTENT: the unified diff at `/tmp/pwc-build-native-review-20261022-1718.diff`. Read that file — it is the content under review.
+
+Do not invoke any skill, and do not spawn subagents of your own — you are the reviewer. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.
+```
+
+D50 — native build_edge_review:
+
+```text
+Read `/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad/render/bmad-build/powercenter-to-dbt-c30b15f9c5ab/c02bcee220b53d180edc/review-prompts/edge-case-hunter.md` completely and follow it as your review instructions.
+
+claims_file (leave unread until your instructions call for it): /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad-output/implementation-artifacts/spec-powercenter-basic-conversion.md
+
+Review content: the unified diff at `/tmp/pwc-build-native-review-20261022-1718.diff`. Read that file — it is the content under review.
+
+Do not invoke any skill, and do not spawn subagents of your own — you are the reviewer. If the instruction file is unreadable, report that exact failure and stop. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.
+```
+
+D51 — native build_verification_review:
+
+```text
+Read `/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad/render/bmad-build/powercenter-to-dbt-c30b15f9c5ab/c02bcee220b53d180edc/review-prompts/verification-gap.md` completely and follow it as your review instructions.
+
+Review content: the unified diff at `/tmp/pwc-build-native-review-20261022-1718.diff`. Read that file — it is the content under review.
+
+Do not invoke any skill, and do not spawn subagents of your own — you are the reviewer. If the instruction file is unreadable, report that exact failure and stop. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.
+```
+
+D52 — native Build patch re-engagement, same implementation agent:
+
+```text
+Review of your implementation found problems. Fix each one below with the smallest change that does the job.
+
+Run only the tests that cover the files you edit — nothing wider. Full verification runs on my side after you return. Reply with what you changed.
+
+- src/pwc_to_dbt/xml_reader.py — writer Insert=NO, Treat source rows as=Delete and Incremental Aggregation=YES are silently ignored — reject incompatible existing session/writer modes on affected nodes/targets, with regression tests.
+- src/pwc_to_dbt/expressions.py — integer/small integer/bigint all use BIGINT and miss overflow/default behavior — use distinct DuckDB integer casts and test endpoints/overflow/error defaults; research/06-core-semantics-check.md now cites official ranges.
+- src/pwc_to_dbt/xml_reader.py — malformed precision in an unrelated definition aborts selected valid targets, and missing/duplicate FIELDNUMBER values are accepted — retain contextual node problems for malformed metadata; require positive unique source/target ordinals, preserving independent outputs.
+- src/pwc_to_dbt/sql.py — unconnected output-only Source Qualifier port raises uncaught KeyError — return a contextual unsupported/error outcome for that demonstrated passthrough shape.
+- src/pwc_to_dbt/dependencies.py — config = config or {} accepts empty arrays, false, zero and empty strings — default only None and reject wrong types.
+- src/pwc_to_dbt/sql.py — Aggregator output ORDER_TOTAL outside aggregate/group key is emitted and then fails DuckDB binding — structurally reject ungrouped references and unsupported nested aggregate shapes before emission.
+- src/pwc_to_dbt/expressions.py — deeply nested supported tokens raise uncaught RecursionError and prevent independent outputs — translate the known parser complexity failure into contextual ConversionError.
+- tests/conftest.py — collection-only failures leave no CSV invocation outcome — record collection/run failures, verify with an isolated actual pytest invocation, and keep test-case counts distinct from run-level records.
+- tests/test_mutations.py — target column-order tests never differ in physical versus FIELDNUMBER order — add a reversed TARGETFIELD-element mutation that preserves ordinals and checks actual dbt columns and rows.
+```
