@@ -102,6 +102,8 @@ Owner calculations O1 closure: same implementation agent changed one division gu
 
 Comprehensive area1 discussion covers Python generating SQL rather than evaluating customer data; parser tokens/AST/precedence; checked function arities and names; separate source/intermediate/target conversions; decimal rounding and integer width; legitimate NULL versus output error defaults with boxed TRY results; runtime-century dates; Oracle storage empty strings versus intermediates; aggregate restrictions; deterministic output, contextual rejection and known source-runtime/ASCII/row-recovery limits. These are explanations of current code and bounded measured policy, not full PowerCenter-equivalence proof or human signoff.
 
+Owner calculations patch commit: `93de53298c5157a2bfdd2e51ee82054d8a89c612`, matching the final149-case tested code fingerprint. This later documentation receipt changes no product code.
+
 ## Spec Change Log
 
 ## Review Triage Log
