@@ -966,6 +966,56 @@ U84 — comprehensive owner review, one area at a time:
 lets dig into them one by one, i want a comperhansive review, record it
 ```
 
+U85 — confirm the original research direction remains recorded:
+
+```text
+also just to clarify that you recorded that request in the begining for a research for best practice with a dedicated research folder with md files with sourcses for trace back etc (that part we ade in the begining)
+```
+
+U86 — show the measured reports:
+
+```text
+ok saw what you wrote, can you show me as well the report csv i asked and any other relevant report visual of acuracy tests etc
+```
+
+U87 — locate reference-project accuracy evidence:
+
+```text
+where do i see the acuracy based on comparing to the jaffle shop refarence project?
+```
+
+U88 — explain the test suite and record the clarification:
+
+```text
+explain your test suit and record that i clarify it
+```
+
+U89 — reference comparison is required in the minimum functionality:
+
+```text
+thats a flaw in the process it should ahve been better mantiond as what is in the minimum functionality, do we have what we need to preform a test suit agained it (following thier origenal requierments that honselty indid make a lot of sence i dont see it as optional but as mandatory even without thier mantion of it.) quot: "Include tests. You can check your output against the jaffle shop reference project."
+```
+
+U90 — design and execute reference comparison with aggregated criteria:
+
+```text
+i would like to desing and preform a test follwong what we just discused, i would like to get an csv of agrigation of acuracy per cratiria or aspect of the convertor.
+
+regarding what you said - ok, check if we can identify the matching version and if we can pull it 9i think i saw that this repo is from around 2 month ago, chek ifwe can pull the corolated repo to have a 1 to one compare, report to me your finding and final recomandaions, record what i just said and the way i asked you to do it
+```
+
+D56 — reference_history, upstream version correlation:
+
+```text
+User requests historical Jaffle Shop version correlation with supplied PowerCenter XML, then actual reference tests and aggregate accuracy CSV. Work read-only on upstream history; you may write ONLY research/07-reference-version-correlation.md in /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt. Inspect public infinitelambda/flowline-pwc-demo git commit/date and XML export metadata; both dbt-labs/jaffle_shop_duckdb and dbt-labs/jaffle-shop histories/branches around source timestamp and employer repo commit. Determine whether any evidenced revision gives exact equivalent schemas/rules (not just similar dates). Need full pinned SHAs, dates, exact match/differences across five core targets, branch/version runtime constraints, strongest candidate and practical recommendation. Use git clones under .generated/reference-research (ignored) if connector lacks full history, never secrets/private sources. Preserve supplied XML. Distinguish XML metadata date from repository creation/commit date, earliest date vs current date, absence of evidence vs exhaustive proof. No implementation/test execution/spec changes. Return concise findings and paths; no unrelated private project references.
+```
+
+D57 — reference_test_design, independent comparison design:
+
+```text
+User requests design and execution of external Jaffle Shop comparison with aggregate CSV by converter criterion/aspect; implementation not yet begun. Perform read-only test design at /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt: inspect tests, examples, reports and actual XML core5 operations. Inspect public reference SQL if needed. Propose concise runnable architecture for comparison: unmodified classic reference explicitly linked assignment plus closer modern variant; pinned source SQL/seed provenance, source-only data alignment, clear complete-vs-projected comparison, criterion denominators, observed semantic discrepancies not converter bugs, unsupported/not-comparable unscored, no fake accuracy. Recommend minimal CSV schema and execution cases that provide meaningful independent evidence (rather than test-generated converter-equivalent SQL). Can write ONLY .generated/reference-test-design.md. Do not modify product/tests/docs or execute pytest. No private code. Return concrete design with pitfalls, minimal dependencies and acceptance criteria.
+```
+
 D54 — documentation_verification, targeted calculations review:
 
 ```text

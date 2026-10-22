@@ -4,6 +4,8 @@ A deterministic Python CLI converts supported PowerCenter XML paths into a runna
 
 The five required paths have actual dbt execution and independent complete-result checks. [Measured validation](reports/validation.md) separates test outcomes, result comparisons and fixture coverage. This is a bounded converter; there is no executed PowerCenter oracle or universal equivalence claim.
 
+Minimum-stage validation remains incomplete: the owner requires an executed Jaffle Shop reference comparison, which has not yet been performed. Existing independent-result checks do not replace this requirement. Schema and rule differences must be reported explicitly rather than hidden by changing the reference or generated behavior.
+
 ## Run it
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run from the repository root. `uv` restores the locked Python 3.13 environment.
