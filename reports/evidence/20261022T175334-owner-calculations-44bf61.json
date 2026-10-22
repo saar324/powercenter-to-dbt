@@ -1,0 +1,174 @@
+{
+  "run_id": "20261022T175334-owner-calculations-44bf61",
+  "revision": "6e4694bfc67487ce400a24f710b476db4d71bfe7+code-sha256:675594da1da100fb75f6ab86e38a1abc318363881414bc6b4cecf9bed4a08650",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "source_rule": "PowerCenter arithmetic operators: null arithmetic produces NULL; official 10.2HF2 reference p.26, corroborated by related official guides; no executed source oracle",
+  "source_url": "https://docs.informatica.com/content/dam/source/GUID-B/GUID-B280EAC3-3E82-40EB-923E-61F1F72E2DC4/23-1-2/en/PC_102HF2_TransformationLanguageReference_en.pdf",
+  "cases": [
+    {
+      "datatype": "decimal",
+      "default": "NULL",
+      "left": null,
+      "right": 0,
+      "expected": null,
+      "observed": null,
+      "error": null,
+      "sql": "(coalesce(TRY(struct_pack(value := CAST(round((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END), 2) AS DECIMAL(12,2)))), struct_pack(value := CAST(NULL AS DECIMAL(12,2))))).value",
+      "status": "passed"
+    },
+    {
+      "datatype": "decimal",
+      "default": "0",
+      "left": null,
+      "right": 0,
+      "expected": null,
+      "observed": "0.00",
+      "error": null,
+      "sql": "(coalesce(TRY(struct_pack(value := CAST(round((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END), 2) AS DECIMAL(12,2)))), struct_pack(value := CAST(0 AS DECIMAL(12,2))))).value",
+      "status": "failed"
+    },
+    {
+      "datatype": "decimal",
+      "default": "0",
+      "left": null,
+      "right": 1,
+      "expected": null,
+      "observed": null,
+      "error": null,
+      "sql": "(coalesce(TRY(struct_pack(value := CAST(round((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END), 2) AS DECIMAL(12,2)))), struct_pack(value := CAST(0 AS DECIMAL(12,2))))).value",
+      "status": "passed"
+    },
+    {
+      "datatype": "decimal",
+      "default": "0",
+      "left": 2,
+      "right": 1,
+      "expected": 2,
+      "observed": "2.00",
+      "error": null,
+      "sql": "(coalesce(TRY(struct_pack(value := CAST(round((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END), 2) AS DECIMAL(12,2)))), struct_pack(value := CAST(0 AS DECIMAL(12,2))))).value",
+      "status": "passed"
+    },
+    {
+      "datatype": "decimal",
+      "default": "ERROR('transformation error')",
+      "left": null,
+      "right": 0,
+      "expected": null,
+      "observed": null,
+      "error": "Conversion Error: Could not convert string 'pwc: division by zero' to DOUBLE",
+      "sql": "CAST(round((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END), 2) AS DECIMAL(12,2))",
+      "status": "failed"
+    },
+    {
+      "datatype": "double",
+      "default": "NULL",
+      "left": null,
+      "right": 0,
+      "expected": null,
+      "observed": null,
+      "error": null,
+      "sql": "(CASE WHEN NOT isfinite((coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(NULL AS DOUBLE)))).value) THEN CAST(NULL AS DOUBLE) ELSE (coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(NULL AS DOUBLE)))).value END)",
+      "status": "passed"
+    },
+    {
+      "datatype": "double",
+      "default": "0",
+      "left": null,
+      "right": 0,
+      "expected": null,
+      "observed": "0.0",
+      "error": null,
+      "sql": "(CASE WHEN NOT isfinite((coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value) THEN CAST(0 AS DOUBLE) ELSE (coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value END)",
+      "status": "failed"
+    },
+    {
+      "datatype": "double",
+      "default": "0",
+      "left": null,
+      "right": 1,
+      "expected": null,
+      "observed": null,
+      "error": null,
+      "sql": "(CASE WHEN NOT isfinite((coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value) THEN CAST(0 AS DOUBLE) ELSE (coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value END)",
+      "status": "passed"
+    },
+    {
+      "datatype": "double",
+      "default": "0",
+      "left": 2,
+      "right": 1,
+      "expected": 2,
+      "observed": "2.0",
+      "error": null,
+      "sql": "(CASE WHEN NOT isfinite((coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value) THEN CAST(0 AS DOUBLE) ELSE (coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value END)",
+      "status": "passed"
+    },
+    {
+      "datatype": "double",
+      "default": "ERROR('transformation error')",
+      "left": null,
+      "right": 0,
+      "expected": null,
+      "observed": null,
+      "error": "Conversion Error: Could not convert string 'pwc: division by zero' to DOUBLE",
+      "sql": "(CASE WHEN NOT isfinite(CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE)) THEN CAST('pwc: nonfinite numeric value' AS DOUBLE) ELSE CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE) END)",
+      "status": "failed"
+    },
+    {
+      "datatype": "number",
+      "default": "NULL",
+      "left": null,
+      "right": 0,
+      "expected": null,
+      "observed": null,
+      "error": null,
+      "sql": "(CASE WHEN NOT isfinite((coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(NULL AS DOUBLE)))).value) THEN CAST(NULL AS DOUBLE) ELSE (coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(NULL AS DOUBLE)))).value END)",
+      "status": "passed"
+    },
+    {
+      "datatype": "number",
+      "default": "0",
+      "left": null,
+      "right": 0,
+      "expected": null,
+      "observed": "0.0",
+      "error": null,
+      "sql": "(CASE WHEN NOT isfinite((coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value) THEN CAST(0 AS DOUBLE) ELSE (coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value END)",
+      "status": "failed"
+    },
+    {
+      "datatype": "number",
+      "default": "0",
+      "left": null,
+      "right": 1,
+      "expected": null,
+      "observed": null,
+      "error": null,
+      "sql": "(CASE WHEN NOT isfinite((coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value) THEN CAST(0 AS DOUBLE) ELSE (coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value END)",
+      "status": "passed"
+    },
+    {
+      "datatype": "number",
+      "default": "0",
+      "left": 2,
+      "right": 1,
+      "expected": 2,
+      "observed": "2.0",
+      "error": null,
+      "sql": "(CASE WHEN NOT isfinite((coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value) THEN CAST(0 AS DOUBLE) ELSE (coalesce(TRY(struct_pack(value := CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE))), struct_pack(value := CAST(0 AS DOUBLE)))).value END)",
+      "status": "passed"
+    },
+    {
+      "datatype": "number",
+      "default": "ERROR('transformation error')",
+      "left": null,
+      "right": 0,
+      "expected": null,
+      "observed": null,
+      "error": "Conversion Error: Could not convert string 'pwc: division by zero' to DOUBLE",
+      "sql": "(CASE WHEN NOT isfinite(CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE)) THEN CAST('pwc: nonfinite numeric value' AS DOUBLE) ELSE CAST((CASE WHEN (y) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE (x) / (y) END) AS DOUBLE) END)",
+      "status": "failed"
+    }
+  ]
+}

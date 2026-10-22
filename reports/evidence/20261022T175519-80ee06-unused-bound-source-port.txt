@@ -1,0 +1,22 @@
+17:55:43  Running with dbt=1.12.6
+17:55:43  Registered adapter: duckdb=1.10.1
+17:55:43  Unable to do partial parsing because saved manifest not found. Starting full parse.
+17:55:43  Found 3 models, 2 sources, 488 macros
+17:55:43  
+17:55:43  Concurrency: 1 threads (target='local')
+17:55:43  
+17:55:43  1 of 3 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+17:55:43  PWC_CLEAR "operation"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+17:55:43  1 of 3 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+17:55:43  2 of 3 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+17:55:44  PWC_CLEAR "operation"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=absent
+17:55:44  2 of 3 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [OK in 0.02s]
+17:55:44  3 of 3 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+17:55:44  PWC_CLEAR "operation"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=absent
+17:55:44  3 of 3 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [OK in 0.02s]
+17:55:44  
+17:55:44  Finished running 3 table models in 0 hours 0 minutes and 0.15 seconds (0.15s).
+17:55:44  
+17:55:44  Completed successfully
+17:55:44  
+17:55:44  Done. PASS=3 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=3

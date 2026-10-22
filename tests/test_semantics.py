@@ -169,3 +169,24 @@ def test_integer_ranges_and_output_error_defaults(datatype, lower, upper, duck_t
 def test_expression_complexity_is_a_conversion_error(expression):
     with pytest.raises(ConversionError, match='complexity'):
         translate(expression, {})
+
+
+@pytest.mark.boundary
+@pytest.mark.parametrize('datatype', ['decimal', 'double', 'number'])
+@pytest.mark.parametrize('default', ['NULL', '0', "ERROR('transformation error')"])
+def test_division_propagates_operand_null_before_zero_error(datatype, default):
+    port = output(datatype=datatype, default=default)
+    sql = convert(translate('x / y', {'x': 'x', 'y': 'y'}), port, output_default=True)
+    with duckdb.connect() as db:
+        # NULL/0 is legitimate NULL arithmetic, independently of the output's
+        # error default. Either null operand propagates; ordinary division stays.
+        rows = db.execute(f'SELECT {sql} FROM (VALUES (NULL::DOUBLE,0::DOUBLE),(NULL,1),(2,NULL),(NULL,NULL),(2,1),(0,2),(5,2)) t(x,y)').fetchall()
+        assert rows == [(None,), (None,), (None,), (None,), (D('2.00'),), (D('0.00'),), (D('2.50'),)]
+        # A non-null numerator with a zero denominator remains an error/default.
+        zero_query = f'SELECT {sql} FROM (VALUES (1::DOUBLE,0::DOUBLE)) t(x,y)'
+        if default.startswith('ERROR'):
+            with pytest.raises(duckdb.Error, match='division by zero'):
+                db.execute(zero_query).fetchall()
+        else:
+            expected = None if default == 'NULL' else 0
+            assert db.execute(zero_query).fetchone() == (expected,)

@@ -130,7 +130,7 @@ def render(expr: Expr, ports: dict[str, str], *, aggregate=False, runtime_date="
     if expr.kind == "binary":
         left, right = map(emit, expr.args)
         if expr.value == "/":
-            return f"(CASE WHEN ({right}) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE ({left}) / ({right}) END)"
+            return f"(CASE WHEN ({left}) IS NULL OR ({right}) IS NULL THEN NULL WHEN ({right}) = 0 THEN CAST('pwc: division by zero' AS DOUBLE) ELSE ({left}) / ({right}) END)"
         return f"({left} {expr.value} {right})"
     name, args = expr.value, expr.args
     arities = {"IIF": 3, "ISNULL": 1, "UPPER": 1, "LTRIM": 1, "RTRIM": 1,

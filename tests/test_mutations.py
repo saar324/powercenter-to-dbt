@@ -140,13 +140,14 @@ def test_double_error_default_runs_through_generated_dbt(tmp_path, request):
         db.execute('CREATE TABLE RAW.RAW_PRODUCTS (SKU VARCHAR, NAME VARCHAR, TYPE VARCHAR, PRICE DOUBLE, DESCRIPTION VARCHAR)')
         db.execute("INSERT INTO RAW.RAW_PRODUCTS VALUES ('p1','Test','JAFFLE',125,'')")
         db.execute('CREATE TABLE RAW.RAW_SUPPLIES (ID VARCHAR, NAME VARCHAR, COST DOUBLE, PERISHABLE VARCHAR, SKU VARCHAR)')
-        db.execute("INSERT INTO RAW.RAW_SUPPLIES VALUES ('s1','Test',250,'Y','p1')")
+        db.execute("INSERT INTO RAW.RAW_SUPPLIES VALUES ('s1','Test',250,'Y','p1'),('s2','Null cost',NULL,'Y','p1')")
     run_dbt(project, database, 'double-error-default')
     alias = next(iter(artifacts.values())).plan.alias
     with duckdb.connect(str(database)) as db:
         cursor = db.execute(f'SELECT * FROM converted."{alias}"')
         assert [column[0] for column in cursor.description] == ['SUPPLY_ID', 'SUPPLY_NAME', 'SUPPLY_COST_CENTS', 'SUPPLY_COST', 'IS_PERISHABLE', 'PRODUCT_ID']
-        assert cursor.fetchall() == [('s1', 'Test', D('250.00'), D('0.00'), D('1'), 'p1')]
+        assert Counter(cursor.fetchall()) == Counter([('s1', 'Test', D('250.00'), D('0.00'), D('1'), 'p1'),
+                                                    ('s2', 'Null cost', None, None, D('1'), 'p1')])
 
 
 @pytest.mark.mutation

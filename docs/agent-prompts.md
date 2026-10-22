@@ -941,3 +941,43 @@ D53 — scope_and_roadmap_review, independent final compliance check:
 ```text
 Final bounded compliance check requested by Saar, read-only. Repo /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt at HEAD66f26cc. Compare docs/assignment.md original employer brief with README.md, reports/validation.md, docs/agent-prompts.md and completed native Build spec. Answer ONLY: any missing mandatory employer or agreed-minimum item; all six README items; conditions still outstanding (owner code understanding, actual publishing/submission, full conversation export conditional availability). Distinguish allowed reasonable subset and optional Jaffle reference/remote CI from obligations. No tests rerun, no edits or broad polish. Do not claim full transcript or source-runtime oracle. Return concise actual gaps vs completed evidence, with paths.
 ```
+
+U81 — walkthrough timing:
+
+```text
+the explenation is at the next stage or this stage?
+```
+
+U82 — walkthrough format:
+
+```text
+in video? or file? i havent seen anyhitng regarding it
+```
+
+U83 — continue the chat walkthrough:
+
+```text
+alright lets go!
+```
+
+U84 — comprehensive owner review, one area at a time:
+
+```text
+lets dig into them one by one, i want a comperhansive review, record it
+```
+
+D54 — documentation_verification, targeted calculations review:
+
+```text
+Saar requests comprehensive owner review one area at a time; current area is calculations/expression semantics only. Read-only targeted correctness review at /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt. Read src/pwc_to_dbt/expressions.py and its sql.py callers, tests/test_semantics.py plus semantic research06. Trace parser/precedence, casts, null/error defaults, dates, strings and aggregate-expression validation. Reproduce at most three material uncovered failures within or directly adjacent to the claimed supported grammar/profile; distinguish source-semantic uncertainty from proven implementation failures. Do not expand support or edit product/tests/docs; do not run pytest (it appends measured history). Use temporary/in-memory probes if needed and return exact input, observed vs justified expected behavior, file/line, and any remaining evidence boundary. Return clean if no new confirmed defect. Do not conflate 140 passing controlled tests with PowerCenter oracle proof.
+```
+
+D55 — same implementation agent, owner-review O1 patch:
+
+```text
+Review of your implementation found problems. Fix each one below with the smallest change that does the job.
+
+Run only the tests that cover the files you edit — nothing wider. Full verification runs on my side after you return. Reply with what you changed.
+
+- src/pwc_to_dbt/expressions.py:133 — division checks denominator zero before NULL propagation: NULL/0 returns output default0 or raises under ERROR, while source arithmetic requires NULL. The exact state is independently reproduced in reports/evidence/20261022T175334-owner-calculations-44bf61.json — add operand-null propagation before denominator-zero error handling; preserve non-null zero-error behavior, ordinary division and legitimate NULLs. Add decimal/double/bare-NUMBER regressions across NULL/0/ERROR defaults, plus a generated-dbt supplies COST/0 mutation including a null COST row. This is O1 in the reopened native Build review; frozen intent is unchanged.
+```

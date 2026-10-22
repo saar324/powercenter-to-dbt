@@ -1,0 +1,21 @@
+tests/test_semantics.py::test_division_propagates_operand_null_before_zero_error[NULL-decimal] [call]: passed
+tests/test_semantics.py::test_division_propagates_operand_null_before_zero_error[NULL-double] [call]: passed
+tests/test_semantics.py::test_division_propagates_operand_null_before_zero_error[NULL-number] [call]: passed
+tests/test_semantics.py::test_division_propagates_operand_null_before_zero_error[0-decimal] [call]: passed
+tests/test_semantics.py::test_division_propagates_operand_null_before_zero_error[0-double] [call]: passed
+tests/test_semantics.py::test_division_propagates_operand_null_before_zero_error[0-number] [call]: passed
+tests/test_semantics.py::test_division_propagates_operand_null_before_zero_error[ERROR('transformation error')-decimal] [call]: passed
+tests/test_semantics.py::test_division_propagates_operand_null_before_zero_error[ERROR('transformation error')-double] [call]: passed
+tests/test_semantics.py::test_division_propagates_operand_null_before_zero_error[ERROR('transformation error')-number] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[NULL-None-decimal] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[NULL-None-double] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[NULL-None-number] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[0-expected1-decimal] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[0-expected1-double] [call]: passed
+tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null[0-expected1-number] [call]: passed
+tests/test_semantics.py::test_error_default_fails_visibly [call]: passed
+tests/test_mutations.py::test_double_error_default_runs_through_generated_dbt [call]: passed
+command: uv run pytest -q tests/test_semantics.py::test_division_propagates_operand_null_before_zero_error tests/test_semantics.py::test_error_defaults_do_not_replace_legitimate_null tests/test_semantics.py::test_error_default_fails_visibly tests/test_mutations.py::test_double_error_default_runs_through_generated_dbt
+revision: 6e4694bfc67487ce400a24f710b476db4d71bfe7+code-sha256:8d4c1ea03b8f4969ce51666ec72c577e7fe9a72b2a05bcba57f625c453b0c91c
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 0

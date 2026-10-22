@@ -96,6 +96,12 @@ Local implementation commit receipt: `137255f59bbfc9aedcd2f0bc763a5a23dfdb9950`.
 
 Final local requirements audit requested in U80: original assignment and all six README obligations rechecked, including independent read-only D53 audit. No missing local functional deliverable within the agreed basic scope was found. Current source/tests/examples/lock/CI fingerprint still matches run20261022T172637-34c669 with140 passing test cases; original hashes and README/report links pass. No tests rerun because product code is unchanged. Owner code understanding/walkthrough, publication or ZIP preparation, actual submission and recruiter notification remain separate pending handoff actions. The curated prompt log is not a full export: no conversation-export tool is currently exposed; desktop UI export capability remains unestablished. Matched Jaffle Shop comparison and remote CI are optional, not employer omissions. No additional feature work, publication or submission was performed.
 
+Owner calculations review O1 (after the prior140-case completion gate): denominator-zero handling precedes NULL propagation in expressions.py:133. D54 reported it; coordinator independently reproduced15 focused cases across decimal/double/bare-NUMBER defaults, with9passing and6failing at unchanged product fingerprint. Evidence: [focused probes](../../reports/evidence/20261022T175334-owner-calculations-44bf61.json). For NULL/0, defaults0 andERROR produce the wrong behavior; documented source arithmetic returnsNULL. Supplied mandatory paths use divisor100, so existing complete-result evidence remains valid but calculation review is reopened. Smallest correction is a NULL guard before the zero guard; no new intent/public surface. Re-engage the same implementer through native patch handling, add regressions, then full verification before closure.
+
+Owner calculations O1 closure: same implementation agent changed one division guard to propagate NULL operands before zero handling. D55 targeted17 tests passed. Coordinator re-ran the same15 manual probes:15passed; the initial6failures remain in history. Full coordinator verification run `20261022T175519-80ee06` passed149cases in29.18s at `6e4694bfc67487ce400a24f710b476db4d71bfe7+code-sha256:8d4c1ea03b8f4969ce51666ec72c577e7fe9a72b2a05bcba57f625c453b0c91c`, with actual five-path dbt/type/result checks and the strengthened COST/0 null-row mutation. Locked sync, installed CLI help, fresh README conversion/loader/dbt and all-target expected partial exit pass. Product source was read after the patch; no new intent or public interface. O1 is closed and native Build returns done; owner discussion of calculations is ongoing and the other review areas remain pending.
+
+Comprehensive area1 discussion covers Python generating SQL rather than evaluating customer data; parser tokens/AST/precedence; checked function arities and names; separate source/intermediate/target conversions; decimal rounding and integer width; legitimate NULL versus output error defaults with boxed TRY results; runtime-century dates; Oracle storage empty strings versus intermediates; aggregate restrictions; deterministic output, contextual rejection and known source-runtime/ASCII/row-recovery limits. These are explanations of current code and bounded measured policy, not full PowerCenter-equivalence proof or human signoff.
+
 ## Spec Change Log
 
 ## Review Triage Log
@@ -121,6 +127,10 @@ All three native layers returned before classification. Each finding was checked
 
 
 Patch disposition: B1–B8, B10, E1–E3 and V1 are corrected, with B7/E3 sharing one normalization fix. B9 remains rejected on the evidence above. No unresolved confirmed finding, intent gap or deferred native review item remains.
+
+Owner targeted-review triage O1: **medium · patch**. Exact NULL/0 state is reproduced and source-documented. One local guard-order correction, no scope change; same implementer and required post-patch verification. Earlier completed-gate statements above are historical; O1 is currently open.
+
+Owner O1 patch disposition: corrected and verified in full run `20261022T175519-80ee06`; no remaining confirmed calculations defect from D54. This supersedes the earlier O1-open state without removing its evidence.
 
 ## Design Notes
 
