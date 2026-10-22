@@ -14,6 +14,8 @@ The employer-README **modern** candidate is pinned at `f8f89f8d8af66ce3dd20844d4
 
 Complete checks preserve ordered columns, physical types, all values and duplicate counts, folding SQL identifier case only. Projected checks separately declare aliases, ID/flag casts, numeric-representation comparison and day-level DATE/TIMESTAMP comparison; original physical types remain visible. No money columns are swapped, joins reversed, formulas replaced or mismatch rows filtered.
 
+Owner review clarified that a combined strict full-output rate is not a valid system-accuracy score. Of 27 scored complete-output checks, 24 have different full schemas, two matching-schema checks match and one differs on empty-string/NULL handling; eight additional cases have no reference counterpart. The agent's chat figure of 7.4% was withdrawn as an overall quality measure. Classic is not a whole-output one-to-one oracle, and exact modern ancestry/equivalence remains unproven. Use the declared scoped comparisons as diagnostics; no single converter-correctness percentage is established.
+
 | Reference / dataset | Complete matched | Complete different | No complete counterpart | Projected matched | Projected different |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Modern ordinary | 1 | 4 | 0 | 7 | 4 |

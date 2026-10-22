@@ -59,6 +59,8 @@ Actual dbt execution caught an invalid first implementation of error defaults: D
 
 Owner review caught that external-reference execution had been treated as optional in the minimum-stage assessment; it is now required and executed. Independent reference review then caught rounding in the comparison helper, signed-zero disagreement, a lossy classic CSV bridge and duplicate reporting after teardown failure. Scalar probes, real pytest reporting probes and executed reference cases exposed these defects; exact comparisons, typed inputs and reporting guards now have regressions. The [reference Build record](./_bmad-output/implementation-artifacts/spec-jaffle-reference-validation.md) preserves each finding and correction.
 
+The owner also challenged a single strict whole-output rate offered in chat. It mainly counted different reference/XML schemas, so the agent withdrew it as a system-accuracy score. The measured scoped results remain available; no overall converter-correctness percentage is claimed.
+
 ### Agent error caught during setup
 
 During setup, the coding agent added analysis and proposed implementation choices when I had asked only for repository preparation. I caught this by reviewing the repository files and questioning what had already been added. I asked the agent to remove those additions and the converter-specific scaffolding, keeping the supplied materials and BMAD setup. The cleanup is recorded in commit `270a3d8`. This occurred before converter implementation.

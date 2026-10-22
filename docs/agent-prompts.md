@@ -1106,3 +1106,33 @@ Run only the tests that cover the files you edit — nothing wider. Full verific
 
 - src/pwc_to_dbt/expressions.py:133 — division checks denominator zero before NULL propagation: NULL/0 returns output default0 or raises under ERROR, while source arithmetic requires NULL. The exact state is independently reproduced in reports/evidence/20261022T175334-owner-calculations-44bf61.json — add operand-null propagation before denominator-zero error handling; preserve non-null zero-error behavior, ordinary division and legitimate NULLs. Add decimal/double/bare-NUMBER regressions across NULL/0/ERROR defaults, plus a generated-dbt supplies COST/0 mutation including a null COST row. This is O1 in the reopened native Build review; frozen intent is unchanged.
 ```
+
+U92 — shorter ASD-STE100 explanation:
+
+```text
+say it shorter and in ASD STE 100
+```
+
+U93 — calculate one aggregate number:
+
+```text
+whats the acuracy in one number you will give the system? (calcualte based not asumption, agrigatiopn)
+```
+
+U94 — explain the low aggregate:
+
+```text
+how is it so low?
+```
+
+U95 — challenge reference suitability:
+
+```text
+why do they have diffrent column name? doesnt make sencem we might have used the wrong reference
+```
+
+U96 — wrap up:
+
+```text
+ok lets wrap it up
+```
