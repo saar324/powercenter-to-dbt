@@ -1,0 +1,103 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES",
+  "aspect": "text_conditions",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T184606-3e7210-reference-modern-edge-deps",
+    "reports/evidence/20261022T184606-3e7210-reference-modern-edge-run",
+    "reports/evidence/20261022T184606-3e7210-generated-modern-edge"
+  ],
+  "classification": "observed_unresolved_reference_difference",
+  "input_manifest": "reports/evidence/20261022T184606-3e7210-inputs-modern-edge.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Complete pipeline output on the declared fields/scope; not isolated operator accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML inner-joins products (drops unmatched/multiplies duplicate keys), adds cost cents and maps Y/1 to numeric flags; modern has no product join, adds supply_uuid and passes through perishable.",
+  "comparison_status": "different",
+  "row_agreement_pct": 0.0,
+  "overlap_rows": 0,
+  "max_rows": 5,
+  "reference_rows": 5,
+  "generated_rows": 5,
+  "schema_compatible": true,
+  "physical_types_equal": false,
+  "reference_query": "SELECT supply_id, is_perishable_supply AS IS_PERISHABLE FROM modern.stg_supplies",
+  "generated_query": "SELECT SUPPLY_ID, IS_PERISHABLE FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies\"",
+  "reference_output": {
+    "columns": [
+      "supply_id",
+      "IS_PERISHABLE"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "s1",
+        "Y"
+      ],
+      [
+        "s2",
+        "1"
+      ],
+      [
+        "s3",
+        null
+      ],
+      [
+        "s4",
+        "y"
+      ],
+      [
+        "s5",
+        " "
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "SUPPLY_ID",
+      "IS_PERISHABLE"
+    ],
+    "types": [
+      "VARCHAR",
+      "DECIMAL(1,0)"
+    ],
+    "rows": [
+      [
+        "s1",
+        "1"
+      ],
+      [
+        "s2",
+        "1"
+      ],
+      [
+        "s5",
+        "0"
+      ],
+      [
+        "s1",
+        "1"
+      ],
+      [
+        "s2",
+        "1"
+      ]
+    ]
+  },
+  "run_id": "20261022T184606-3e7210",
+  "revision": "30da6cee50afe9c93b9651be0c5753424e6905f2+code-sha256:5f82fb53684ad1f66887b8e0558a6d41bb8bfcd40845fb2d57f3339169e98ae4",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[modern-edge-STG_SUPPLIES-text_conditions-projection-normalized-values]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "modern:edge:consumed-inputs-sha256:a27e986f80068b5d78ad899ce1c95474b9f4667d230dcc8d8d37a4f33ec2ead9"
+}

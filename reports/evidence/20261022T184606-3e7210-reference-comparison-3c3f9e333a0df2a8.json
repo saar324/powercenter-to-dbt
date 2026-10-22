@@ -1,0 +1,965 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "original-seeds",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_CUSTOMERS",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T184606-3e7210-reference-classic-original-seeds-seed",
+    "reports/evidence/20261022T184606-3e7210-reference-classic-original-seeds-run",
+    "reports/evidence/20261022T184606-3e7210-generated-classic-original-seeds"
+  ],
+  "classification": "observed_unresolved_reference_difference",
+  "input_manifest": "reports/evidence/20261022T184606-3e7210-inputs-classic-original-seeds.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Complete pipeline output on the declared fields/scope; not isolated operator accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML Oracle storage boundaries convert empty strings to NULL; modern SQL passes raw NAME/ID. Classic has separate first_name/last_name columns.",
+  "comparison_status": "different",
+  "row_agreement_pct": 0.0,
+  "overlap_rows": 0,
+  "max_rows": 100,
+  "reference_rows": 100,
+  "generated_rows": 100,
+  "schema_compatible": false,
+  "physical_types_equal": false,
+  "reference_query": "SELECT * FROM classic.stg_customers",
+  "generated_query": "SELECT * FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers\"",
+  "reference_output": {
+    "columns": [
+      "customer_id",
+      "first_name",
+      "last_name"
+    ],
+    "types": [
+      "INTEGER",
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        1,
+        "Michael",
+        "P."
+      ],
+      [
+        2,
+        "Shawn",
+        "M."
+      ],
+      [
+        3,
+        "Kathleen",
+        "P."
+      ],
+      [
+        4,
+        "Jimmy",
+        "C."
+      ],
+      [
+        5,
+        "Katherine",
+        "R."
+      ],
+      [
+        6,
+        "Sarah",
+        "R."
+      ],
+      [
+        7,
+        "Martin",
+        "M."
+      ],
+      [
+        8,
+        "Frank",
+        "R."
+      ],
+      [
+        9,
+        "Jennifer",
+        "F."
+      ],
+      [
+        10,
+        "Henry",
+        "W."
+      ],
+      [
+        11,
+        "Fred",
+        "S."
+      ],
+      [
+        12,
+        "Amy",
+        "D."
+      ],
+      [
+        13,
+        "Kathleen",
+        "M."
+      ],
+      [
+        14,
+        "Steve",
+        "F."
+      ],
+      [
+        15,
+        "Teresa",
+        "H."
+      ],
+      [
+        16,
+        "Amanda",
+        "H."
+      ],
+      [
+        17,
+        "Kimberly",
+        "R."
+      ],
+      [
+        18,
+        "Johnny",
+        "K."
+      ],
+      [
+        19,
+        "Virginia",
+        "F."
+      ],
+      [
+        20,
+        "Anna",
+        "A."
+      ],
+      [
+        21,
+        "Willie",
+        "H."
+      ],
+      [
+        22,
+        "Sean",
+        "H."
+      ],
+      [
+        23,
+        "Mildred",
+        "A."
+      ],
+      [
+        24,
+        "David",
+        "G."
+      ],
+      [
+        25,
+        "Victor",
+        "H."
+      ],
+      [
+        26,
+        "Aaron",
+        "R."
+      ],
+      [
+        27,
+        "Benjamin",
+        "B."
+      ],
+      [
+        28,
+        "Lisa",
+        "W."
+      ],
+      [
+        29,
+        "Benjamin",
+        "K."
+      ],
+      [
+        30,
+        "Christina",
+        "W."
+      ],
+      [
+        31,
+        "Jane",
+        "G."
+      ],
+      [
+        32,
+        "Thomas",
+        "O."
+      ],
+      [
+        33,
+        "Katherine",
+        "M."
+      ],
+      [
+        34,
+        "Jennifer",
+        "S."
+      ],
+      [
+        35,
+        "Sara",
+        "T."
+      ],
+      [
+        36,
+        "Harold",
+        "O."
+      ],
+      [
+        37,
+        "Shirley",
+        "J."
+      ],
+      [
+        38,
+        "Dennis",
+        "J."
+      ],
+      [
+        39,
+        "Louise",
+        "W."
+      ],
+      [
+        40,
+        "Maria",
+        "A."
+      ],
+      [
+        41,
+        "Gloria",
+        "C."
+      ],
+      [
+        42,
+        "Diana",
+        "S."
+      ],
+      [
+        43,
+        "Kelly",
+        "N."
+      ],
+      [
+        44,
+        "Jane",
+        "R."
+      ],
+      [
+        45,
+        "Scott",
+        "B."
+      ],
+      [
+        46,
+        "Norma",
+        "C."
+      ],
+      [
+        47,
+        "Marie",
+        "P."
+      ],
+      [
+        48,
+        "Lillian",
+        "C."
+      ],
+      [
+        49,
+        "Judy",
+        "N."
+      ],
+      [
+        50,
+        "Billy",
+        "L."
+      ],
+      [
+        51,
+        "Howard",
+        "R."
+      ],
+      [
+        52,
+        "Laura",
+        "F."
+      ],
+      [
+        53,
+        "Anne",
+        "B."
+      ],
+      [
+        54,
+        "Rose",
+        "M."
+      ],
+      [
+        55,
+        "Nicholas",
+        "R."
+      ],
+      [
+        56,
+        "Joshua",
+        "K."
+      ],
+      [
+        57,
+        "Paul",
+        "W."
+      ],
+      [
+        58,
+        "Kathryn",
+        "K."
+      ],
+      [
+        59,
+        "Adam",
+        "A."
+      ],
+      [
+        60,
+        "Norma",
+        "W."
+      ],
+      [
+        61,
+        "Timothy",
+        "R."
+      ],
+      [
+        62,
+        "Elizabeth",
+        "P."
+      ],
+      [
+        63,
+        "Edward",
+        "G."
+      ],
+      [
+        64,
+        "David",
+        "C."
+      ],
+      [
+        65,
+        "Brenda",
+        "W."
+      ],
+      [
+        66,
+        "Adam",
+        "W."
+      ],
+      [
+        67,
+        "Michael",
+        "H."
+      ],
+      [
+        68,
+        "Jesse",
+        "E."
+      ],
+      [
+        69,
+        "Janet",
+        "P."
+      ],
+      [
+        70,
+        "Helen",
+        "F."
+      ],
+      [
+        71,
+        "Gerald",
+        "C."
+      ],
+      [
+        72,
+        "Kathryn",
+        "O."
+      ],
+      [
+        73,
+        "Alan",
+        "B."
+      ],
+      [
+        74,
+        "Harry",
+        "A."
+      ],
+      [
+        75,
+        "Andrea",
+        "H."
+      ],
+      [
+        76,
+        "Barbara",
+        "W."
+      ],
+      [
+        77,
+        "Anne",
+        "W."
+      ],
+      [
+        78,
+        "Harry",
+        "H."
+      ],
+      [
+        79,
+        "Jack",
+        "R."
+      ],
+      [
+        80,
+        "Phillip",
+        "H."
+      ],
+      [
+        81,
+        "Shirley",
+        "H."
+      ],
+      [
+        82,
+        "Arthur",
+        "D."
+      ],
+      [
+        83,
+        "Virginia",
+        "R."
+      ],
+      [
+        84,
+        "Christina",
+        "R."
+      ],
+      [
+        85,
+        "Theresa",
+        "M."
+      ],
+      [
+        86,
+        "Jason",
+        "C."
+      ],
+      [
+        87,
+        "Phillip",
+        "B."
+      ],
+      [
+        88,
+        "Adam",
+        "T."
+      ],
+      [
+        89,
+        "Margaret",
+        "J."
+      ],
+      [
+        90,
+        "Paul",
+        "P."
+      ],
+      [
+        91,
+        "Todd",
+        "W."
+      ],
+      [
+        92,
+        "Willie",
+        "O."
+      ],
+      [
+        93,
+        "Frances",
+        "R."
+      ],
+      [
+        94,
+        "Gregory",
+        "H."
+      ],
+      [
+        95,
+        "Lisa",
+        "P."
+      ],
+      [
+        96,
+        "Jacqueline",
+        "A."
+      ],
+      [
+        97,
+        "Shirley",
+        "D."
+      ],
+      [
+        98,
+        "Nicole",
+        "M."
+      ],
+      [
+        99,
+        "Mary",
+        "G."
+      ],
+      [
+        100,
+        "Jean",
+        "M."
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID",
+      "CUSTOMER_NAME"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "1",
+        "Michael P."
+      ],
+      [
+        "2",
+        "Shawn M."
+      ],
+      [
+        "3",
+        "Kathleen P."
+      ],
+      [
+        "4",
+        "Jimmy C."
+      ],
+      [
+        "5",
+        "Katherine R."
+      ],
+      [
+        "6",
+        "Sarah R."
+      ],
+      [
+        "7",
+        "Martin M."
+      ],
+      [
+        "8",
+        "Frank R."
+      ],
+      [
+        "9",
+        "Jennifer F."
+      ],
+      [
+        "10",
+        "Henry W."
+      ],
+      [
+        "11",
+        "Fred S."
+      ],
+      [
+        "12",
+        "Amy D."
+      ],
+      [
+        "13",
+        "Kathleen M."
+      ],
+      [
+        "14",
+        "Steve F."
+      ],
+      [
+        "15",
+        "Teresa H."
+      ],
+      [
+        "16",
+        "Amanda H."
+      ],
+      [
+        "17",
+        "Kimberly R."
+      ],
+      [
+        "18",
+        "Johnny K."
+      ],
+      [
+        "19",
+        "Virginia F."
+      ],
+      [
+        "20",
+        "Anna A."
+      ],
+      [
+        "21",
+        "Willie H."
+      ],
+      [
+        "22",
+        "Sean H."
+      ],
+      [
+        "23",
+        "Mildred A."
+      ],
+      [
+        "24",
+        "David G."
+      ],
+      [
+        "25",
+        "Victor H."
+      ],
+      [
+        "26",
+        "Aaron R."
+      ],
+      [
+        "27",
+        "Benjamin B."
+      ],
+      [
+        "28",
+        "Lisa W."
+      ],
+      [
+        "29",
+        "Benjamin K."
+      ],
+      [
+        "30",
+        "Christina W."
+      ],
+      [
+        "31",
+        "Jane G."
+      ],
+      [
+        "32",
+        "Thomas O."
+      ],
+      [
+        "33",
+        "Katherine M."
+      ],
+      [
+        "34",
+        "Jennifer S."
+      ],
+      [
+        "35",
+        "Sara T."
+      ],
+      [
+        "36",
+        "Harold O."
+      ],
+      [
+        "37",
+        "Shirley J."
+      ],
+      [
+        "38",
+        "Dennis J."
+      ],
+      [
+        "39",
+        "Louise W."
+      ],
+      [
+        "40",
+        "Maria A."
+      ],
+      [
+        "41",
+        "Gloria C."
+      ],
+      [
+        "42",
+        "Diana S."
+      ],
+      [
+        "43",
+        "Kelly N."
+      ],
+      [
+        "44",
+        "Jane R."
+      ],
+      [
+        "45",
+        "Scott B."
+      ],
+      [
+        "46",
+        "Norma C."
+      ],
+      [
+        "47",
+        "Marie P."
+      ],
+      [
+        "48",
+        "Lillian C."
+      ],
+      [
+        "49",
+        "Judy N."
+      ],
+      [
+        "50",
+        "Billy L."
+      ],
+      [
+        "51",
+        "Howard R."
+      ],
+      [
+        "52",
+        "Laura F."
+      ],
+      [
+        "53",
+        "Anne B."
+      ],
+      [
+        "54",
+        "Rose M."
+      ],
+      [
+        "55",
+        "Nicholas R."
+      ],
+      [
+        "56",
+        "Joshua K."
+      ],
+      [
+        "57",
+        "Paul W."
+      ],
+      [
+        "58",
+        "Kathryn K."
+      ],
+      [
+        "59",
+        "Adam A."
+      ],
+      [
+        "60",
+        "Norma W."
+      ],
+      [
+        "61",
+        "Timothy R."
+      ],
+      [
+        "62",
+        "Elizabeth P."
+      ],
+      [
+        "63",
+        "Edward G."
+      ],
+      [
+        "64",
+        "David C."
+      ],
+      [
+        "65",
+        "Brenda W."
+      ],
+      [
+        "66",
+        "Adam W."
+      ],
+      [
+        "67",
+        "Michael H."
+      ],
+      [
+        "68",
+        "Jesse E."
+      ],
+      [
+        "69",
+        "Janet P."
+      ],
+      [
+        "70",
+        "Helen F."
+      ],
+      [
+        "71",
+        "Gerald C."
+      ],
+      [
+        "72",
+        "Kathryn O."
+      ],
+      [
+        "73",
+        "Alan B."
+      ],
+      [
+        "74",
+        "Harry A."
+      ],
+      [
+        "75",
+        "Andrea H."
+      ],
+      [
+        "76",
+        "Barbara W."
+      ],
+      [
+        "77",
+        "Anne W."
+      ],
+      [
+        "78",
+        "Harry H."
+      ],
+      [
+        "79",
+        "Jack R."
+      ],
+      [
+        "80",
+        "Phillip H."
+      ],
+      [
+        "81",
+        "Shirley H."
+      ],
+      [
+        "82",
+        "Arthur D."
+      ],
+      [
+        "83",
+        "Virginia R."
+      ],
+      [
+        "84",
+        "Christina R."
+      ],
+      [
+        "85",
+        "Theresa M."
+      ],
+      [
+        "86",
+        "Jason C."
+      ],
+      [
+        "87",
+        "Phillip B."
+      ],
+      [
+        "88",
+        "Adam T."
+      ],
+      [
+        "89",
+        "Margaret J."
+      ],
+      [
+        "90",
+        "Paul P."
+      ],
+      [
+        "91",
+        "Todd W."
+      ],
+      [
+        "92",
+        "Willie O."
+      ],
+      [
+        "93",
+        "Frances R."
+      ],
+      [
+        "94",
+        "Gregory H."
+      ],
+      [
+        "95",
+        "Lisa P."
+      ],
+      [
+        "96",
+        "Jacqueline A."
+      ],
+      [
+        "97",
+        "Shirley D."
+      ],
+      [
+        "98",
+        "Nicole M."
+      ],
+      [
+        "99",
+        "Mary G."
+      ],
+      [
+        "100",
+        "Jean M."
+      ]
+    ]
+  },
+  "run_id": "20261022T184606-3e7210",
+  "revision": "30da6cee50afe9c93b9651be0c5753424e6905f2+code-sha256:5f82fb53684ad1f66887b8e0558a6d41bb8bfcd40845fb2d57f3339169e98ae4",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[classic-original-seeds-STG_CUSTOMERS-complete_target-complete]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "classic:original-seeds:consumed-inputs-sha256:21fd8e32dd9e0b610459931daac943a280838c2384a74b506fae61a39bbf5902"
+}

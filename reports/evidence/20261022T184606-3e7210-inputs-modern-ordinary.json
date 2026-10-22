@@ -1,0 +1,467 @@
+{
+  "reference": "modern",
+  "dataset": "ordinary",
+  "sides": {
+    "generated": {
+      "RAW.RAW_CUSTOMERS": {
+        "columns": [
+          "ID",
+          "NAME"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "str",
+                "c1"
+              ],
+              [
+                "str",
+                "Aster"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "c2"
+              ],
+              [
+                "str",
+                "Birch"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "RAW.RAW_ORDERS": {
+        "columns": [
+          "ID",
+          "CUSTOMER",
+          "ORDERED_AT",
+          "STORE_ID",
+          "SUBTOTAL",
+          "TAX_PAID",
+          "ORDER_TOTAL"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "TIMESTAMP",
+          "VARCHAR",
+          "DOUBLE",
+          "DOUBLE",
+          "DECIMAL(12,2)"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "str",
+                "o1"
+              ],
+              [
+                "str",
+                "c1"
+              ],
+              [
+                "datetime",
+                "2025-01-02 15:30:00"
+              ],
+              [
+                "str",
+                "l1"
+              ],
+              [
+                "float",
+                "125.0"
+              ],
+              [
+                "float",
+                "25.0"
+              ],
+              [
+                "Decimal",
+                "150.00"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "o2"
+              ],
+              [
+                "str",
+                "c2"
+              ],
+              [
+                "datetime",
+                "2025-05-03 00:00:00"
+              ],
+              [
+                "str",
+                "l1"
+              ],
+              [
+                "float",
+                "200.0"
+              ],
+              [
+                "float",
+                "40.0"
+              ],
+              [
+                "Decimal",
+                "240.00"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "RAW.RAW_PRODUCTS": {
+        "columns": [
+          "SKU",
+          "NAME",
+          "TYPE",
+          "PRICE",
+          "DESCRIPTION"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "str",
+                "p1"
+              ],
+              [
+                "str",
+                "Jaffle"
+              ],
+              [
+                "str",
+                "jaffle"
+              ],
+              [
+                "float",
+                "125.0"
+              ],
+              [
+                "str",
+                "Warm"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "RAW.RAW_SUPPLIES": {
+        "columns": [
+          "ID",
+          "NAME",
+          "COST",
+          "PERISHABLE",
+          "SKU"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "str",
+                "s1"
+              ],
+              [
+                "str",
+                "Flour"
+              ],
+              [
+                "float",
+                "250.0"
+              ],
+              [
+                "str",
+                "Y"
+              ],
+              [
+                "str",
+                "p1"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      }
+    },
+    "reference": {
+      "RAW.RAW_CUSTOMERS": {
+        "columns": [
+          "ID",
+          "NAME"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "str",
+                "c1"
+              ],
+              [
+                "str",
+                "Aster"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "c2"
+              ],
+              [
+                "str",
+                "Birch"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "RAW.RAW_ORDERS": {
+        "columns": [
+          "ID",
+          "CUSTOMER",
+          "ORDERED_AT",
+          "STORE_ID",
+          "SUBTOTAL",
+          "TAX_PAID",
+          "ORDER_TOTAL"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "TIMESTAMP",
+          "VARCHAR",
+          "DOUBLE",
+          "DOUBLE",
+          "DECIMAL(12,2)"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "str",
+                "o1"
+              ],
+              [
+                "str",
+                "c1"
+              ],
+              [
+                "datetime",
+                "2025-01-02 15:30:00"
+              ],
+              [
+                "str",
+                "l1"
+              ],
+              [
+                "float",
+                "125.0"
+              ],
+              [
+                "float",
+                "25.0"
+              ],
+              [
+                "Decimal",
+                "150.00"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "o2"
+              ],
+              [
+                "str",
+                "c2"
+              ],
+              [
+                "datetime",
+                "2025-05-03 00:00:00"
+              ],
+              [
+                "str",
+                "l1"
+              ],
+              [
+                "float",
+                "200.0"
+              ],
+              [
+                "float",
+                "40.0"
+              ],
+              [
+                "Decimal",
+                "240.00"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "RAW.RAW_PRODUCTS": {
+        "columns": [
+          "SKU",
+          "NAME",
+          "TYPE",
+          "PRICE",
+          "DESCRIPTION"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "str",
+                "p1"
+              ],
+              [
+                "str",
+                "Jaffle"
+              ],
+              [
+                "str",
+                "jaffle"
+              ],
+              [
+                "float",
+                "125.0"
+              ],
+              [
+                "str",
+                "Warm"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "RAW.RAW_SUPPLIES": {
+        "columns": [
+          "ID",
+          "NAME",
+          "COST",
+          "PERISHABLE",
+          "SKU"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "str",
+                "s1"
+              ],
+              [
+                "str",
+                "Flour"
+              ],
+              [
+                "float",
+                "250.0"
+              ],
+              [
+                "str",
+                "Y"
+              ],
+              [
+                "str",
+                "p1"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "RAW.RAW_ITEMS": {
+        "columns": [
+          "ID",
+          "ORDER_ID",
+          "SKU"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "str",
+                "i1"
+              ],
+              [
+                "str",
+                "o1"
+              ],
+              [
+                "str",
+                "p1"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      }
+    }
+  },
+  "adaptations": "shared typed RAW inputs; supplemental RAW_ITEMS; bounded upstream dependency closure",
+  "input_id": "modern:ordinary:consumed-inputs-sha256:299d112465a650ee3a47398e4ea4d8668fe014acef3d8bcd1cdf79c08def5345"
+}

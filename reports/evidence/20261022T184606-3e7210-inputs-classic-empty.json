@@ -1,0 +1,121 @@
+{
+  "reference": "classic",
+  "dataset": "empty",
+  "sides": {
+    "generated": {
+      "RAW.RAW_CUSTOMERS": {
+        "columns": [
+          "ID",
+          "NAME"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": []
+      },
+      "RAW.RAW_ORDERS": {
+        "columns": [
+          "ID",
+          "CUSTOMER",
+          "ORDERED_AT",
+          "STORE_ID",
+          "SUBTOTAL",
+          "TAX_PAID",
+          "ORDER_TOTAL"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "TIMESTAMP",
+          "VARCHAR",
+          "DOUBLE",
+          "DOUBLE",
+          "DECIMAL(12,2)"
+        ],
+        "rows": []
+      },
+      "RAW.RAW_PRODUCTS": {
+        "columns": [
+          "SKU",
+          "NAME",
+          "TYPE",
+          "PRICE",
+          "DESCRIPTION"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR"
+        ],
+        "rows": []
+      },
+      "RAW.RAW_SUPPLIES": {
+        "columns": [
+          "ID",
+          "NAME",
+          "COST",
+          "PERISHABLE",
+          "SKU"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": []
+      }
+    },
+    "reference": {
+      "classic.raw_customers": {
+        "columns": [
+          "id",
+          "first_name",
+          "last_name"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": []
+      },
+      "classic.raw_orders": {
+        "columns": [
+          "id",
+          "user_id",
+          "order_date",
+          "status"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "DATE",
+          "VARCHAR"
+        ],
+        "rows": []
+      },
+      "classic.raw_payments": {
+        "columns": [
+          "id",
+          "order_id",
+          "payment_method",
+          "amount"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE"
+        ],
+        "rows": []
+      }
+    }
+  },
+  "adaptations": "typed post-seed classic source restoration; NAME->first_name; day-level order_date; empty payments",
+  "input_id": "classic:empty:consumed-inputs-sha256:1bac9d663df01691a6ccddd3209e92a2192630b39c4f8d6ce3c415a9dc888bcc"
+}

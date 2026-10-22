@@ -1,0 +1,111 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+  "aspect": "dates",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T184606-3e7210-reference-classic-edge-seed",
+    "reports/evidence/20261022T184606-3e7210-reference-classic-edge-run",
+    "reports/evidence/20261022T184606-3e7210-generated-classic-edge"
+  ],
+  "classification": "observed_unresolved_reference_difference",
+  "input_manifest": "reports/evidence/20261022T184606-3e7210-inputs-classic-edge.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Complete pipeline output on the declared fields/scope; not isolated operator accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML connectors cross cents/dollar outputs; DD-MM-YY round trip uses current century. Modern keeps source cents and truncates original date. Classic has order_date/status and no equivalent amounts/location.",
+  "comparison_status": "different",
+  "row_agreement_pct": 83.33333333333333,
+  "overlap_rows": 5,
+  "max_rows": 6,
+  "reference_rows": 6,
+  "generated_rows": 6,
+  "schema_compatible": true,
+  "physical_types_equal": false,
+  "reference_query": "SELECT CAST(order_id AS VARCHAR) AS ORDER_ID, order_date AS ORDERED_AT_DAY FROM classic.stg_orders",
+  "generated_query": "SELECT ORDER_ID, ORDERED_AT_DAY FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders\"",
+  "reference_output": {
+    "columns": [
+      "ORDER_ID",
+      "ORDERED_AT_DAY"
+    ],
+    "types": [
+      "VARCHAR",
+      "DATE"
+    ],
+    "rows": [
+      [
+        "o1",
+        "1998-01-02"
+      ],
+      [
+        "o2",
+        "2000-02-29"
+      ],
+      [
+        "o2",
+        "2000-02-29"
+      ],
+      [
+        "o3",
+        "2024-05-06"
+      ],
+      [
+        null,
+        null
+      ],
+      [
+        "o4",
+        "2025-12-31"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "ORDER_ID",
+      "ORDERED_AT_DAY"
+    ],
+    "types": [
+      "VARCHAR",
+      "TIMESTAMP"
+    ],
+    "rows": [
+      [
+        "o1",
+        "2098-01-02 00:00:00"
+      ],
+      [
+        "o2",
+        "2000-02-29 00:00:00"
+      ],
+      [
+        "o2",
+        "2000-02-29 00:00:00"
+      ],
+      [
+        "o3",
+        "2024-05-06 00:00:00"
+      ],
+      [
+        "o4",
+        "2025-12-31 00:00:00"
+      ],
+      [
+        null,
+        null
+      ]
+    ]
+  },
+  "run_id": "20261022T184606-3e7210",
+  "revision": "30da6cee50afe9c93b9651be0c5753424e6905f2+code-sha256:5f82fb53684ad1f66887b8e0558a6d41bb8bfcd40845fb2d57f3339169e98ae4",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[classic-edge-STG_ORDERS-dates-projection-normalized-values]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "classic:edge:consumed-inputs-sha256:d0dc5e6c142f0bd6ea97e2321859561c704224b4e8a840b97a25abfb71ec2c67"
+}

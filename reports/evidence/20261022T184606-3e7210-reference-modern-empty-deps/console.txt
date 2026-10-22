@@ -1,0 +1,5 @@
+command: /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/dbt deps --project-dir /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-738/pinned-references0/modern-empty/modern --profiles-dir /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-738/pinned-references0/modern-empty/modern --no-use-colors
+18:47:06  Running with dbt=1.12.6
+18:47:06  Updating lock file in file path: /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-738/pinned-references0/modern-empty/modern/package-lock.yml
+18:47:06  Installing ../dbt_utils
+18:47:06  Installed from <local @ ../dbt_utils>

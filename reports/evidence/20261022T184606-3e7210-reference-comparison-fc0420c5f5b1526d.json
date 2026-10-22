@@ -1,0 +1,61 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "empty",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+  "aspect": "dates",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T184606-3e7210-reference-modern-empty-deps",
+    "reports/evidence/20261022T184606-3e7210-reference-modern-empty-run",
+    "reports/evidence/20261022T184606-3e7210-generated-modern-empty"
+  ],
+  "classification": "agreement_on_declared_scope",
+  "input_manifest": "reports/evidence/20261022T184606-3e7210-inputs-modern-empty.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Complete pipeline output on the declared fields/scope; not isolated operator accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML connectors cross cents/dollar outputs; DD-MM-YY round trip uses current century. Modern keeps source cents and truncates original date. Classic has order_date/status and no equivalent amounts/location.",
+  "comparison_status": "matched",
+  "row_agreement_pct": 100.0,
+  "overlap_rows": 0,
+  "max_rows": 0,
+  "reference_rows": 0,
+  "generated_rows": 0,
+  "schema_compatible": true,
+  "physical_types_equal": false,
+  "reference_query": "SELECT order_id, ordered_at AS ORDERED_AT_DAY FROM modern.stg_orders",
+  "generated_query": "SELECT ORDER_ID, ORDERED_AT_DAY FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders\"",
+  "reference_output": {
+    "columns": [
+      "order_id",
+      "ORDERED_AT_DAY"
+    ],
+    "types": [
+      "VARCHAR",
+      "DATE"
+    ],
+    "rows": []
+  },
+  "generated_output": {
+    "columns": [
+      "ORDER_ID",
+      "ORDERED_AT_DAY"
+    ],
+    "types": [
+      "VARCHAR",
+      "TIMESTAMP"
+    ],
+    "rows": []
+  },
+  "run_id": "20261022T184606-3e7210",
+  "revision": "30da6cee50afe9c93b9651be0c5753424e6905f2+code-sha256:5f82fb53684ad1f66887b8e0558a6d41bb8bfcd40845fb2d57f3339169e98ae4",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[modern-empty-STG_ORDERS-dates-projection-normalized-values]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "modern:empty:consumed-inputs-sha256:3e6cca61d88613b771b0be562551bb81c66524eea61522d5db92716a46bd726a"
+}

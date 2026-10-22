@@ -95,4 +95,3 @@ def test_executed_reference_comparison(reference_executions, request, reference,
     if record['comparison_status'] in ['matched', 'different']:
         assert 'reference_output' in record and 'generated_output' in record
         assert record['overlap_rows'] <= record['max_rows']
-

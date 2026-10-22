@@ -1,0 +1,802 @@
+{
+  "reference": "classic",
+  "dataset": "edge",
+  "sides": {
+    "generated": {
+      "RAW.RAW_CUSTOMERS": {
+        "columns": [
+          "ID",
+          "NAME"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "str",
+                "Null key"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                ""
+              ],
+              [
+                "str",
+                ""
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "c1"
+              ],
+              [
+                "str",
+                "Aster"
+              ]
+            ],
+            "count": 2
+          },
+          {
+            "values": [
+              [
+                "str",
+                "c2"
+              ],
+              [
+                "str",
+                "Birch"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "idle"
+              ],
+              [
+                "str",
+                "No orders"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "space"
+              ],
+              [
+                "str",
+                "   "
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "RAW.RAW_ORDERS": {
+        "columns": [
+          "ID",
+          "CUSTOMER",
+          "ORDERED_AT",
+          "STORE_ID",
+          "SUBTOTAL",
+          "TAX_PAID",
+          "ORDER_TOTAL"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "TIMESTAMP",
+          "VARCHAR",
+          "DOUBLE",
+          "DOUBLE",
+          "DECIMAL(12,2)"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "str",
+                ""
+              ],
+              [
+                "float",
+                "0.0"
+              ],
+              [
+                "float",
+                "0.0"
+              ],
+              [
+                "Decimal",
+                "0.00"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "o1"
+              ],
+              [
+                "str",
+                "c1"
+              ],
+              [
+                "datetime",
+                "1998-01-02 15:30:00"
+              ],
+              [
+                "str",
+                "l1"
+              ],
+              [
+                "float",
+                "125.0"
+              ],
+              [
+                "float",
+                "25.0"
+              ],
+              [
+                "Decimal",
+                "150.50"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "o2"
+              ],
+              [
+                "str",
+                "c1"
+              ],
+              [
+                "datetime",
+                "2000-02-29 23:59:59"
+              ],
+              [
+                "str",
+                "l1"
+              ],
+              [
+                "float",
+                "-5.0"
+              ],
+              [
+                "float",
+                "-1.0"
+              ],
+              [
+                "Decimal",
+                "-6.50"
+              ]
+            ],
+            "count": 2
+          },
+          {
+            "values": [
+              [
+                "str",
+                "o3"
+              ],
+              [
+                "str",
+                "missing"
+              ],
+              [
+                "datetime",
+                "2024-05-06 08:10:12"
+              ],
+              [
+                "str",
+                "l2"
+              ],
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "o4"
+              ],
+              [
+                "str",
+                "c2"
+              ],
+              [
+                "datetime",
+                "2025-12-31 11:10:12"
+              ],
+              [
+                "str",
+                "l2"
+              ],
+              [
+                "float",
+                "1.0"
+              ],
+              [
+                "float",
+                "-1.0"
+              ],
+              [
+                "Decimal",
+                "0.50"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "RAW.RAW_PRODUCTS": {
+        "columns": [
+          "SKU",
+          "NAME",
+          "TYPE",
+          "PRICE",
+          "DESCRIPTION"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "str",
+                "No SKU"
+              ],
+              [
+                "str",
+                ""
+              ],
+              [
+                "float",
+                "1.0"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "p1"
+              ],
+              [
+                "str",
+                "Jaffle duplicate"
+              ],
+              [
+                "str",
+                "BEVERAGE"
+              ],
+              [
+                "float",
+                "-5.0"
+              ],
+              [
+                "str",
+                "cold"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "p1"
+              ],
+              [
+                "str",
+                "Jaffle"
+              ],
+              [
+                "str",
+                " jaffle "
+              ],
+              [
+                "float",
+                "125.0"
+              ],
+              [
+                "str",
+                ""
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "p2"
+              ],
+              [
+                "str",
+                "No type"
+              ],
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "str",
+                "   "
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "RAW.RAW_SUPPLIES": {
+        "columns": [
+          "ID",
+          "NAME",
+          "COST",
+          "PERISHABLE",
+          "SKU"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "str",
+                "s1"
+              ],
+              [
+                "str",
+                "Flour"
+              ],
+              [
+                "float",
+                "250.0"
+              ],
+              [
+                "str",
+                "Y"
+              ],
+              [
+                "str",
+                "p1"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "s2"
+              ],
+              [
+                "str",
+                "Null cost"
+              ],
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "str",
+                "1"
+              ],
+              [
+                "str",
+                "p1"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "s3"
+              ],
+              [
+                "str",
+                "Unknown"
+              ],
+              [
+                "float",
+                "-5.0"
+              ],
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "str",
+                "missing"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "s4"
+              ],
+              [
+                "str",
+                "No key"
+              ],
+              [
+                "float",
+                "1.0"
+              ],
+              [
+                "str",
+                "y"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "s5"
+              ],
+              [
+                "str",
+                "Spaces"
+              ],
+              [
+                "float",
+                "-5.0"
+              ],
+              [
+                "str",
+                " "
+              ],
+              [
+                "str",
+                "p2"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      }
+    },
+    "reference": {
+      "classic.raw_customers": {
+        "columns": [
+          "id",
+          "first_name",
+          "last_name"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "str",
+                "Null key"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                ""
+              ],
+              [
+                "str",
+                ""
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "c1"
+              ],
+              [
+                "str",
+                "Aster"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 2
+          },
+          {
+            "values": [
+              [
+                "str",
+                "c2"
+              ],
+              [
+                "str",
+                "Birch"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "idle"
+              ],
+              [
+                "str",
+                "No orders"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "space"
+              ],
+              [
+                "str",
+                "   "
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "classic.raw_orders": {
+        "columns": [
+          "id",
+          "user_id",
+          "order_date",
+          "status"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "DATE",
+          "VARCHAR"
+        ],
+        "rows": [
+          {
+            "values": [
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "NoneType",
+                "None"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "o1"
+              ],
+              [
+                "str",
+                "c1"
+              ],
+              [
+                "date",
+                "1998-01-02"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "o2"
+              ],
+              [
+                "str",
+                "c1"
+              ],
+              [
+                "date",
+                "2000-02-29"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 2
+          },
+          {
+            "values": [
+              [
+                "str",
+                "o3"
+              ],
+              [
+                "str",
+                "missing"
+              ],
+              [
+                "date",
+                "2024-05-06"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          },
+          {
+            "values": [
+              [
+                "str",
+                "o4"
+              ],
+              [
+                "str",
+                "c2"
+              ],
+              [
+                "date",
+                "2025-12-31"
+              ],
+              [
+                "NoneType",
+                "None"
+              ]
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "classic.raw_payments": {
+        "columns": [
+          "id",
+          "order_id",
+          "payment_method",
+          "amount"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE"
+        ],
+        "rows": []
+      }
+    }
+  },
+  "adaptations": "typed post-seed classic source restoration; NAME->first_name; day-level order_date; empty payments",
+  "input_id": "classic:edge:consumed-inputs-sha256:d0dc5e6c142f0bd6ea97e2321859561c704224b4e8a840b97a25abfb71ec2c67"
+}
