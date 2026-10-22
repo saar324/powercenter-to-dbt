@@ -18,6 +18,6 @@ Technical addendum: Reference/Database model; 1,452 words at this review snapsho
 | PRD | Agent proposals and assumptions below await approval. | The agent proposals and assumptions in this PRD await approval. |
 | Addendum | Exact PowerCenter10.5 pages returned403 during research. | The PowerCenter 10.5 pages returned HTTP 403 during research. |
 | Addendum | Document/test declared numeric precision/scale and Oracle empty-string/null assumptions before counting a path verified. | Document and test the declared numeric precision, scale and Oracle empty-string/null assumptions before counting a path as verified. |
-| Addendum | Codex20× plan and GPT5.6/high-thinking/fast description | Codex 20× plan and description of GPT 5.6 with high thinking and fast execution |
+| Addendum | Codex20× plan and GPT Sol 6.1/high-thinking/fast description | Codex 20× plan and description of GPT Sol 6.1 with high thinking and fast execution |
 
 All seven clarity corrections were applied. These word counts describe review snapshots, not a product performance or accuracy measurement. User scope approval and unresolved semantic evidence remain pending.

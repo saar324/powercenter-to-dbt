@@ -62,7 +62,7 @@ During setup, the coding agent added analysis and proposed implementation choice
 
 The [available actual prompt record](docs/agent-prompts.md) starts with the initial prompt and distinguishes user and delegated-agent wording. It states missing history and redactions. A supported full conversation export was not available through the tools used; this curated record is not presented as a full export. Confidential third-party context, personal contact details and the private submission URL are excluded.
 
-Saar used his personal Codex 20× plan, as he reported. His stated model and settings are recorded in the prompt log; runtime model metadata was not available.
+Saar used his personal Codex 20× plan with GPT Sol 6.1, high thinking and fast execution, as he reported. The prompt log records these settings; runtime model metadata was not available.
 
 The work used Codex desktop and project-local BMAD Method 6.12.4: preserve the supplied material; research the XML and source semantics; reconcile and approve the native requirements and architecture; prepare and approve the distinct Build spec; implement the shared contracts and separate pipeline stages; execute dbt and independent tests; correct observed failures and audit findings; prepare this reproducible handoff. Actual native review status is retained in the Build record. No submission or employer message is performed by these commands.
 

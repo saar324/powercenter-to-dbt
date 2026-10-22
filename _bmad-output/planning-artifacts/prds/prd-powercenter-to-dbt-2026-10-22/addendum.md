@@ -106,4 +106,4 @@ Use [the prompt record](../../../../docs/agent-prompts.md) and native BMAD memor
 
 The record is curated, not a full conversation export. Available app tools did not expose a file-export function; desktop UI export availability is not established. Include a shareable full task export if supported, otherwise disclose the limitation and preserve available exact prompts. Keep private submission links, mail identifiers, signatures and unrelated context outside the submission.
 
-Use Codex desktop and the pinned official BMAD installation openly. Saar's personal Codex 20× plan and description of GPT 5.6 with high thinking and fast execution are self-reported; only record actual runtime model settings when captured. The approval covers the converter stack, not an unverified model-speed claim.
+Use Codex desktop and the pinned official BMAD installation openly. Saar's personal Codex 20× plan and description of GPT Sol 6.1 with high thinking and fast execution are self-reported; only record actual runtime model settings when captured. The approval covers the converter stack, not an unverified model-speed claim.
