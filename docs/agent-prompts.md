@@ -1136,3 +1136,9 @@ U96 — wrap up:
 ```text
 ok lets wrap it up
 ```
+
+U97 — publish and submit the assessment; prepare an email reply draft:
+
+```text
+lets push it and draft a short email to repaly to the hr (she sadi an email update), and submit the link with short inline note in that submit page
+```
