@@ -1,0 +1,72 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "ordinary",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+  "aspect": "field_mapping",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-ordinary-deps",
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-ordinary-run",
+    "reports/evidence/20261022T182314-b4cde4-generated-modern-ordinary"
+  ],
+  "classification": "source/reference rules; see research/07-reference-version-correlation.md",
+  "comparison_status": "matched",
+  "row_agreement_pct": 100.0,
+  "overlap_rows": 2,
+  "max_rows": 2,
+  "reference_rows": 2,
+  "generated_rows": 2,
+  "schema_compatible": true,
+  "physical_types_equal": true,
+  "reference_query": "SELECT order_id, customer_id, location_id FROM modern.stg_orders",
+  "generated_query": "SELECT ORDER_ID, CUSTOMER_ID, LOCATION_ID FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders\"",
+  "reference_output": {
+    "columns": [
+      "order_id",
+      "customer_id",
+      "location_id"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "o1",
+        "c1",
+        "l1"
+      ],
+      [
+        "o2",
+        "c2",
+        "l1"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "ORDER_ID",
+      "CUSTOMER_ID",
+      "LOCATION_ID"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "o1",
+        "c1",
+        "l1"
+      ],
+      [
+        "o2",
+        "c2",
+        "l1"
+      ]
+    ]
+  }
+}

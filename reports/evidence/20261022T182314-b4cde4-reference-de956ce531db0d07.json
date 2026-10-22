@@ -1,0 +1,88 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES",
+  "aspect": "text_conditions",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-edge-deps",
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-edge-run",
+    "reports/evidence/20261022T182314-b4cde4-generated-modern-edge"
+  ],
+  "classification": "source/reference rules; see research/07-reference-version-correlation.md",
+  "comparison_status": "different",
+  "row_agreement_pct": 0.0,
+  "overlap_rows": 0,
+  "max_rows": 5,
+  "reference_rows": 5,
+  "generated_rows": 5,
+  "schema_compatible": true,
+  "physical_types_equal": false,
+  "reference_query": "SELECT supply_id, is_perishable_supply AS IS_PERISHABLE FROM modern.stg_supplies",
+  "generated_query": "SELECT SUPPLY_ID, IS_PERISHABLE FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies\"",
+  "reference_output": {
+    "columns": [
+      "supply_id",
+      "IS_PERISHABLE"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "s1",
+        "Y"
+      ],
+      [
+        "s2",
+        "1"
+      ],
+      [
+        "s3",
+        null
+      ],
+      [
+        "s4",
+        "y"
+      ],
+      [
+        "s5",
+        " "
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "SUPPLY_ID",
+      "IS_PERISHABLE"
+    ],
+    "types": [
+      "VARCHAR",
+      "DECIMAL(1,0)"
+    ],
+    "rows": [
+      [
+        "s1",
+        "1"
+      ],
+      [
+        "s2",
+        "1"
+      ],
+      [
+        "s5",
+        "0"
+      ],
+      [
+        "s1",
+        "1"
+      ],
+      [
+        "s2",
+        "1"
+      ]
+    ]
+  }
+}

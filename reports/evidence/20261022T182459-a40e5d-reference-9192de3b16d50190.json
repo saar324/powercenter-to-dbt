@@ -1,0 +1,125 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "ordinary",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T182459-a40e5d-reference-modern-ordinary-deps",
+    "reports/evidence/20261022T182459-a40e5d-reference-modern-ordinary-run",
+    "reports/evidence/20261022T182459-a40e5d-generated-modern-ordinary"
+  ],
+  "classification": "source_rule_or_schema_difference",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "difference_basis": "XML preserves grouped-order detail, counts nonnull order IDs and replaces null metrics with zero; modern preserves customer rows and counts distinct IDs; classic also preserves customers. XML money/date staging differences propagate.",
+  "comparison_status": "different",
+  "row_agreement_pct": 0.0,
+  "overlap_rows": 0,
+  "max_rows": 2,
+  "reference_rows": 2,
+  "generated_rows": 2,
+  "schema_compatible": false,
+  "physical_types_equal": false,
+  "reference_query": "SELECT * FROM modern.customers",
+  "generated_query": "SELECT * FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers\"",
+  "reference_output": {
+    "columns": [
+      "customer_id",
+      "customer_name",
+      "count_lifetime_orders",
+      "first_ordered_at",
+      "last_ordered_at",
+      "lifetime_spend_pretax",
+      "lifetime_tax_paid",
+      "lifetime_spend",
+      "customer_type"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "BIGINT",
+      "DATE",
+      "DATE",
+      "DECIMAL(38,2)",
+      "DECIMAL(38,2)",
+      "DECIMAL(38,2)",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1",
+        "Aster",
+        1,
+        "2025-01-02",
+        "2025-01-02",
+        "1.25",
+        "0.25",
+        "1.50",
+        "new"
+      ],
+      [
+        "c2",
+        "Birch",
+        1,
+        "2025-05-03",
+        "2025-05-03",
+        "2.00",
+        "0.40",
+        "2.40",
+        "new"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID",
+      "CUSTOMER_NAME",
+      "LIFETIME_ORDERS",
+      "FIRST_ORDER_DATE",
+      "LAST_ORDER_DATE",
+      "LIFETIME_SPEND",
+      "LIFETIME_SPEND_PRETAX",
+      "LIFETIME_TAX_PAID",
+      "CUSTOMER_TYPE"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "DOUBLE",
+      "TIMESTAMP",
+      "TIMESTAMP",
+      "DECIMAL(12,2)",
+      "DECIMAL(12,2)",
+      "DECIMAL(12,2)",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1",
+        "Aster",
+        1.0,
+        "2025-01-02 00:00:00",
+        "2025-01-02 00:00:00",
+        "150.00",
+        "125.00",
+        "25.00",
+        "new"
+      ],
+      [
+        "c2",
+        "Birch",
+        1.0,
+        "2025-05-03 00:00:00",
+        "2025-05-03 00:00:00",
+        "240.00",
+        "200.00",
+        "40.00",
+        "new"
+      ]
+    ]
+  }
+}

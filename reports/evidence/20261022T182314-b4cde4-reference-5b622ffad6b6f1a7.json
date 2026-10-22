@@ -1,0 +1,78 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "empty",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-empty-deps",
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-empty-run",
+    "reports/evidence/20261022T182314-b4cde4-generated-modern-empty"
+  ],
+  "classification": "source/reference rules; see research/07-reference-version-correlation.md",
+  "comparison_status": "different",
+  "row_agreement_pct": null,
+  "overlap_rows": 0,
+  "max_rows": 0,
+  "reference_rows": 0,
+  "generated_rows": 0,
+  "schema_compatible": false,
+  "physical_types_equal": false,
+  "reference_query": "SELECT * FROM modern.stg_orders",
+  "generated_query": "SELECT * FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders\"",
+  "reference_output": {
+    "columns": [
+      "order_id",
+      "location_id",
+      "customer_id",
+      "subtotal_cents",
+      "tax_paid_cents",
+      "order_total_cents",
+      "subtotal",
+      "tax_paid",
+      "order_total",
+      "ordered_at"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)",
+      "DECIMAL(16,2)",
+      "DECIMAL(16,2)",
+      "DECIMAL(16,2)",
+      "DATE"
+    ],
+    "rows": []
+  },
+  "generated_output": {
+    "columns": [
+      "ORDER_ID",
+      "CUSTOMER_ID",
+      "LOCATION_ID",
+      "ORDERED_AT_DAY",
+      "SUBTOTAL_CENTS",
+      "TAX_PAID_CENTS",
+      "ORDER_TOTAL_CENTS",
+      "SUBTOTAL",
+      "TAX_PAID",
+      "ORDER_TOTAL"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR",
+      "TIMESTAMP",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)"
+    ],
+    "rows": []
+  }
+}

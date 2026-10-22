@@ -1,0 +1,56 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "ordinary",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS",
+  "aspect": "joins",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T182314-b4cde4-reference-classic-ordinary-seed",
+    "reports/evidence/20261022T182314-b4cde4-reference-classic-ordinary-run",
+    "reports/evidence/20261022T182314-b4cde4-generated-classic-ordinary"
+  ],
+  "classification": "source/reference rules; see research/07-reference-version-correlation.md",
+  "comparison_status": "matched",
+  "row_agreement_pct": 100.0,
+  "overlap_rows": 2,
+  "max_rows": 2,
+  "reference_rows": 2,
+  "generated_rows": 2,
+  "schema_compatible": true,
+  "physical_types_equal": true,
+  "reference_query": "SELECT CAST(customer_id AS VARCHAR) AS CUSTOMER_ID FROM classic.customers",
+  "generated_query": "SELECT CUSTOMER_ID FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers\"",
+  "reference_output": {
+    "columns": [
+      "CUSTOMER_ID"
+    ],
+    "types": [
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1"
+      ],
+      [
+        "c2"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID"
+    ],
+    "types": [
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1"
+      ],
+      [
+        "c2"
+      ]
+    ]
+  }
+}

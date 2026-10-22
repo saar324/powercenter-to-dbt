@@ -1,0 +1,22 @@
+{
+  "reference": "modern",
+  "dataset": "ordinary",
+  "target": "STG_CUSTOMERS",
+  "aspect": "field_mapping",
+  "scope": "projection-normalized-values",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "comparison_status": "error",
+  "row_agreement_pct": null,
+  "overlap_rows": null,
+  "max_rows": null,
+  "reason": "/private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-737/test_real_pytest_reference_suc0/test_reference_reporting_probe.py:6: RuntimeError",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Preparation failed; no operator accuracy is measured",
+  "run_id": "20261022T184221-de65e7",
+  "revision": "4a1ad5471af382efdfc929bf356ede4713cdb25c+code-sha256:263425202e99f38b6e922ed8eb5b14a2b1d53686c09d6ced9e6fcd56cbf85851",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "test_reference_reporting_probe.py::test_comparison_setup[modern-ordinary-STG_CUSTOMERS-field_mapping-projection-normalized-values]",
+  "phase": "setup",
+  "status": "error",
+  "input_id": "unavailable:preparation-failed"
+}

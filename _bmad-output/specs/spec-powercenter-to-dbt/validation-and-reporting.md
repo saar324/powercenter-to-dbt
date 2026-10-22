@@ -46,7 +46,15 @@ These categories guide the later native implementation plan; they do not select 
 - Check explicit diagnostics for malformed/unsupported inputs; do not count omitted logic as successful conversion.
 - Check that identical input and configuration yield identical generated artifacts.
 - Execute supported generated preparation steps locally, testing first-run table existence/lifecycle, command order and stale-row removal on a repeated dbt run. Conversion must not execute imported commands; unconverted setup commands remain explicitly reported.
-- Compare Jaffle Shop references only where inputs and rules match, as described in `source-compatibility.md`.
+- Execute pinned Jaffle Shop references as a mandatory minimum gate (U89–U90), preserving model SQL and recording source-data/harness adaptations. Score converter correctness only where rules and inputs match; report literal reference disagreement, partial projections, unsupported and non-comparable conditions separately.
+
+## Reference comparison aggregation
+
+`reports/test-runs.csv` remains the only actual execution history. The requested `reports/accuracy-by-aspect.csv` is a derived summary, not a second manually maintained run log. Group by actual run, pinned reference, comparison scope and converter aspect (for example field mapping, arithmetic, text conditions, dates, joins and aggregation). Include matched, different, error and non-comparable counts with explicit compared denominator and a numeric match-rate percentage only when the denominator is nonzero. Keep expected source-rule differences visible; a successful test that detects a difference is not a matching result. Reference/project execution checks are not data-equivalence checks.
+
+Trace each summary group to recorded comparison details/evidence, input identity, tested revision and environment. Distinguish complete-target schema/type/value/duplicate equality from selected-column or normalized-representation comparisons. Identify every alignment and normalization; never swap output price columns, reverse join sides, change reference formulas or drop mismatch rows to manufacture agreement. No single percentage represents universal accuracy. A missing reference/model/required runtime must produce an explicit execution error or non-comparable outcome, never an empty successful report.
+
+Case agreement is matched / (matched + different + execution errors); unsupported/non-comparable counts remain visible outside this denominator. Row agreement is duplicate-aware row overlap / max(reference rows, generated rows) per successful case. Both empty is 100% only after execution/schema checks; failed execution has blank row agreement. Aggregate row agreement sums overlap and per-case maximum counts within a declared dataset/aspect/scope. Do not merge overlapping aspects or complete/projected comparisons into one overall accuracy score. Require an original classic-project seed baseline and label any bounded modern model harness separately from full upstream-project execution.
 
 ## Human report
 

@@ -1,0 +1,143 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "ordinary",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T183812-828fdd-reference-modern-ordinary-deps",
+    "reports/evidence/20261022T183812-828fdd-reference-modern-ordinary-run",
+    "reports/evidence/20261022T183812-828fdd-generated-modern-ordinary"
+  ],
+  "classification": "observed_unresolved_reference_difference",
+  "input_manifest": "reports/evidence/20261022T183812-828fdd-inputs-modern-ordinary.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Complete pipeline output on the declared fields/scope; not isolated operator accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML connectors cross cents/dollar outputs; DD-MM-YY round trip uses current century. Modern keeps source cents and truncates original date. Classic has order_date/status and no equivalent amounts/location.",
+  "comparison_status": "different",
+  "row_agreement_pct": 0.0,
+  "overlap_rows": 0,
+  "max_rows": 2,
+  "reference_rows": 2,
+  "generated_rows": 2,
+  "schema_compatible": false,
+  "physical_types_equal": false,
+  "reference_query": "SELECT * FROM modern.stg_orders",
+  "generated_query": "SELECT * FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders\"",
+  "reference_output": {
+    "columns": [
+      "order_id",
+      "location_id",
+      "customer_id",
+      "subtotal_cents",
+      "tax_paid_cents",
+      "order_total_cents",
+      "subtotal",
+      "tax_paid",
+      "order_total",
+      "ordered_at"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)",
+      "DECIMAL(16,2)",
+      "DECIMAL(16,2)",
+      "DECIMAL(16,2)",
+      "DATE"
+    ],
+    "rows": [
+      [
+        "o1",
+        "l1",
+        "c1",
+        125.0,
+        25.0,
+        "150.00",
+        "1.25",
+        "0.25",
+        "1.50",
+        "2025-01-02"
+      ],
+      [
+        "o2",
+        "l1",
+        "c2",
+        200.0,
+        40.0,
+        "240.00",
+        "2.00",
+        "0.40",
+        "2.40",
+        "2025-05-03"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "ORDER_ID",
+      "CUSTOMER_ID",
+      "LOCATION_ID",
+      "ORDERED_AT_DAY",
+      "SUBTOTAL_CENTS",
+      "TAX_PAID_CENTS",
+      "ORDER_TOTAL_CENTS",
+      "SUBTOTAL",
+      "TAX_PAID",
+      "ORDER_TOTAL"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR",
+      "TIMESTAMP",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)"
+    ],
+    "rows": [
+      [
+        "o1",
+        "c1",
+        "l1",
+        "2025-01-02 00:00:00",
+        1.25,
+        0.25,
+        "1.50",
+        125.0,
+        25.0,
+        "150.00"
+      ],
+      [
+        "o2",
+        "c2",
+        "l1",
+        "2025-05-03 00:00:00",
+        2.0,
+        0.4,
+        "2.40",
+        200.0,
+        40.0,
+        "240.00"
+      ]
+    ]
+  },
+  "run_id": "20261022T183812-828fdd",
+  "revision": "4a1ad5471af382efdfc929bf356ede4713cdb25c+code-sha256:b2ab17256d46fa33462072c6349a4d906beb6ca9a20783b6552cb3740013d1b2",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[modern-ordinary-STG_ORDERS-complete_target-complete]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "modern:ordinary:consumed-inputs-sha256:299d112465a650ee3a47398e4ea4d8668fe014acef3d8bcd1cdf79c08def5345"
+}

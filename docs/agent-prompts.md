@@ -801,6 +801,61 @@ Read /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad-output/impl
 When done, report what you changed, how you verified it, and anything left incomplete or risky.
 ```
 
+D60 — reference_blind_review, native blind review:
+
+```text
+Conduct a review of CONTENT.
+Look for what's missing, not only what's wrong.
+Compute your finding floor N from the diff file's size: N = min(floor(sqrt(kB) + 1), 10), where kB is the file's size in kilobytes. State the arithmetic in one line, then find at least N issues to fix or improve.
+Output a Markdown list of findings only — no severity, priority, or ranking.
+If the content is empty, stop and say so.
+If you have zero findings, re-check and keep thinking; do not stop with an empty list.
+
+CONTENT: the unified diff at `/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pwc-reference-review-20261022.diff`. Read that file — it is the content under review.
+
+Do not invoke any skill, and do not spawn subagents of your own — you are the reviewer. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.
+```
+
+D61 — reference_edge_review, native edge review:
+
+```text
+Read `/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad/render/bmad-build/powercenter-to-dbt-c30b15f9c5ab/c02bcee220b53d180edc/review-prompts/edge-case-hunter.md` completely and follow it as your review instructions.
+
+claims_file (leave unread until your instructions call for it): /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad-output/implementation-artifacts/spec-jaffle-reference-validation.md
+
+Review content: the unified diff at `/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pwc-reference-review-20261022.diff`. Read that file — it is the content under review.
+
+Do not invoke any skill, and do not spawn subagents of your own — you are the reviewer. If the instruction file is unreadable, report that exact failure and stop. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.
+```
+
+D62 — reference_verification_review, native verification-gap review:
+
+```text
+Read `/Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad/render/bmad-build/powercenter-to-dbt-c30b15f9c5ab/c02bcee220b53d180edc/review-prompts/verification-gap.md` completely and follow it as your review instructions.
+
+Review content: the unified diff at `/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pwc-reference-review-20261022.diff`. Read that file — it is the content under review.
+
+Do not invoke any skill, and do not spawn subagents of your own — you are the reviewer. If the instruction file is unreadable, report that exact failure and stop. Return your findings as text in your final message; do not route them through any findings-reporting tool the host may offer.
+```
+
+D63 — same reference_validation_build agent, native review corrections:
+
+```text
+Review of your implementation found problems. Fix each one below with the smallest change that does the job.
+
+Run only the tests that cover the files you edit — nothing wider. Full verification runs on my side after you return. Reply with what you changed.
+
+- tests/reference_support.py:190 — Decimal.normalize() rounds high-precision values into false matches and distinguishes signed zeros — use exact numeric Decimal keys; regress distinct29/38-digit numbers and equivalent signed zeros (B1/E1/E2).
+- tests/reference_support.py:96–149 — synthetic classic CSV seeding collapses None and empty strings before reference SQL — preserve typed original source values after seed creation via a disclosed source-only bridge (no model edits), and verify NULL/empty remain distinct in classic inputs; keep original-seed baseline untouched (B2).
+- tests/test_reference_results.py:57–66 — known matching projections can become arbitrary differences without failing — assert expected dispositions for known matrix cases (not just non-error); retain real differences and update expectations only for the verified bridge correction, with actual rule evidence (B3).
+- tests/reference_support.py:287 — every mismatch is declared a source-rule/schema cause automatically — label unverified causes as observed/unresolved reference differences, retaining candidate rule evidence; do not certify attribution from inequality alone (B4).
+- scripts/summarize_accuracy.py:46–65 — exports accept missing/contradictory evidence and silently select partial latest runs — validate selected JSON evidence against history before output; default must require a successful complete reference matrix. Existing --run-id may explicitly select a partial run only with visible completeness/expected/actual counts. Preserve existing output on rejected input. Add real CLI regressions, including two complete runs plus later unrelated/partial/error runs and explicit selection; no new CLI option needed (B5/B6/V2).
+- tests/conftest.py:77–104 — missing reference_execution setup fallback and failed teardown duplicates/overwrites the measurement — keep one measurement per case, record lifecycle errors separately with distinct evidence/identity, and persist reference/pin/dataset metadata on baseline setup failure. Add isolated real-pytest reporting-boundary regressions for success/setup/teardown, inspecting appended CSV and JSON (B7/B8/E3/V1).
+- tests/reference_support.py:173–176 — input identity excludes schemas and actual classic seed/payment inputs and depends on incidental order — hash recorded canonical duplicate-preserving rows plus columns/types for each side's consumed inputs; retain input manifest evidence and disclosed adaptations (B9).
+- tests/reference_support.py projections, scripts/summarize_accuracy.py, fixtures/references/README.md, reports/validation.md — joins/aggregation aspects include upstream values, so cannot claim isolated operator accuracy — add explicit end-to-end combined-effect labels/notes in evidence and CSV/docs (especially customer spend); keep scoped rates and mismatches visible (B10).
+- _bmad-output/implementation-artifacts/spec-jaffle-reference-validation.md — preserve frozen intent and root triage; append correction/targeted test evidence. Do not run a full suite or edit converter source.
+```
+
 D40 — basic_converter_build:
 
 ```text
@@ -1014,6 +1069,26 @@ D57 — reference_test_design, independent comparison design:
 
 ```text
 User requests design and execution of external Jaffle Shop comparison with aggregate CSV by converter criterion/aspect; implementation not yet begun. Perform read-only test design at /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt: inspect tests, examples, reports and actual XML core5 operations. Inspect public reference SQL if needed. Propose concise runnable architecture for comparison: unmodified classic reference explicitly linked assignment plus closer modern variant; pinned source SQL/seed provenance, source-only data alignment, clear complete-vs-projected comparison, criterion denominators, observed semantic discrepancies not converter bugs, unsupported/not-comparable unscored, no fake accuracy. Recommend minimal CSV schema and execution cases that provide meaningful independent evidence (rather than test-generated converter-equivalent SQL). Can write ONLY .generated/reference-test-design.md. Do not modify product/tests/docs or execute pytest. No private code. Return concrete design with pitfalls, minimal dependencies and acceptance criteria.
+```
+
+D58 — reference_test_design, draft self-review:
+
+```text
+Read-only self-review of new _bmad-output/implementation-artifacts/spec-jaffle-reference-validation.md against U89-U90 and your design. Return only material missing requirements or clean. No implementation, files or tests. Specifically check per-aspect scoring denominators/errors, actual baseline vs bounded subproject disclosure and no false whole-target parity. Coordinator is at native Build checkpoint1; implementation awaits owner approval.
+```
+
+U91 — approve the reference-test implementation spec:
+
+```text
+Approve and continue
+```
+
+D59 — reference_validation_build, native implementation handoff:
+
+```text
+Read /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/_bmad-output/implementation-artifacts/spec-jaffle-reference-validation.md fully and implement it — the spec is the sole source of truth. Load every file listed in its frontmatter context: before you start.
+
+When done, report what you changed, how you verified it, and anything left incomplete or risky.
 ```
 
 D54 — documentation_verification, targeted calculations review:

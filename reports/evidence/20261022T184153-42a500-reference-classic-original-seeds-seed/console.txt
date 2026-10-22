@@ -1,0 +1,32 @@
+command: /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/dbt seed --project-dir /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-737/pinned-references0/classic-original-seeds/classic --profiles-dir /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-737/pinned-references0/classic-original-seeds/classic --no-use-colors
+18:42:22  Running with dbt=1.12.6
+18:42:22  Registered adapter: duckdb=1.10.1
+18:42:22  Unable to do partial parsing because saved manifest not found. Starting full parse.
+18:42:23  [WARNING][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated
+functionality
+Found top-level arguments to test `relationships` defined on 'orders' in package
+'jaffle_shop' (models/schema.yml). Arguments to generic tests should be nested
+under the `arguments` property.
+18:42:23  Found 5 models, 3 seeds, 20 data tests, 486 macros
+18:42:23  
+18:42:23  Concurrency: 1 threads (target='local')
+18:42:23  
+18:42:23  1 of 3 START seed file classic.raw_customers ................................... [RUN]
+18:42:23  1 of 3 OK loaded seed file classic.raw_customers ............................... [INSERT 100 in 0.04s]
+18:42:23  2 of 3 START seed file classic.raw_orders ...................................... [RUN]
+18:42:23  2 of 3 OK loaded seed file classic.raw_orders .................................. [INSERT 99 in 0.01s]
+18:42:23  3 of 3 START seed file classic.raw_payments .................................... [RUN]
+18:42:23  3 of 3 OK loaded seed file classic.raw_payments ................................ [INSERT 113 in 0.01s]
+18:42:23  
+18:42:23  Finished running 3 seeds in 0 hours 0 minutes and 0.16 seconds (0.16s).
+18:42:23  
+18:42:23  Completed successfully
+18:42:23  
+18:42:23  Done. PASS=3 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=3
+18:42:23  [WARNING][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- MissingArgumentsPropertyInGenericTestDeprecation: 4 occurrences
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.

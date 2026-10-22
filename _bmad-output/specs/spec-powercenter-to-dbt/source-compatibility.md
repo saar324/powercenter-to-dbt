@@ -24,7 +24,7 @@ Record the source product, available export/version evidence and tested fixtures
 
 These are related teaching projects using a shared fictional business name, not different real clients. The assignment's [DuckDB reference](https://github.com/dbt-labs/jaffle_shop_duckdb) uses the classic customers/orders/payments example. [Infinite Lambda's README](https://github.com/infinitelambda/flowline-pwc-demo) instead links [modern Jaffle Shop](https://github.com/dbt-labs/jaffle-shop) and lists customers, orders, items, products, supplies and stores.
 
-Use a reference result only when the source schema, input rows and intended rules match. Otherwise use controlled inputs with independently specified expected results. Do not describe mismatched project variants as a proven converter defect.
+U89–U90 require executed reference comparison in the minimum. Pin and execute the assignment-linked classic project and an evidenced historical modern candidate. Align source data explicitly; preserve original model SQL. Use equivalent schemas/rules for scored converter-correctness comparisons. Report literal cross-project differences separately when rules differ, including non-comparable fields and projected rather than complete outputs. Controlled independent expected results remain required for XML-specific behavior and do not replace reference execution. Do not describe mismatched project variants as a proven converter defect. See research/07-reference-version-correlation.md for the bounded historical investigation when available.
 
 ## Converter implementation stack
 

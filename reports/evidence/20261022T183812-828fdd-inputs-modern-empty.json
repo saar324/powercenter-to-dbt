@@ -1,0 +1,157 @@
+{
+  "reference": "modern",
+  "dataset": "empty",
+  "sides": {
+    "generated": {
+      "RAW.RAW_CUSTOMERS": {
+        "columns": [
+          "ID",
+          "NAME"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": []
+      },
+      "RAW.RAW_ORDERS": {
+        "columns": [
+          "ID",
+          "CUSTOMER",
+          "ORDERED_AT",
+          "STORE_ID",
+          "SUBTOTAL",
+          "TAX_PAID",
+          "ORDER_TOTAL"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "TIMESTAMP",
+          "VARCHAR",
+          "DOUBLE",
+          "DOUBLE",
+          "DECIMAL(12,2)"
+        ],
+        "rows": []
+      },
+      "RAW.RAW_PRODUCTS": {
+        "columns": [
+          "SKU",
+          "NAME",
+          "TYPE",
+          "PRICE",
+          "DESCRIPTION"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR"
+        ],
+        "rows": []
+      },
+      "RAW.RAW_SUPPLIES": {
+        "columns": [
+          "ID",
+          "NAME",
+          "COST",
+          "PERISHABLE",
+          "SKU"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": []
+      }
+    },
+    "reference": {
+      "RAW.RAW_CUSTOMERS": {
+        "columns": [
+          "ID",
+          "NAME"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": []
+      },
+      "RAW.RAW_ORDERS": {
+        "columns": [
+          "ID",
+          "CUSTOMER",
+          "ORDERED_AT",
+          "STORE_ID",
+          "SUBTOTAL",
+          "TAX_PAID",
+          "ORDER_TOTAL"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "TIMESTAMP",
+          "VARCHAR",
+          "DOUBLE",
+          "DOUBLE",
+          "DECIMAL(12,2)"
+        ],
+        "rows": []
+      },
+      "RAW.RAW_PRODUCTS": {
+        "columns": [
+          "SKU",
+          "NAME",
+          "TYPE",
+          "PRICE",
+          "DESCRIPTION"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR"
+        ],
+        "rows": []
+      },
+      "RAW.RAW_SUPPLIES": {
+        "columns": [
+          "ID",
+          "NAME",
+          "COST",
+          "PERISHABLE",
+          "SKU"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "DOUBLE",
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": []
+      },
+      "RAW.RAW_ITEMS": {
+        "columns": [
+          "ID",
+          "ORDER_ID",
+          "SKU"
+        ],
+        "types": [
+          "VARCHAR",
+          "VARCHAR",
+          "VARCHAR"
+        ],
+        "rows": []
+      }
+    }
+  },
+  "adaptations": "shared typed RAW inputs; supplemental RAW_ITEMS; bounded upstream dependency closure",
+  "input_id": "modern:empty:consumed-inputs-sha256:3e6cca61d88613b771b0be562551bb81c66524eea61522d5db92716a46bd726a"
+}

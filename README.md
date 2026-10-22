@@ -4,7 +4,7 @@ A deterministic Python CLI converts supported PowerCenter XML paths into a runna
 
 The five required paths have actual dbt execution and independent complete-result checks. [Measured validation](reports/validation.md) separates test outcomes, result comparisons and fixture coverage. This is a bounded converter; there is no executed PowerCenter oracle or universal equivalence claim.
 
-Minimum-stage validation remains incomplete: the owner requires an executed Jaffle Shop reference comparison, which has not yet been performed. Existing independent-result checks do not replace this requirement. Schema and rule differences must be reported explicitly rather than hidden by changing the reference or generated behavior.
+Pinned Jaffle Shop comparisons now execute the original classic project on its original seeds and a disclosed eight-model modern harness, beside the generated models on aligned inputs. [Reference provenance and adaptations](fixtures/references/README.md) distinguish complete outputs, normalized projections and actual source-rule differences. [Accuracy by aspect](reports/accuracy-by-aspect.csv) is derived from measured run history; passing a difference-observation test is separate from data agreement.
 
 ## Run it
 
@@ -13,6 +13,7 @@ Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run 
 ```sh
 uv sync --locked
 uv run pytest -q
+uv run python scripts/summarize_accuracy.py
 uv run pwc-to-dbt --help
 ```
 
@@ -46,7 +47,7 @@ Use `--inventory` to list exact target identities. Repeat `--target` to select o
 - ASCII string comparisons/case conversion and the tested null/sort rules are verified. Other code pages, non-ASCII collation, time zones, large numeric accumulation, and source-runtime row rejection/recovery are unverified. ERROR-default failures stop the query; they do not reproduce PowerCenter bad-row files.
 - Only target-bound `TRUNCATE TABLE` preparation with an explicitly resolved original relation is translated. The writer generates guarded `delete from {{ this }}` hooks for table models. Conversion never opens a database or executes imported SQL. Workflow commands remain reported as unconverted. XML entities/internal DTD subsets and imported dbt template delimiters are rejected; external DTDs are not fetched.
 
-The XML crosses both product-price and order cents/dollars target connectors. The converter preserves those connections. The master-outer customer join preserves grouped-order detail rows, including unmatched groups with null master customer fields; it does not add idle customers. These differences make a conventional Jaffle Shop model an unsuitable oracle without matched rules and inputs.
+The XML crosses both product-price and order cents/dollars target connectors. The converter preserves those connections. The master-outer customer join preserves grouped-order detail rows, including unmatched groups with null master customer fields; it does not add idle customers. Executed references expose these differences directly. Modern customer staging matches completely on clean ordinary and empty inputs; other complete outputs and edge inputs expose the documented rule/schema differences. Projected agreement applies only to the selected fields and declared normalization.
 
 ## Where wrong output is most likely
 
@@ -55,6 +56,8 @@ The main risks are untested source-runtime behavior at binary-floating rounding 
 ## Agent errors and detection
 
 Actual dbt execution caught an invalid first implementation of error defaults: DuckDB rejects TRY around volatile `error()` calls. Boundary tests then caught a decimal cast that rejected a representable value before rounding. An independent audit caught projection of an unused, unvalidated bound-source field and a double-default guard that let an error escape TRY. The [native implementation record](./_bmad-output/implementation-artifacts/spec-powercenter-basic-conversion.md#implementation-notes) records detection and corrections; regression tests cover them. Earlier failed runs remain in [the CSV](reports/test-runs.csv).
+
+Owner review caught that external-reference execution had been treated as optional in the minimum-stage assessment; it is now required and executed. Independent reference review then caught rounding in the comparison helper, signed-zero disagreement, a lossy classic CSV bridge and duplicate reporting after teardown failure. Scalar probes, real pytest reporting probes and executed reference cases exposed these defects; exact comparisons, typed inputs and reporting guards now have regressions. The [reference Build record](./_bmad-output/implementation-artifacts/spec-jaffle-reference-validation.md) preserves each finding and correction.
 
 ### Agent error caught during setup
 
@@ -72,6 +75,6 @@ Read the code in data-flow order: `mapping.py` → `xml_reader.py` → `dependen
 
 - [Assignment](docs/assignment.md), [supplied XML](fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml), [provenance/hashes](fixtures/powercenter/provenance.json)
 - [Canonical SPEC and companions](./_bmad-output/specs/spec-powercenter-to-dbt/SPEC.md), [architecture](./_bmad-output/planning-artifacts/architecture/architecture-powercenter-to-dbt-2026-10-22/ARCHITECTURE-SPINE.md), [Build implementation/review record](./_bmad-output/implementation-artifacts/spec-powercenter-basic-conversion.md)
-- [Actual run CSV](reports/test-runs.csv), [validation summary](reports/validation.md), [CI](.github/workflows/tests.yml), [third-party notices](THIRD_PARTY_NOTICES.md)
+- [Actual run CSV](reports/test-runs.csv), [derived accuracy CSV](reports/accuracy-by-aspect.csv), [validation summary](reports/validation.md), [CI](.github/workflows/tests.yml), [third-party notices](THIRD_PARTY_NOTICES.md)
 
 The repository includes native BMAD/research/prompt evidence and dependency lockfiles. Installed dependencies, caches, credentials and generated local databases are excluded. `npm ci --ignore-scripts` restores the existing pinned BMAD installer dependencies if needed; it is separate from the Python converter environment. No model/settings claim is inferred from the user's subscription description.

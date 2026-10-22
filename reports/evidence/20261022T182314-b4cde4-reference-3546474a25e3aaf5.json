@@ -1,0 +1,19 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_PRODUCTS",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T182314-b4cde4-reference-classic-edge-seed",
+    "reports/evidence/20261022T182314-b4cde4-reference-classic-edge-run",
+    "reports/evidence/20261022T182314-b4cde4-generated-classic-edge"
+  ],
+  "classification": "source/reference rules; see research/07-reference-version-correlation.md",
+  "comparison_status": "non_comparable",
+  "row_agreement_pct": null,
+  "overlap_rows": null,
+  "max_rows": null,
+  "reason": "Classic has no products/supplies model or input schema"
+}

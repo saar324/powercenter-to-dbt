@@ -1,0 +1,34 @@
+command: /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/dbt run --project-dir /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-731/pinned-references0/classic-empty/classic --profiles-dir /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-731/pinned-references0/classic-empty/classic --no-use-colors
+18:23:45  Running with dbt=1.12.6
+18:23:45  [WARNING][DuplicateYAMLKeysDeprecation]: Deprecated functionality
+Duplicate key 'seeds' in "<unicode string>", line 37, column 1 in file `/private
+/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-731
+/pinned-references0/classic-empty/classic/dbt_project.yml`
+18:23:45  Registered adapter: duckdb=1.10.1
+18:23:46  Found 5 models, 3 seeds, 20 data tests, 486 macros
+18:23:46  
+18:23:46  Concurrency: 1 threads (target='local')
+18:23:46  
+18:23:46  1 of 5 START sql view model classic.stg_customers .............................. [RUN]
+18:23:46  1 of 5 OK created sql view model classic.stg_customers ......................... [OK in 0.05s]
+18:23:46  2 of 5 START sql view model classic.stg_orders ................................. [RUN]
+18:23:46  2 of 5 OK created sql view model classic.stg_orders ............................ [OK in 0.01s]
+18:23:46  3 of 5 START sql view model classic.stg_payments ............................... [RUN]
+18:23:46  3 of 5 OK created sql view model classic.stg_payments .......................... [OK in 0.01s]
+18:23:46  4 of 5 START sql table model classic.customers ................................. [RUN]
+18:23:46  4 of 5 OK created sql table model classic.customers ............................ [OK in 0.02s]
+18:23:46  5 of 5 START sql table model classic.orders .................................... [RUN]
+18:23:46  5 of 5 OK created sql table model classic.orders ............................... [OK in 0.01s]
+18:23:46  
+18:23:46  Finished running 2 table models, 3 view models in 0 hours 0 minutes and 0.19 seconds (0.19s).
+18:23:46  
+18:23:46  Completed successfully
+18:23:46  
+18:23:46  Done. PASS=5 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
+18:23:46  [WARNING][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- DuplicateYAMLKeysDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.

@@ -1,0 +1,30 @@
+command: /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/dbt run --project-dir /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-731/pinned-references0/modern-empty/modern --profiles-dir /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-731/pinned-references0/modern-empty/modern --no-use-colors
+18:23:27  Running with dbt=1.12.6
+18:23:27  Registered adapter: duckdb=1.10.1
+18:23:27  Unable to do partial parsing because saved manifest not found. Starting full parse.
+18:23:28  Found 8 models, 6 sources, 493 macros
+18:23:28  
+18:23:28  Concurrency: 1 threads (target='local')
+18:23:28  
+18:23:28  1 of 8 START sql table model modern.stg_customers .............................. [RUN]
+18:23:28  1 of 8 OK created sql table model modern.stg_customers ......................... [OK in 0.03s]
+18:23:28  2 of 8 START sql table model modern.stg_order_items ............................ [RUN]
+18:23:28  2 of 8 OK created sql table model modern.stg_order_items ....................... [OK in 0.01s]
+18:23:28  3 of 8 START sql table model modern.stg_orders ................................. [RUN]
+18:23:28  3 of 8 OK created sql table model modern.stg_orders ............................ [OK in 0.01s]
+18:23:28  4 of 8 START sql table model modern.stg_products ............................... [RUN]
+18:23:28  4 of 8 OK created sql table model modern.stg_products .......................... [OK in 0.01s]
+18:23:28  5 of 8 START sql table model modern.stg_supplies ............................... [RUN]
+18:23:28  5 of 8 OK created sql table model modern.stg_supplies .......................... [OK in 0.01s]
+18:23:28  6 of 8 START sql table model modern.order_items ................................ [RUN]
+18:23:28  6 of 8 OK created sql table model modern.order_items ........................... [OK in 0.01s]
+18:23:28  7 of 8 START sql table model modern.orders ..................................... [RUN]
+18:23:28  7 of 8 OK created sql table model modern.orders ................................ [OK in 0.01s]
+18:23:28  8 of 8 START sql table model modern.customers .................................. [RUN]
+18:23:28  8 of 8 OK created sql table model modern.customers ............................. [OK in 0.01s]
+18:23:28  
+18:23:28  Finished running 8 table models in 0 hours 0 minutes and 0.16 seconds (0.16s).
+18:23:28  
+18:23:28  Completed successfully
+18:23:28  
+18:23:28  Done. PASS=8 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=8

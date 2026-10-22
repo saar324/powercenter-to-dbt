@@ -1,0 +1,74 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "empty",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-empty-deps",
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-empty-run",
+    "reports/evidence/20261022T182314-b4cde4-generated-modern-empty"
+  ],
+  "classification": "source/reference rules; see research/07-reference-version-correlation.md",
+  "comparison_status": "different",
+  "row_agreement_pct": null,
+  "overlap_rows": 0,
+  "max_rows": 0,
+  "reference_rows": 0,
+  "generated_rows": 0,
+  "schema_compatible": false,
+  "physical_types_equal": false,
+  "reference_query": "SELECT * FROM modern.customers",
+  "generated_query": "SELECT * FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers\"",
+  "reference_output": {
+    "columns": [
+      "customer_id",
+      "customer_name",
+      "count_lifetime_orders",
+      "first_ordered_at",
+      "last_ordered_at",
+      "lifetime_spend_pretax",
+      "lifetime_tax_paid",
+      "lifetime_spend",
+      "customer_type"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "BIGINT",
+      "DATE",
+      "DATE",
+      "DECIMAL(38,2)",
+      "DECIMAL(38,2)",
+      "DECIMAL(38,2)",
+      "VARCHAR"
+    ],
+    "rows": []
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID",
+      "CUSTOMER_NAME",
+      "LIFETIME_ORDERS",
+      "FIRST_ORDER_DATE",
+      "LAST_ORDER_DATE",
+      "LIFETIME_SPEND",
+      "LIFETIME_SPEND_PRETAX",
+      "LIFETIME_TAX_PAID",
+      "CUSTOMER_TYPE"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "DOUBLE",
+      "TIMESTAMP",
+      "TIMESTAMP",
+      "DECIMAL(12,2)",
+      "DECIMAL(12,2)",
+      "DECIMAL(12,2)",
+      "VARCHAR"
+    ],
+    "rows": []
+  }
+}

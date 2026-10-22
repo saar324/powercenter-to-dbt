@@ -1,0 +1,28 @@
+{
+  "run_id": "20261022T183408-reference-review-probes",
+  "recorded_utc": "2026-10-22T18:34:08.085585+00:00",
+  "revision": "4a1ad5471af382efdfc929bf356ede4713cdb25c+reference-support-sha256:1d51c074c174f88f5d0ea110381306839d55ee7ef7bcd73e6a6cb206d6146026",
+  "method": "Root scalar probes printed before native patch dispatch; input/output dictionaries preserved from actual tool output. Not dbt reference execution.",
+  "cases": [
+    {
+      "case_id": "normalized-distinct-large-decimals",
+      "inputs": [
+        "12345678901234567890123456781",
+        "12345678901234567890123456782"
+      ],
+      "expected": "different",
+      "observed": "matched",
+      "observed_row_agreement_pct": 100.0
+    },
+    {
+      "case_id": "normalized-signed-zero",
+      "inputs": [
+        "0",
+        "-0"
+      ],
+      "expected": "matched",
+      "observed": "different",
+      "observed_row_agreement_pct": 0.0
+    }
+  ]
+}

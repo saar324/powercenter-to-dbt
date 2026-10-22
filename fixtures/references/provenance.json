@@ -1,0 +1,57 @@
+{
+  "classic": {
+    "repository": "https://github.com/dbt-labs/jaffle_shop_duckdb",
+    "revision": "8d715f309a837287cc427f76157688e558bbbcae",
+    "files": {
+      "dbt_project.yml": "67a8a035a12e8746af31a3b85fa66fe9f9e557c151154a466996657ce20fd160",
+      "profiles.yml": "5576b84f78aa9311e954f20482b383e66f45847da560f7d549cd5c4ce6a94378",
+      "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+      "README.md": "cfd7d10a3210d42f0deff5a84d761cef6ca0e11fff30b6ab7726ae7f3d95f8f6",
+      "requirements.txt": "9de5f4c5ccbdaa4608516b789a08bb7041e93c3ccfe89dcce71b356813bf239f",
+      "models/customers.sql": "455b90a31f418ae776213ad9932c7cb72d19a5269a8c722bd9f4e44957313ce8",
+      "models/docs.md": "28e3aee589b6731980cfe1a280c171486224a093776ee3ccde474c8a0d87901e",
+      "models/orders.sql": "53950235d8e29690d259e95ee49bda6a5b7911b44c739b738a646dc6014bcfcd",
+      "models/overview.md": "ca0a74ab5573226a23c1773222b07c1740d2364527d10c8ac4b494240d332aeb",
+      "models/schema.yml": "bb83d7da8a5a778456b9de25d1ae891fd10ba1377805c9cf2878909bddb184af",
+      "models/staging/schema.yml": "0292575ae99af70a8d5504cf7280a688c209eb81ad15b13569e26c8e680cb931",
+      "models/staging/stg_customers.sql": "6f18a29204dad1de6dbb0c288144c4990742e0a1e065c3b2a67b5f98334c22ba",
+      "models/staging/stg_orders.sql": "afffa9cbc57e5fd2cf5898ebf571d444a62c9d6d7929d8133d30567fb9a2ce97",
+      "models/staging/stg_payments.sql": "eb899938258d1fba27fca716a7c334119912a2f9601282026097a7b6ce8cfcd2",
+      "seeds/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seeds/raw_customers.csv": "24579b4b26098d43265376f3c50be8b10faf8e8fd95f5508074f10f76a12671d",
+      "seeds/raw_orders.csv": "ee6c68d1639ec2b23a4495ec12475e09b8ed4b61e23ab0411ea7ec76648356f7",
+      "seeds/raw_payments.csv": "03fd407f3135f84456431a923f22fc185a2154079e210c20b690e3ab11687d11"
+    },
+    "license": "Apache-2.0; see retained LICENSE"
+  },
+  "modern": {
+    "repository": "https://github.com/dbt-labs/jaffle-shop",
+    "revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+    "files": {
+      "dbt_project.yml": "f71f84b9198be0d30263b350ac278694fd485aa1c5393359a650da5a8b121122",
+      "packages.yml": "0e936eebcebb606aa72d7a204c1d4d44c86e3f41871b0863faa0c9179a923337",
+      "README.md": "d28cf2325ccf1ea3260cb92eecd96bd93737cb943b6b65d8c21c7dd589fd8d6c",
+      "models/staging/__sources.yml": "f7bd8b0cbd4c93cf58887262792efdbe020cf29a327a7f4d0f0795088f673853",
+      "macros/cents_to_dollars.sql": "5ebc8923ad19fa427e9def74a3ad8fc6f186168ed82950280f04003cde7b0ffb",
+      "models/staging/stg_customers.sql": "dd23b85696edfd88a570941770ff440ebc2998c9926ce1500823fb0761809021",
+      "models/staging/stg_orders.sql": "9b1b41c48e4463f736d9304a898da2d979b29b9377f1576951f959ff5cc7c327",
+      "models/staging/stg_products.sql": "062c753f5014b17e4df4266503cf6f48f191b95aa86f3ddeada063ed844d5cd6",
+      "models/staging/stg_supplies.sql": "1835f7e81a9116987eedf053b3630e26cff26dbcac38f6a5895c51f181bec5a4",
+      "models/staging/stg_order_items.sql": "102a386f0423d233aae94e6312cc028470aacc120df5692532296a2d8ed61b04",
+      "models/marts/customers.sql": "bd1c178be89d34b01e1ab848e37f1b629512af12a2825f8823b79b52b275dca3",
+      "models/marts/orders.sql": "a1196f297da67c4a55c1e1011202f4fa7cf29c9ad3a0282970de4f947cc2ef1b",
+      "models/marts/order_items.sql": "7f39a62b3fcf4ed61a50f9717938e327d35ee6ecb7545bc2870ceec8a10ed639"
+    },
+    "license": "No LICENSE file at this revision; no license grant asserted."
+  },
+  "dbt_utils": {
+    "repository": "https://github.com/dbt-labs/dbt-utils",
+    "revision": "74a661ca00452da7d2b2811ff1e5a37f152c3ee2",
+    "files": {
+      "dbt_project.yml": "bf1b51f3785fea21bd3fdca55f7261c17efc672ba4d934f7abd7775be40b680a",
+      "LICENSE": "2e195a11c556d931f6f6d532e9bc2e8e18e18e1dc5d55764a85c9db2fab2b8ba",
+      "macros/sql/generate_surrogate_key.sql": "15c0bb57842a7fb3942e268e93bfc5a58ebd430b293b82de85f10c2eaee77d2a"
+    },
+    "license": "Apache-2.0; see retained LICENSE"
+  }
+}

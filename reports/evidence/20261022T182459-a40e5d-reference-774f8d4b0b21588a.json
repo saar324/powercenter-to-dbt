@@ -1,0 +1,85 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS",
+  "aspect": "joins",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T182459-a40e5d-reference-classic-edge-seed",
+    "reports/evidence/20261022T182459-a40e5d-reference-classic-edge-run",
+    "reports/evidence/20261022T182459-a40e5d-generated-classic-edge"
+  ],
+  "classification": "source_rule_or_schema_difference",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "difference_basis": "XML preserves grouped-order detail, counts nonnull order IDs and replaces null metrics with zero; modern preserves customer rows and counts distinct IDs; classic also preserves customers. XML money/date staging differences propagate.",
+  "comparison_status": "different",
+  "row_agreement_pct": 71.42857142857143,
+  "overlap_rows": 5,
+  "max_rows": 7,
+  "reference_rows": 7,
+  "generated_rows": 5,
+  "schema_compatible": true,
+  "physical_types_equal": true,
+  "reference_query": "SELECT CAST(customer_id AS VARCHAR) AS CUSTOMER_ID FROM classic.customers",
+  "generated_query": "SELECT CUSTOMER_ID FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers\"",
+  "reference_output": {
+    "columns": [
+      "CUSTOMER_ID"
+    ],
+    "types": [
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1"
+      ],
+      [
+        "c1"
+      ],
+      [
+        "c2"
+      ],
+      [
+        "idle"
+      ],
+      [
+        null
+      ],
+      [
+        null
+      ],
+      [
+        "space"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID"
+    ],
+    "types": [
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1"
+      ],
+      [
+        "c1"
+      ],
+      [
+        "c2"
+      ],
+      [
+        null
+      ],
+      [
+        null
+      ]
+    ]
+  }
+}

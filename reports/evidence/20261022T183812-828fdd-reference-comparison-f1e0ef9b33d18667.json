@@ -1,0 +1,71 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "ordinary",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES",
+  "aspect": "text_conditions",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T183812-828fdd-reference-modern-ordinary-deps",
+    "reports/evidence/20261022T183812-828fdd-reference-modern-ordinary-run",
+    "reports/evidence/20261022T183812-828fdd-generated-modern-ordinary"
+  ],
+  "classification": "observed_unresolved_reference_difference",
+  "input_manifest": "reports/evidence/20261022T183812-828fdd-inputs-modern-ordinary.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Complete pipeline output on the declared fields/scope; not isolated operator accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML inner-joins products (drops unmatched/multiplies duplicate keys), adds cost cents and maps Y/1 to numeric flags; modern has no product join, adds supply_uuid and passes through perishable.",
+  "comparison_status": "different",
+  "row_agreement_pct": 0.0,
+  "overlap_rows": 0,
+  "max_rows": 1,
+  "reference_rows": 1,
+  "generated_rows": 1,
+  "schema_compatible": true,
+  "physical_types_equal": false,
+  "reference_query": "SELECT supply_id, is_perishable_supply AS IS_PERISHABLE FROM modern.stg_supplies",
+  "generated_query": "SELECT SUPPLY_ID, IS_PERISHABLE FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies\"",
+  "reference_output": {
+    "columns": [
+      "supply_id",
+      "IS_PERISHABLE"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "s1",
+        "Y"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "SUPPLY_ID",
+      "IS_PERISHABLE"
+    ],
+    "types": [
+      "VARCHAR",
+      "DECIMAL(1,0)"
+    ],
+    "rows": [
+      [
+        "s1",
+        "1"
+      ]
+    ]
+  },
+  "run_id": "20261022T183812-828fdd",
+  "revision": "4a1ad5471af382efdfc929bf356ede4713cdb25c+code-sha256:b2ab17256d46fa33462072c6349a4d906beb6ca9a20783b6552cb3740013d1b2",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[modern-ordinary-STG_SUPPLIES-text_conditions-projection-normalized-values]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "modern:ordinary:consumed-inputs-sha256:299d112465a650ee3a47398e4ea4d8668fe014acef3d8bcd1cdf79c08def5345"
+}

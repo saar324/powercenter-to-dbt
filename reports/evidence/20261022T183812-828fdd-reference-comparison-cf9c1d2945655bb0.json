@@ -1,0 +1,57 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "empty",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS",
+  "aspect": "joins",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T183812-828fdd-reference-classic-empty-seed",
+    "reports/evidence/20261022T183812-828fdd-reference-classic-empty-run",
+    "reports/evidence/20261022T183812-828fdd-generated-classic-empty"
+  ],
+  "classification": "agreement_on_declared_scope",
+  "input_manifest": "reports/evidence/20261022T183812-828fdd-inputs-classic-empty.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Join projection includes upstream values/storage and row multiplicity; not isolated join accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML preserves grouped-order detail, counts nonnull order IDs and replaces null metrics with zero; modern preserves customer rows and counts distinct IDs; classic also preserves customers. XML money/date staging differences propagate.",
+  "comparison_status": "matched",
+  "row_agreement_pct": 100.0,
+  "overlap_rows": 0,
+  "max_rows": 0,
+  "reference_rows": 0,
+  "generated_rows": 0,
+  "schema_compatible": true,
+  "physical_types_equal": true,
+  "reference_query": "SELECT CAST(customer_id AS VARCHAR) AS CUSTOMER_ID FROM classic.customers",
+  "generated_query": "SELECT CUSTOMER_ID FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers\"",
+  "reference_output": {
+    "columns": [
+      "CUSTOMER_ID"
+    ],
+    "types": [
+      "VARCHAR"
+    ],
+    "rows": []
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID"
+    ],
+    "types": [
+      "VARCHAR"
+    ],
+    "rows": []
+  },
+  "run_id": "20261022T183812-828fdd",
+  "revision": "4a1ad5471af382efdfc929bf356ede4713cdb25c+code-sha256:b2ab17256d46fa33462072c6349a4d906beb6ca9a20783b6552cb3740013d1b2",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[classic-empty-CUSTOMERS-joins-projection-normalized-values]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "classic:empty:consumed-inputs-sha256:1bac9d663df01691a6ccddd3209e92a2192630b39c4f8d6ce3c415a9dc888bcc"
+}

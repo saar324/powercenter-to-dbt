@@ -1,0 +1,12 @@
+{
+  "reference": "classic",
+  "dataset": "original-seeds",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "run_id": "20261022T184106-376f4b",
+  "revision": "4a1ad5471af382efdfc929bf356ede4713cdb25c+code-sha256:263425202e99f38b6e922ed8eb5b14a2b1d53686c09d6ced9e6fcd56cbf85851",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "test_reference_reporting_probe.py::test_baseline_success",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "isolated-baseline-input"
+}

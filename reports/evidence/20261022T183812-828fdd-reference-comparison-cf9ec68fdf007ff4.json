@@ -1,0 +1,127 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS",
+  "aspect": "dates",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T183812-828fdd-reference-modern-edge-deps",
+    "reports/evidence/20261022T183812-828fdd-reference-modern-edge-run",
+    "reports/evidence/20261022T183812-828fdd-generated-modern-edge"
+  ],
+  "classification": "observed_unresolved_reference_difference",
+  "input_manifest": "reports/evidence/20261022T183812-828fdd-inputs-modern-edge.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Complete pipeline output on the declared fields/scope; not isolated operator accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML preserves grouped-order detail, counts nonnull order IDs and replaces null metrics with zero; modern preserves customer rows and counts distinct IDs; classic also preserves customers. XML money/date staging differences propagate.",
+  "comparison_status": "different",
+  "row_agreement_pct": 28.571428571428573,
+  "overlap_rows": 2,
+  "max_rows": 7,
+  "reference_rows": 7,
+  "generated_rows": 5,
+  "schema_compatible": true,
+  "physical_types_equal": false,
+  "reference_query": "SELECT customer_id, first_ordered_at AS FIRST_ORDER_DATE, last_ordered_at AS LAST_ORDER_DATE FROM modern.customers",
+  "generated_query": "SELECT CUSTOMER_ID, FIRST_ORDER_DATE, LAST_ORDER_DATE FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers\"",
+  "reference_output": {
+    "columns": [
+      "customer_id",
+      "FIRST_ORDER_DATE",
+      "LAST_ORDER_DATE"
+    ],
+    "types": [
+      "VARCHAR",
+      "DATE",
+      "DATE"
+    ],
+    "rows": [
+      [
+        "c1",
+        "1998-01-02",
+        "2000-02-29"
+      ],
+      [
+        "c1",
+        "1998-01-02",
+        "2000-02-29"
+      ],
+      [
+        "c2",
+        "2025-12-31",
+        "2025-12-31"
+      ],
+      [
+        "idle",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null
+      ],
+      [
+        "",
+        null,
+        null
+      ],
+      [
+        "space",
+        null,
+        null
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID",
+      "FIRST_ORDER_DATE",
+      "LAST_ORDER_DATE"
+    ],
+    "types": [
+      "VARCHAR",
+      "TIMESTAMP",
+      "TIMESTAMP"
+    ],
+    "rows": [
+      [
+        "c1",
+        "2000-02-29 00:00:00",
+        "2098-01-02 00:00:00"
+      ],
+      [
+        "c1",
+        "2000-02-29 00:00:00",
+        "2098-01-02 00:00:00"
+      ],
+      [
+        "c2",
+        "2025-12-31 00:00:00",
+        "2025-12-31 00:00:00"
+      ],
+      [
+        null,
+        "2024-05-06 00:00:00",
+        "2024-05-06 00:00:00"
+      ],
+      [
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "run_id": "20261022T183812-828fdd",
+  "revision": "4a1ad5471af382efdfc929bf356ede4713cdb25c+code-sha256:b2ab17256d46fa33462072c6349a4d906beb6ca9a20783b6552cb3740013d1b2",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[modern-edge-CUSTOMERS-dates-projection-normalized-values]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "modern:edge:consumed-inputs-sha256:a27e986f80068b5d78ad899ce1c95474b9f4667d230dcc8d8d37a4f33ec2ead9"
+}

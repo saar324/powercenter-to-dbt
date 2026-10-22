@@ -1,0 +1,34 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T184153-42a500-reference-classic-edge-seed",
+    "reports/evidence/20261022T184153-42a500-reference-classic-edge-run",
+    "reports/evidence/20261022T184153-42a500-generated-classic-edge"
+  ],
+  "classification": "missing_reference_counterpart",
+  "input_manifest": "reports/evidence/20261022T184153-42a500-inputs-classic-edge.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Complete pipeline output on the declared fields/scope; not isolated operator accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML inner-joins products (drops unmatched/multiplies duplicate keys), adds cost cents and maps Y/1 to numeric flags; modern has no product join, adds supply_uuid and passes through perishable.",
+  "comparison_status": "non_comparable",
+  "row_agreement_pct": null,
+  "overlap_rows": null,
+  "max_rows": null,
+  "reason": "Classic has no products/supplies model or input schema",
+  "run_id": "20261022T184153-42a500",
+  "revision": "4a1ad5471af382efdfc929bf356ede4713cdb25c+code-sha256:263425202e99f38b6e922ed8eb5b14a2b1d53686c09d6ced9e6fcd56cbf85851",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[classic-edge-STG_SUPPLIES-complete_target-complete]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "classic:edge:consumed-inputs-sha256:d0dc5e6c142f0bd6ea97e2321859561c704224b4e8a840b97a25abfb71ec2c67"
+}

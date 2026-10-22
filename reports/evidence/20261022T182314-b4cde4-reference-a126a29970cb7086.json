@@ -1,0 +1,224 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-edge-deps",
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-edge-run",
+    "reports/evidence/20261022T182314-b4cde4-generated-modern-edge"
+  ],
+  "classification": "source/reference rules; see research/07-reference-version-correlation.md",
+  "comparison_status": "different",
+  "row_agreement_pct": 0.0,
+  "overlap_rows": 0,
+  "max_rows": 6,
+  "reference_rows": 6,
+  "generated_rows": 6,
+  "schema_compatible": false,
+  "physical_types_equal": false,
+  "reference_query": "SELECT * FROM modern.stg_orders",
+  "generated_query": "SELECT * FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders\"",
+  "reference_output": {
+    "columns": [
+      "order_id",
+      "location_id",
+      "customer_id",
+      "subtotal_cents",
+      "tax_paid_cents",
+      "order_total_cents",
+      "subtotal",
+      "tax_paid",
+      "order_total",
+      "ordered_at"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)",
+      "DECIMAL(16,2)",
+      "DECIMAL(16,2)",
+      "DECIMAL(16,2)",
+      "DATE"
+    ],
+    "rows": [
+      [
+        "o1",
+        "l1",
+        "c1",
+        125.0,
+        25.0,
+        "150.50",
+        "1.25",
+        "0.25",
+        "1.51",
+        "1998-01-02"
+      ],
+      [
+        "o2",
+        "l1",
+        "c1",
+        -5.0,
+        -1.0,
+        "-6.50",
+        "-0.05",
+        "-0.01",
+        "-0.07",
+        "2000-02-29"
+      ],
+      [
+        "o2",
+        "l1",
+        "c1",
+        -5.0,
+        -1.0,
+        "-6.50",
+        "-0.05",
+        "-0.01",
+        "-0.07",
+        "2000-02-29"
+      ],
+      [
+        "o3",
+        "l2",
+        "missing",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "2024-05-06"
+      ],
+      [
+        null,
+        "",
+        null,
+        0.0,
+        0.0,
+        "0.00",
+        "0.00",
+        "0.00",
+        "0.00",
+        null
+      ],
+      [
+        "o4",
+        "l2",
+        "c2",
+        1.0,
+        -1.0,
+        "0.50",
+        "0.01",
+        "-0.01",
+        "0.01",
+        "2025-12-31"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "ORDER_ID",
+      "CUSTOMER_ID",
+      "LOCATION_ID",
+      "ORDERED_AT_DAY",
+      "SUBTOTAL_CENTS",
+      "TAX_PAID_CENTS",
+      "ORDER_TOTAL_CENTS",
+      "SUBTOTAL",
+      "TAX_PAID",
+      "ORDER_TOTAL"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR",
+      "TIMESTAMP",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)"
+    ],
+    "rows": [
+      [
+        "o1",
+        "c1",
+        "l1",
+        "2098-01-02 00:00:00",
+        1.25,
+        0.25,
+        "1.51",
+        125.0,
+        25.0,
+        "151.00"
+      ],
+      [
+        "o2",
+        "c1",
+        "l1",
+        "2000-02-29 00:00:00",
+        -0.05,
+        -0.01,
+        "-0.07",
+        -5.0,
+        -1.0,
+        "-7.00"
+      ],
+      [
+        "o2",
+        "c1",
+        "l1",
+        "2000-02-29 00:00:00",
+        -0.05,
+        -0.01,
+        "-0.07",
+        -5.0,
+        -1.0,
+        "-7.00"
+      ],
+      [
+        "o3",
+        "missing",
+        "l2",
+        "2024-05-06 00:00:00",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "o4",
+        "c2",
+        "l2",
+        "2025-12-31 00:00:00",
+        0.01,
+        -0.01,
+        "0.01",
+        1.0,
+        -1.0,
+        "1.00"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        0.0,
+        0.0,
+        "0.00",
+        0.0,
+        0.0,
+        "0.00"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+  "aspect": "dates",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-edge-deps",
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-edge-run",
+    "reports/evidence/20261022T182314-b4cde4-generated-modern-edge"
+  ],
+  "classification": "source/reference rules; see research/07-reference-version-correlation.md",
+  "comparison_status": "different",
+  "row_agreement_pct": 83.33333333333333,
+  "overlap_rows": 5,
+  "max_rows": 6,
+  "reference_rows": 6,
+  "generated_rows": 6,
+  "schema_compatible": true,
+  "physical_types_equal": false,
+  "reference_query": "SELECT order_id, ordered_at AS ORDERED_AT_DAY FROM modern.stg_orders",
+  "generated_query": "SELECT ORDER_ID, ORDERED_AT_DAY FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders\"",
+  "reference_output": {
+    "columns": [
+      "order_id",
+      "ORDERED_AT_DAY"
+    ],
+    "types": [
+      "VARCHAR",
+      "DATE"
+    ],
+    "rows": [
+      [
+        "o1",
+        "1998-01-02"
+      ],
+      [
+        "o2",
+        "2000-02-29"
+      ],
+      [
+        "o2",
+        "2000-02-29"
+      ],
+      [
+        "o3",
+        "2024-05-06"
+      ],
+      [
+        null,
+        null
+      ],
+      [
+        "o4",
+        "2025-12-31"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "ORDER_ID",
+      "ORDERED_AT_DAY"
+    ],
+    "types": [
+      "VARCHAR",
+      "TIMESTAMP"
+    ],
+    "rows": [
+      [
+        "o1",
+        "2098-01-02 00:00:00"
+      ],
+      [
+        "o2",
+        "2000-02-29 00:00:00"
+      ],
+      [
+        "o2",
+        "2000-02-29 00:00:00"
+      ],
+      [
+        "o3",
+        "2024-05-06 00:00:00"
+      ],
+      [
+        "o4",
+        "2025-12-31 00:00:00"
+      ],
+      [
+        null,
+        null
+      ]
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "reference": "classic",
+  "dataset": "original-seeds",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "artifacts": [
+    "reports/evidence/20261022T182459-a40e5d-reference-classic-original-seeds-seed",
+    "reports/evidence/20261022T182459-a40e5d-reference-classic-original-seeds-run",
+    "reports/evidence/20261022T182459-a40e5d-generated-classic-original-seeds"
+  ]
+}

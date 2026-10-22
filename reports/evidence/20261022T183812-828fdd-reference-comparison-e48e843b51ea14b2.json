@@ -1,0 +1,143 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+  "aspect": "arithmetic",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T183812-828fdd-reference-modern-edge-deps",
+    "reports/evidence/20261022T183812-828fdd-reference-modern-edge-run",
+    "reports/evidence/20261022T183812-828fdd-generated-modern-edge"
+  ],
+  "classification": "observed_unresolved_reference_difference",
+  "input_manifest": "reports/evidence/20261022T183812-828fdd-inputs-modern-edge.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Complete pipeline output on the declared fields/scope; not isolated operator accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML connectors cross cents/dollar outputs; DD-MM-YY round trip uses current century. Modern keeps source cents and truncates original date. Classic has order_date/status and no equivalent amounts/location.",
+  "comparison_status": "different",
+  "row_agreement_pct": 33.333333333333336,
+  "overlap_rows": 2,
+  "max_rows": 6,
+  "reference_rows": 6,
+  "generated_rows": 6,
+  "schema_compatible": true,
+  "physical_types_equal": false,
+  "reference_query": "SELECT order_id, subtotal, tax_paid, order_total FROM modern.stg_orders",
+  "generated_query": "SELECT ORDER_ID, SUBTOTAL, TAX_PAID, ORDER_TOTAL FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders\"",
+  "reference_output": {
+    "columns": [
+      "order_id",
+      "subtotal",
+      "tax_paid",
+      "order_total"
+    ],
+    "types": [
+      "VARCHAR",
+      "DECIMAL(16,2)",
+      "DECIMAL(16,2)",
+      "DECIMAL(16,2)"
+    ],
+    "rows": [
+      [
+        "o1",
+        "1.25",
+        "0.25",
+        "1.51"
+      ],
+      [
+        "o2",
+        "-0.05",
+        "-0.01",
+        "-0.07"
+      ],
+      [
+        "o2",
+        "-0.05",
+        "-0.01",
+        "-0.07"
+      ],
+      [
+        "o3",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "0.00",
+        "0.00",
+        "0.00"
+      ],
+      [
+        "o4",
+        "0.01",
+        "-0.01",
+        "0.01"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "ORDER_ID",
+      "SUBTOTAL",
+      "TAX_PAID",
+      "ORDER_TOTAL"
+    ],
+    "types": [
+      "VARCHAR",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)"
+    ],
+    "rows": [
+      [
+        "o1",
+        125.0,
+        25.0,
+        "151.00"
+      ],
+      [
+        "o2",
+        -5.0,
+        -1.0,
+        "-7.00"
+      ],
+      [
+        "o2",
+        -5.0,
+        -1.0,
+        "-7.00"
+      ],
+      [
+        "o3",
+        null,
+        null,
+        null
+      ],
+      [
+        "o4",
+        1.0,
+        -1.0,
+        "1.00"
+      ],
+      [
+        null,
+        0.0,
+        0.0,
+        "0.00"
+      ]
+    ]
+  },
+  "run_id": "20261022T183812-828fdd",
+  "revision": "4a1ad5471af382efdfc929bf356ede4713cdb25c+code-sha256:b2ab17256d46fa33462072c6349a4d906beb6ca9a20783b6552cb3740013d1b2",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[modern-edge-STG_ORDERS-arithmetic-projection-normalized-values]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "modern:edge:consumed-inputs-sha256:a27e986f80068b5d78ad899ce1c95474b9f4667d230dcc8d8d37a4f33ec2ead9"
+}

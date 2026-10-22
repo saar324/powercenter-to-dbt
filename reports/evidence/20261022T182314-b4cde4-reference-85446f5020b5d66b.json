@@ -1,0 +1,104 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_CUSTOMERS",
+  "aspect": "field_mapping",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-edge-deps",
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-edge-run",
+    "reports/evidence/20261022T182314-b4cde4-generated-modern-edge"
+  ],
+  "classification": "source/reference rules; see research/07-reference-version-correlation.md",
+  "comparison_status": "different",
+  "row_agreement_pct": 85.71428571428571,
+  "overlap_rows": 6,
+  "max_rows": 7,
+  "reference_rows": 7,
+  "generated_rows": 7,
+  "schema_compatible": true,
+  "physical_types_equal": true,
+  "reference_query": "SELECT customer_id, customer_name FROM modern.stg_customers",
+  "generated_query": "SELECT CUSTOMER_ID, CUSTOMER_NAME FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers\"",
+  "reference_output": {
+    "columns": [
+      "customer_id",
+      "customer_name"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1",
+        "Aster"
+      ],
+      [
+        "c1",
+        "Aster"
+      ],
+      [
+        "c2",
+        "Birch"
+      ],
+      [
+        "idle",
+        "No orders"
+      ],
+      [
+        null,
+        "Null key"
+      ],
+      [
+        "",
+        ""
+      ],
+      [
+        "space",
+        "   "
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID",
+      "CUSTOMER_NAME"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1",
+        "Aster"
+      ],
+      [
+        "c1",
+        "Aster"
+      ],
+      [
+        "c2",
+        "Birch"
+      ],
+      [
+        "idle",
+        "No orders"
+      ],
+      [
+        null,
+        "Null key"
+      ],
+      [
+        null,
+        null
+      ],
+      [
+        "space",
+        "   "
+      ]
+    ]
+  }
+}

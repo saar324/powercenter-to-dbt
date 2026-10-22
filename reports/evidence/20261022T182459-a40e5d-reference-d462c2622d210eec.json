@@ -1,0 +1,118 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_CUSTOMERS",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T182459-a40e5d-reference-classic-edge-seed",
+    "reports/evidence/20261022T182459-a40e5d-reference-classic-edge-run",
+    "reports/evidence/20261022T182459-a40e5d-generated-classic-edge"
+  ],
+  "classification": "source_rule_or_schema_difference",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "difference_basis": "XML Oracle storage boundaries convert empty strings to NULL; modern SQL passes raw NAME/ID. Classic has separate first_name/last_name columns.",
+  "comparison_status": "different",
+  "row_agreement_pct": 0.0,
+  "overlap_rows": 0,
+  "max_rows": 7,
+  "reference_rows": 7,
+  "generated_rows": 7,
+  "schema_compatible": false,
+  "physical_types_equal": false,
+  "reference_query": "SELECT * FROM classic.stg_customers",
+  "generated_query": "SELECT * FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers\"",
+  "reference_output": {
+    "columns": [
+      "customer_id",
+      "first_name",
+      "last_name"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1",
+        "Aster",
+        null
+      ],
+      [
+        "c1",
+        "Aster",
+        null
+      ],
+      [
+        "c2",
+        "Birch",
+        null
+      ],
+      [
+        "idle",
+        "No orders",
+        null
+      ],
+      [
+        null,
+        "Null key",
+        null
+      ],
+      [
+        null,
+        null,
+        null
+      ],
+      [
+        "space",
+        "   ",
+        null
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID",
+      "CUSTOMER_NAME"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1",
+        "Aster"
+      ],
+      [
+        "c1",
+        "Aster"
+      ],
+      [
+        "c2",
+        "Birch"
+      ],
+      [
+        "idle",
+        "No orders"
+      ],
+      [
+        null,
+        "Null key"
+      ],
+      [
+        null,
+        null
+      ],
+      [
+        "space",
+        "   "
+      ]
+    ]
+  }
+}

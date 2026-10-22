@@ -1,0 +1,14 @@
+test_broken.py [collection]: error
+ImportError while importing test module '/private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-732/test_collection_failure_record0/test_broken.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../.local/share/uv/python/cpython-3.13.16-macos-aarch64-none/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-732/test_collection_failure_record0/test_broken.py:1: in <module>
+    import missing_module_for_collection_regression
+E   ModuleNotFoundError: No module named 'missing_module_for_collection_regression'
+command: uv run pytest --noconftest -p tests.conftest -q /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-732/test_collection_failure_record0/test_broken.py
+revision: 4a1ad5471af382efdfc929bf356ede4713cdb25c+code-sha256:3e916232c1833bdd91b86477a8aff74e0123ed697fd311d1ceff2b3df95e6493
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 2

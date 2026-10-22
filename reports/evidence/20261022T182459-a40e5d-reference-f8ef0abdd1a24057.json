@@ -1,0 +1,195 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/CUSTOMERS",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T182459-a40e5d-reference-classic-edge-seed",
+    "reports/evidence/20261022T182459-a40e5d-reference-classic-edge-run",
+    "reports/evidence/20261022T182459-a40e5d-generated-classic-edge"
+  ],
+  "classification": "source_rule_or_schema_difference",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "difference_basis": "XML preserves grouped-order detail, counts nonnull order IDs and replaces null metrics with zero; modern preserves customer rows and counts distinct IDs; classic also preserves customers. XML money/date staging differences propagate.",
+  "comparison_status": "different",
+  "row_agreement_pct": 0.0,
+  "overlap_rows": 0,
+  "max_rows": 7,
+  "reference_rows": 7,
+  "generated_rows": 5,
+  "schema_compatible": false,
+  "physical_types_equal": false,
+  "reference_query": "SELECT * FROM classic.customers",
+  "generated_query": "SELECT * FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers\"",
+  "reference_output": {
+    "columns": [
+      "customer_id",
+      "first_name",
+      "last_name",
+      "first_order",
+      "most_recent_order",
+      "number_of_orders",
+      "customer_lifetime_value"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR",
+      "DATE",
+      "DATE",
+      "BIGINT",
+      "DOUBLE"
+    ],
+    "rows": [
+      [
+        "c1",
+        "Aster",
+        null,
+        "1998-01-02",
+        "2000-02-29",
+        3,
+        null
+      ],
+      [
+        "c1",
+        "Aster",
+        null,
+        "1998-01-02",
+        "2000-02-29",
+        3,
+        null
+      ],
+      [
+        "c2",
+        "Birch",
+        null,
+        "2025-12-31",
+        "2025-12-31",
+        1,
+        null
+      ],
+      [
+        "idle",
+        "No orders",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "Null key",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "space",
+        "   ",
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID",
+      "CUSTOMER_NAME",
+      "LIFETIME_ORDERS",
+      "FIRST_ORDER_DATE",
+      "LAST_ORDER_DATE",
+      "LIFETIME_SPEND",
+      "LIFETIME_SPEND_PRETAX",
+      "LIFETIME_TAX_PAID",
+      "CUSTOMER_TYPE"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "DOUBLE",
+      "TIMESTAMP",
+      "TIMESTAMP",
+      "DECIMAL(12,2)",
+      "DECIMAL(12,2)",
+      "DECIMAL(12,2)",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "c1",
+        "Aster",
+        3.0,
+        "2000-02-29 00:00:00",
+        "2098-01-02 00:00:00",
+        "137.00",
+        "115.00",
+        "23.00",
+        "returning"
+      ],
+      [
+        "c1",
+        "Aster",
+        3.0,
+        "2000-02-29 00:00:00",
+        "2098-01-02 00:00:00",
+        "137.00",
+        "115.00",
+        "23.00",
+        "returning"
+      ],
+      [
+        "c2",
+        "Birch",
+        1.0,
+        "2025-12-31 00:00:00",
+        "2025-12-31 00:00:00",
+        "1.00",
+        "1.00",
+        "-1.00",
+        "new"
+      ],
+      [
+        null,
+        null,
+        1.0,
+        "2024-05-06 00:00:00",
+        "2024-05-06 00:00:00",
+        "0.00",
+        "0.00",
+        "0.00",
+        "new"
+      ],
+      [
+        null,
+        null,
+        0.0,
+        null,
+        null,
+        "0.00",
+        "0.00",
+        "0.00",
+        "new"
+      ]
+    ]
+  }
+}

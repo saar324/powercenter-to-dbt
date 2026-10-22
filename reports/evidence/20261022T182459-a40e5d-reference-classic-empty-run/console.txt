@@ -1,0 +1,23 @@
+command: /Users/saarreshef/job-hunt-assessments/powercenter-to-dbt/.venv/bin/dbt run --project-dir /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-732/pinned-references0/classic-empty/classic --profiles-dir /private/var/folders/k0/crmvwhg95zdfk_911sf9fgd40000gn/T/pytest-of-saarreshef/pytest-732/pinned-references0/classic-empty/classic --no-use-colors
+18:25:58  Running with dbt=1.12.6
+18:25:58  Registered adapter: duckdb=1.10.1
+18:25:59  Found 5 models, 3 seeds, 20 data tests, 486 macros
+18:25:59  
+18:25:59  Concurrency: 1 threads (target='local')
+18:25:59  
+18:25:59  1 of 5 START sql view model classic.stg_customers .............................. [RUN]
+18:25:59  1 of 5 OK created sql view model classic.stg_customers ......................... [OK in 0.03s]
+18:25:59  2 of 5 START sql view model classic.stg_orders ................................. [RUN]
+18:25:59  2 of 5 OK created sql view model classic.stg_orders ............................ [OK in 0.01s]
+18:25:59  3 of 5 START sql view model classic.stg_payments ............................... [RUN]
+18:25:59  3 of 5 OK created sql view model classic.stg_payments .......................... [OK in 0.01s]
+18:25:59  4 of 5 START sql table model classic.customers ................................. [RUN]
+18:25:59  4 of 5 OK created sql table model classic.customers ............................ [OK in 0.02s]
+18:25:59  5 of 5 START sql table model classic.orders .................................... [RUN]
+18:25:59  5 of 5 OK created sql table model classic.orders ............................... [OK in 0.01s]
+18:25:59  
+18:25:59  Finished running 2 table models, 3 view models in 0 hours 0 minutes and 0.15 seconds (0.15s).
+18:25:59  
+18:25:59  Completed successfully
+18:25:59  
+18:25:59  Done. PASS=5 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5

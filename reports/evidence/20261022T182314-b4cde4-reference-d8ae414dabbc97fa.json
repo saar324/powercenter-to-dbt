@@ -1,0 +1,62 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "empty",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_SUPPLIES",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-empty-deps",
+    "reports/evidence/20261022T182314-b4cde4-reference-modern-empty-run",
+    "reports/evidence/20261022T182314-b4cde4-generated-modern-empty"
+  ],
+  "classification": "source/reference rules; see research/07-reference-version-correlation.md",
+  "comparison_status": "different",
+  "row_agreement_pct": null,
+  "overlap_rows": 0,
+  "max_rows": 0,
+  "reference_rows": 0,
+  "generated_rows": 0,
+  "schema_compatible": false,
+  "physical_types_equal": false,
+  "reference_query": "SELECT * FROM modern.stg_supplies",
+  "generated_query": "SELECT * FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies\"",
+  "reference_output": {
+    "columns": [
+      "supply_uuid",
+      "supply_id",
+      "product_id",
+      "supply_name",
+      "supply_cost",
+      "is_perishable_supply"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR",
+      "DECIMAL(16,2)",
+      "VARCHAR"
+    ],
+    "rows": []
+  },
+  "generated_output": {
+    "columns": [
+      "SUPPLY_ID",
+      "SUPPLY_NAME",
+      "SUPPLY_COST_CENTS",
+      "SUPPLY_COST",
+      "IS_PERISHABLE",
+      "PRODUCT_ID"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "DECIMAL(12,2)",
+      "DECIMAL(12,2)",
+      "DECIMAL(1,0)",
+      "VARCHAR"
+    ],
+    "rows": []
+  }
+}

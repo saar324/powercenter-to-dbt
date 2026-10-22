@@ -1,0 +1,133 @@
+{
+  "reference": "modern",
+  "reference_revision": "f8f89f8d8af66ce3dd20844d41836cd5deac3f1c",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+  "aspect": "arithmetic",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T182459-a40e5d-reference-modern-edge-deps",
+    "reports/evidence/20261022T182459-a40e5d-reference-modern-edge-run",
+    "reports/evidence/20261022T182459-a40e5d-generated-modern-edge"
+  ],
+  "classification": "source_rule_or_schema_difference",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "difference_basis": "XML connectors cross cents/dollar outputs; DD-MM-YY round trip uses current century. Modern keeps source cents and truncates original date. Classic has order_date/status and no equivalent amounts/location.",
+  "comparison_status": "different",
+  "row_agreement_pct": 33.333333333333336,
+  "overlap_rows": 2,
+  "max_rows": 6,
+  "reference_rows": 6,
+  "generated_rows": 6,
+  "schema_compatible": true,
+  "physical_types_equal": false,
+  "reference_query": "SELECT order_id, subtotal, tax_paid, order_total FROM modern.stg_orders",
+  "generated_query": "SELECT ORDER_ID, SUBTOTAL, TAX_PAID, ORDER_TOTAL FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders\"",
+  "reference_output": {
+    "columns": [
+      "order_id",
+      "subtotal",
+      "tax_paid",
+      "order_total"
+    ],
+    "types": [
+      "VARCHAR",
+      "DECIMAL(16,2)",
+      "DECIMAL(16,2)",
+      "DECIMAL(16,2)"
+    ],
+    "rows": [
+      [
+        "o1",
+        "1.25",
+        "0.25",
+        "1.51"
+      ],
+      [
+        "o2",
+        "-0.05",
+        "-0.01",
+        "-0.07"
+      ],
+      [
+        "o2",
+        "-0.05",
+        "-0.01",
+        "-0.07"
+      ],
+      [
+        "o3",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "0.00",
+        "0.00",
+        "0.00"
+      ],
+      [
+        "o4",
+        "0.01",
+        "-0.01",
+        "0.01"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "ORDER_ID",
+      "SUBTOTAL",
+      "TAX_PAID",
+      "ORDER_TOTAL"
+    ],
+    "types": [
+      "VARCHAR",
+      "DOUBLE",
+      "DOUBLE",
+      "DECIMAL(12,2)"
+    ],
+    "rows": [
+      [
+        "o1",
+        125.0,
+        25.0,
+        "151.00"
+      ],
+      [
+        "o2",
+        -5.0,
+        -1.0,
+        "-7.00"
+      ],
+      [
+        "o2",
+        -5.0,
+        -1.0,
+        "-7.00"
+      ],
+      [
+        "o3",
+        null,
+        null,
+        null
+      ],
+      [
+        "o4",
+        1.0,
+        -1.0,
+        "1.00"
+      ],
+      [
+        null,
+        0.0,
+        0.0,
+        "0.00"
+      ]
+    ]
+  }
+}

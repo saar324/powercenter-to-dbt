@@ -12,6 +12,7 @@ Research snapshot: **22 October 2026**. Saar requested the first five notes to u
 | [03 — SQL semantics and testing](03-sql-semantics-and-testing.md) | Which join, number, null, date and ordering differences need verification? What evidence can establish a result for a tested case? |
 | [05 — Input handling and reproducibility](05-input-handling-and-reproducibility.md) | How should XML bytes, external declarations, runtime commands, generated files and locked environments be handled? |
 | [06 — Core semantics check](06-core-semantics-check.md) | What exact functions, defaults, numeric metadata and session precision settings do the approved paths reach, and which rules still need executable checks? |
+| [07 — Reference version correlation](07-reference-version-correlation.md) | Which historical Jaffle Shop revisions correspond to the XML/export publication dates, and do their rules permit a one-to-one comparison? |
 
 ## Sources and evidence rules
 

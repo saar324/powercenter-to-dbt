@@ -15,3 +15,7 @@ The installed files in `.agents/skills/` and `_bmad/` originate from BMAD Method
 - Upstream: https://github.com/infinitelambda/flowline-pwc-demo
 - Revision and checksums: `fixtures/powercenter/provenance.json`.
 - No license file was present in the inspected sample repository. This notice attributes the material and does not assign it a new license.
+
+## Pinned Jaffle Shop reference validation
+
+The exact source revisions, retained file hashes, license status and bounded harness configuration are recorded in [fixtures/references/README.md](fixtures/references/README.md) and [provenance.json](fixtures/references/provenance.json). Classic Jaffle Shop DuckDB and the retained dbt_utils macro have their upstream Apache-2.0 LICENSE files beside them. The modern Jaffle Shop historical candidate has no LICENSE file at its pinned revision; no license grant is asserted. This validation work does not authorize publication.

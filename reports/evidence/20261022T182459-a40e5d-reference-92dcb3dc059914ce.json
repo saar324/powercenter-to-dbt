@@ -1,0 +1,101 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "edge",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS",
+  "aspect": "field_mapping",
+  "scope": "projection-normalized-values",
+  "artifacts": [
+    "reports/evidence/20261022T182459-a40e5d-reference-classic-edge-seed",
+    "reports/evidence/20261022T182459-a40e5d-reference-classic-edge-run",
+    "reports/evidence/20261022T182459-a40e5d-generated-classic-edge"
+  ],
+  "classification": "agreement_on_declared_scope",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "difference_basis": "XML connectors cross cents/dollar outputs; DD-MM-YY round trip uses current century. Modern keeps source cents and truncates original date. Classic has order_date/status and no equivalent amounts/location.",
+  "comparison_status": "matched",
+  "row_agreement_pct": 100.0,
+  "overlap_rows": 6,
+  "max_rows": 6,
+  "reference_rows": 6,
+  "generated_rows": 6,
+  "schema_compatible": true,
+  "physical_types_equal": true,
+  "reference_query": "SELECT CAST(order_id AS VARCHAR) AS ORDER_ID, CAST(customer_id AS VARCHAR) AS CUSTOMER_ID FROM classic.stg_orders",
+  "generated_query": "SELECT ORDER_ID, CUSTOMER_ID FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders\"",
+  "reference_output": {
+    "columns": [
+      "ORDER_ID",
+      "CUSTOMER_ID"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "o1",
+        "c1"
+      ],
+      [
+        "o2",
+        "c1"
+      ],
+      [
+        "o2",
+        "c1"
+      ],
+      [
+        "o3",
+        "missing"
+      ],
+      [
+        null,
+        null
+      ],
+      [
+        "o4",
+        "c2"
+      ]
+    ]
+  },
+  "generated_output": {
+    "columns": [
+      "ORDER_ID",
+      "CUSTOMER_ID"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": [
+      [
+        "o1",
+        "c1"
+      ],
+      [
+        "o2",
+        "c1"
+      ],
+      [
+        "o2",
+        "c1"
+      ],
+      [
+        "o3",
+        "missing"
+      ],
+      [
+        "o4",
+        "c2"
+      ],
+      [
+        null,
+        null
+      ]
+    ]
+  }
+}

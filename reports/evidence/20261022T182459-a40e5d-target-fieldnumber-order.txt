@@ -1,0 +1,16 @@
+18:25:27  Running with dbt=1.12.6
+18:25:27  Registered adapter: duckdb=1.10.1
+18:25:27  Unable to do partial parsing because saved manifest not found. Starting full parse.
+18:25:27  Found 1 model, 1 source, 488 macros
+18:25:27  
+18:25:27  Concurrency: 1 threads (target='local')
+18:25:27  
+18:25:28  1 of 1 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+18:25:28  PWC_CLEAR "ordinals"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+18:25:28  1 of 1 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+18:25:28  
+18:25:28  Finished running 1 table model in 0 hours 0 minutes and 0.10 seconds (0.10s).
+18:25:28  
+18:25:28  Completed successfully
+18:25:28  
+18:25:28  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=1

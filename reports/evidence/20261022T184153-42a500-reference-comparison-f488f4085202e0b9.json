@@ -1,0 +1,63 @@
+{
+  "reference": "classic",
+  "reference_revision": "8d715f309a837287cc427f76157688e558bbbcae",
+  "dataset": "empty",
+  "target": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_CUSTOMERS",
+  "aspect": "complete_target",
+  "scope": "complete",
+  "artifacts": [
+    "reports/evidence/20261022T184153-42a500-reference-classic-empty-seed",
+    "reports/evidence/20261022T184153-42a500-reference-classic-empty-run",
+    "reports/evidence/20261022T184153-42a500-generated-classic-empty"
+  ],
+  "classification": "observed_unresolved_reference_difference",
+  "input_manifest": "reports/evidence/20261022T184153-42a500-inputs-classic-empty.json",
+  "effect_scope": "end-to-end combined effects",
+  "aspect_note": "Complete pipeline output on the declared fields/scope; not isolated operator accuracy",
+  "source_evidence": [
+    "fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml",
+    "research/07-reference-version-correlation.md"
+  ],
+  "candidate_rule_evidence": "XML Oracle storage boundaries convert empty strings to NULL; modern SQL passes raw NAME/ID. Classic has separate first_name/last_name columns.",
+  "comparison_status": "different",
+  "row_agreement_pct": null,
+  "overlap_rows": 0,
+  "max_rows": 0,
+  "reference_rows": 0,
+  "generated_rows": 0,
+  "schema_compatible": false,
+  "physical_types_equal": false,
+  "reference_query": "SELECT * FROM classic.stg_customers",
+  "generated_query": "SELECT * FROM converted.\"repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers\"",
+  "reference_output": {
+    "columns": [
+      "customer_id",
+      "first_name",
+      "last_name"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": []
+  },
+  "generated_output": {
+    "columns": [
+      "CUSTOMER_ID",
+      "CUSTOMER_NAME"
+    ],
+    "types": [
+      "VARCHAR",
+      "VARCHAR"
+    ],
+    "rows": []
+  },
+  "run_id": "20261022T184153-42a500",
+  "revision": "4a1ad5471af382efdfc929bf356ede4713cdb25c+code-sha256:263425202e99f38b6e922ed8eb5b14a2b1d53686c09d6ced9e6fcd56cbf85851",
+  "environment": "Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1",
+  "case_id": "tests/test_reference_results.py::test_executed_reference_comparison[classic-empty-STG_CUSTOMERS-complete_target-complete]",
+  "phase": "call",
+  "status": "passed",
+  "input_id": "classic:empty:consumed-inputs-sha256:1bac9d663df01691a6ccddd3209e92a2192630b39c4f8d6ce3c415a9dc888bcc"
+}

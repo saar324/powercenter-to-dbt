@@ -1,0 +1,81 @@
+# Jaffle Shop reference version correlation
+
+Researched 22 October 2026. Source/history inspection only; this note does not claim a reference execution or accuracy result. The measured comparison belongs in `reports/test-runs.csv` and `reports/validation.md` after it runs.
+
+## Question and result
+
+Saar asked us to find and pull the Jaffle Shop revision that corresponds to the supplied XML, checking the apparent two-month age of the employer repository before designing and executing a comparison suite. The requested result is an accuracy CSV grouped by converter aspect, with explicit evidence and practical recommendations. The exact user prompt is preserved in `docs/agent-prompts.md`.
+
+The employer repository was created on **11 August 2026**, about two months before this review. The XML itself declares **31 December 2025 at 20:27:14**, without a timezone. These are different dates with different meanings. Neither date identifies the dbt revision used by the author. [Repository metadata](https://api.github.com/repos/infinitelambda/flowline-pwc-demo), [pinned XML](https://github.com/infinitelambda/flowline-pwc-demo/blob/550a222cf73ecca3bd423b1f5770461914889615/FLOWLINE_DEMO_JAFFLESHOP.xml).
+
+The strongest historical comparison candidate is **`dbt-labs/jaffle-shop` at `f8f89f8d8af66ce3dd20844d41836cd5deac3f1c`**, the latest main-branch ancestor before the XML date. It is the project named in the employer repository README, and has the corresponding raw customers/orders/items/products/supplies/stores schema. It is a **correlated reference candidate, not a proven exact source revision**. [Employer README](https://github.com/infinitelambda/flowline-pwc-demo/blob/550a222cf73ecca3bd423b1f5770461914889615/README.md), [candidate commit](https://github.com/dbt-labs/jaffle-shop/commit/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c).
+
+No inspected revision gives whole-model, one-to-one equivalence across the five core targets. The differences include actual XML rules and connector wiring, not just recent dbt changes. Do not change the converter or supplied XML to make a reference score look better.
+
+## Pinned dates and revisions
+
+Commit timestamps below are author/committer dates from Git; where equal, the table gives one date. XML creation metadata is not a Git commit date or proof of the mapping's original authoring date.
+
+| Repository and role | Full commit SHA | Commit date | Meaning |
+|---|---|---|---|
+| Infinite Lambda export, sole fetched commit | `550a222cf73ecca3bd423b1f5770461914889615` | author `2026-08-11T10:16:11+02:00`; committer `2026-08-11T10:34:36+02:00` | Initial publication; repository API `created_at=2026-08-11T07:18:28Z`. |
+| Modern Jaffle Shop, before XML date | `f8f89f8d8af66ce3dd20844d41836cd5deac3f1c` | `2025-12-30T12:15:38+02:00` | Recommended historical candidate. |
+| Modern Jaffle Shop, before employer publication | `7d0d8de2d58edae06f0724a3892da0224bbf0f4a` | `2026-07-27T10:05:15-04:00` | Latest default-branch ancestor before employer commit. |
+| Modern Jaffle Shop, fetched main HEAD | `5beb145b00f5465ec759cfcdd9745e858818cf95` | `2026-09-15T18:14:13-06:00` | New dbt runtime requirement; not preferable as a historical candidate. |
+| Classic DuckDB, before XML date | `8d715f309a837287cc427f76157688e558bbbcae` | `2025-11-07T10:11:00-05:00` | Assignment-linked classic project; different source schema. |
+| Classic DuckDB, before employer publication | `36bde6cba69d962b83be1d52fc65a0dce1cb4ebb` | `2026-03-02T15:01:54+01:00` | Modernized tooling, same relevant classic model rules. |
+| Classic DuckDB, fetched default HEAD | `20cc904370818ceab08cf19f8fd196e9e81def88` | `2026-09-28T13:40:19+02:00` | Current fetched default branch; still the classic project. |
+
+Primary history links: [modern candidate](https://github.com/dbt-labs/jaffle-shop/tree/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c), [modern publication-date ancestor](https://github.com/dbt-labs/jaffle-shop/tree/7d0d8de2d58edae06f0724a3892da0224bbf0f4a), [classic XML-date ancestor](https://github.com/dbt-labs/jaffle_shop_duckdb/tree/8d715f309a837287cc427f76157688e558bbbcae), [classic publication-date ancestor](https://github.com/dbt-labs/jaffle_shop_duckdb/tree/36bde6cba69d962b83be1d52fc65a0dce1cb4ebb).
+
+The local supplied XML is byte-identical to the employer's pinned XML: SHA-256 **`0c34e0ed2965e117b5de54ca2b1d1333286beb928a6bc63eaf131b04982a3522`**. The source has `CREATION_DATE="12/31/2025 20:27:14"`, `REPOSITORY_VERSION="187.96"`, `VERSION="187"`, Oracle database metadata and Windows-1252 encoding. These identifiers do not establish a dbt version.
+
+## Why going back two months does not resolve the differences
+
+All five relevant modern model SQL files are byte-identical at the December candidate, the July publication-date ancestor and the fetched September HEAD. Their main-branch rules have not changed since 2024 in those paths. Historical feature branches include UDF experiments and altered customer joins, but none provides the XML's complete rules. These results come from full Git clones, not a shallow latest-file check.
+
+The classic project has customers/orders/payments, first and last name fields, order status and payment-based lifetime value. It does not provide the XML's products/supplies/item/store model family. It remains useful for a separately labelled compatible subset check, but cannot be a whole-project one-to-one oracle. [Classic customer staging](https://github.com/dbt-labs/jaffle_shop_duckdb/blob/8d715f309a837287cc427f76157688e558bbbcae/models/staging/stg_customers.sql), [classic orders staging](https://github.com/dbt-labs/jaffle_shop_duckdb/blob/8d715f309a837287cc427f76157688e558bbbcae/models/staging/stg_orders.sql), [classic customer mart](https://github.com/dbt-labs/jaffle_shop_duckdb/blob/8d715f309a837287cc427f76157688e558bbbcae/models/customers.sql).
+
+## Five-core-target rule comparison
+
+The XML side is read from the pinned source above. The modern reference column names/rules below use the recommended December pin. This is static compatibility analysis; execution must establish the actual measured differences.
+
+| XML target / modern model | Matching parts | Differences that a test must expose |
+|---|---|---|
+| `STG_CUSTOMERS` / `stg_customers` | `ID -> CUSTOMER_ID`, `NAME -> CUSTOMER_NAME`. | XML declares Oracle string lengths/nullability and empty-string boundary behavior; reference has no equivalent explicit guards. Clean nonempty strings are directly comparable. |
+| `STG_ORDERS` / `stg_orders` | Order, customer and location identifiers; source cents amounts; intended /100 calculations and day-level time. | XML target connectors cross the calculated money fields and the `*_CENTS` fields. Its date column is `ORDERED_AT_DAY`; its `DD-MM-YY` round trip can change the century, whereas reference `date_trunc` retains it. XML output types/scales differ from reference macro `numeric(16,2)`. XML sorting does not establish a general table-row-order requirement. |
+| `STG_PRODUCTS` / `stg_products` | Product ID, name, type and description; /100 operation; food/drink classification intent. | XML connects `PRICE/100` to `PRODUCT_PRICE_CENTS` and raw `PRICE` to `PRODUCT_PRICE`. It adds the cents column and trims/uppercases the type for flags. Reference `product_price` is /100, has no cents column and compares literal lowercase type. Reference flags are boolean in the candidate; XML flags are numeric. |
+| `STG_SUPPLIES` / `stg_supplies` | Supply ID, product ID, name and cost/100. | XML first inner-joins products, can drop unmatched supplies or multiply duplicate product keys, adds cost cents and converts `'Y'`/`'1'` into a numeric perishable flag. Reference has no products join; it generates `supply_uuid` and passes through `perishable` as `is_perishable_supply`. Candidate seed strings are `True`/`False`; converting them silently to `Y`/`N` would change an input and conceal a difference. |
+| core `CUSTOMERS` / `customers` | Customer/date/spend summary intent, grouping by customer, repeat-buyer classification. | XML reads `STG_ORDERS` directly, uses `COUNT(ORDER_ID)` rather than `COUNT(DISTINCT ORDER_ID)`, has different column names and replaces null metrics with zero. Its customer stream is MASTER in a Master Outer Join, which preserves the detail/order-summary stream; the reference left-joins summaries from customers and retains customers without orders. Reference reads the `orders` mart, not staging directly. Upstream staging money differences also reach lifetime totals. |
+
+Pinned modern sources: [customers staging](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/models/staging/stg_customers.sql), [orders staging](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/models/staging/stg_orders.sql), [products staging](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/models/staging/stg_products.sql), [supplies staging](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/models/staging/stg_supplies.sql), [customer mart](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/models/marts/customers.sql), [order mart](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/models/marts/orders.sql), [money macro](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/macros/cents_to_dollars.sql).
+
+## Runtime and data constraints
+
+- The modern December candidate declares project version `3.0.0` and dbt `>=1.5.0`. Its July ancestor requires `>=1.12.0`; September HEAD requires `>=2.0.0`. The local converter's locked dbt Core 1.12.6 can meet the first two declarations, but not September HEAD. Actual execution is still required. [December project](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/dbt_project.yml), [July project](https://github.com/dbt-labs/jaffle-shop/blob/7d0d8de2d58edae06f0724a3892da0224bbf0f4a/dbt_project.yml), [September project](https://github.com/dbt-labs/jaffle-shop/blob/5beb145b00f5465ec759cfcdd9745e858818cf95/dbt_project.yml).
+- The modern candidate is geared toward dbt Cloud/cloud warehouses, not an out-of-box DuckDB profile. A local DuckDB profile is required. Source tables are in schema `raw`, and the checked-in seeds are enabled through `load_source_data: true`. Use a local temporary database. [Candidate README](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/README.md), [source declarations](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/models/staging/__sources.yml).
+- Candidate packages pin `dbt_utils=1.1.1`, `dbt_date=0.10.0`, but audit-helper uses mutable `main`. Reproducible test setup must pin resolved dependency revisions or state exactly which unused project parts/packages it excludes. Do not claim an unchanged full-project run if the harness extracts only selected model SQL or changes project configuration. [Packages](https://github.com/dbt-labs/jaffle-shop/blob/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/packages.yml).
+- The classic XML-date candidate declares dbt `>=1.0.0,<2.0.0`, but its old requirements file pins dbt Core 1.9.4, dbt-duckdb 1.9.1 and DuckDB 1.2.0. The March classic project modernizes to Python >=3.13, dbt-duckdb >=1.10.1 and dbt Core >=1.11.0. State whether using old upstream locks or the converter's current locked runtime. [Classic old requirements](https://github.com/dbt-labs/jaffle_shop_duckdb/blob/8d715f309a837287cc427f76157688e558bbbcae/requirements.txt), [classic modern project](https://github.com/dbt-labs/jaffle_shop_duckdb/blob/36bde6cba69d962b83be1d52fc65a0dce1cb4ebb/pyproject.toml).
+- The modern candidate has checked-in synthetic sample CSVs: 935 customer rows, 61,948 order rows, 10 product rows, 65 supply rows, plus item/store data. These are available locally without running the generator or installing the unrelated old generator dependency set. This row count is source inspection, not an executed comparison. [Pinned seeds](https://github.com/dbt-labs/jaffle-shop/tree/f8f89f8d8af66ce3dd20844d41836cd5deac3f1c/seeds/jaffle-data).
+
+## Recommendation for the comparison
+
+1. Pin the modern December revision for the main schema-compatible reference and preserve its actual SQL. Identify it as the employer-README reference; separately identify the assignment-linked classic reference.
+2. Use the same raw rows for generated and reference models. Record any required field-name or physical-type bridge explicitly. A reference adapter must not copy XML calculations into the reference SQL or conceal known rule differences.
+3. Run genuine reference models and generated models, then compare schema, row counts, key/duplicate behavior and per-column values. Include the unmodified upstream seed dataset and small controlled edge datasets so ordinary clean data does not conceal join/null/case/count differences.
+4. Keep strict full-model equality separate from comparable-aspect checks. Different column names may have an explicit documented name bridge; missing columns, different types and changed money rules remain visible. Report denominator and exclusions for every rate. Correct rejection/unsupported scope is distinct from result accuracy.
+5. Attribute observed mismatches after checking both XML and pinned reference: converter defect, source/reference rule difference, input representation difference or unresolved. A classification is not a passing equivalence result.
+6. Report tested revisions, runtime, fixtures and actual outcomes in the existing evidence/history/report locations. The aggregate CSV requested by Saar should derive from measured rows, with one row per clear aspect/criterion and explicit numerators, denominators and non-comparable/unsupported counts.
+
+## Reading method and limits
+
+The GitHub connector supplied repository metadata and employer commit metadata. Full public HTTPS clones were pulled to ignored `.generated/reference-research/{flowline-pwc-demo,jaffle-shop,jaffle_shop_duckdb}`. The employer clone has 1 reachable commit; the modern and classic clones have 282 and 172 reachable commits respectively. The latter two have 45 and 33 fetched remote branches and no fetched tags. These numbers describe the fetched histories as of this research, not every deleted branch or unreachable object ever published.
+
+Commands included `git log --all`, default-branch `git rev-list --before`, `git show <sha>:<path>`, `git diff` across the three modern candidate dates, and inspection of all distinct reachable contents in the five modern model paths. Distinct contents were 6 customer-staging, 12 order-staging, 4 product-staging, 5 supplies-staging and 7 customer-mart versions, including comments/experimental branches. Every inspected supplies version lacks the XML products join and has a surrogate key. Historical filenames confirm these paths cover the products/supplies staging files in the fetched history. This gives concrete evidence against a whole-model exact match; it cannot prove what private/unpublished version the author used.
+
+No converter, XML, upstream model SQL or test files were changed during this research. No dbt, pytest or comparison test was executed by this research task.
+
+
+## Execution follow-through
+
+The later approved reference Build now executes these pins; its measured outcomes are in [validation](../reports/validation.md) and [accuracy by aspect](../reports/accuracy-by-aspect.csv), with exact [retained bytes/configuration](../fixtures/references/README.md). The original classic project runs with original seeds under the repository's current lock. Modern runs a disclosed eight-model dependency closure on aligned controlled inputs; full modern-project/original-modern-seed execution is not claimed. These executions preserve the static finding: date proximity does not establish ancestry, and actual XML/reference rule differences prevent a whole-model one-to-one oracle. The earlier source-inspection counts above remain source-inspection evidence only. Classic and dbt_utils license files are retained; the modern December revision has no LICENSE file and no license grant is asserted.
