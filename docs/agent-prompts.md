@@ -1142,3 +1142,9 @@ U97 — publish and submit the assessment; prepare an email reply draft:
 ```text
 lets push it and draft a short email to repaly to the hr (she sadi an email update), and submit the link with short inline note in that submit page
 ```
+
+U98 — approve the saved recruiter reply:
+
+```text
+ok aproved
+```
