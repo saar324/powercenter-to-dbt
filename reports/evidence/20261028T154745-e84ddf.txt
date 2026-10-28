@@ -1,0 +1,91 @@
+tests/test_source_report.py::test_whole_export_inventory_exact_uses_bindings_and_contexts [call]: passed
+tests/test_source_report.py::test_unused_exact_definitions_missing_and_unknown_metadata [call]: passed
+tests/test_source_report.py::test_catalogue_uses_exact_trimmed_case_insensitive_aliases[ oracle -Oracle] [call]: passed
+tests/test_source_report.py::test_catalogue_uses_exact_trimmed_case_insensitive_aliases[Postgres-PostgreSQL] [call]: passed
+tests/test_source_report.py::test_catalogue_uses_exact_trimmed_case_insensitive_aliases[MYSQL-MySQL] [call]: passed
+tests/test_source_report.py::test_catalogue_uses_exact_trimmed_case_insensitive_aliases[ Microsoft SQL Server -SQL Server] [call]: passed
+tests/test_source_report.py::test_catalogue_uses_exact_trimmed_case_insensitive_aliases[Oracle Compatible-None] [call]: passed
+tests/test_source_report.py::test_connection_metadata_uncertainty_is_explicit[conflicting_subtype] [call]: passed
+tests/test_source_report.py::test_connection_metadata_uncertainty_is_explicit[absent_type] [call]: passed
+tests/test_source_report.py::test_connection_metadata_uncertainty_is_explicit[absent_connection_name] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[disagree] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[wrong_type] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[missing_source] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[absent] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[ambiguous_dsq] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[unknown_task] [call]: passed
+tests/test_source_report.py::test_missing_definition_remains_an_unresolved_use [call]: passed
+tests/test_source_report.py::test_binding_availability_and_ingestion_are_separate_for_unselected_use [call]: passed
+tests/test_source_report.py::test_failed_producer_never_becomes_external_ingestion [call]: passed
+tests/test_source_report.py::test_report_only_skips_planning_compilation_and_database [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration0] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration1] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration2] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration3] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration4] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[False] [call]: passed
+tests/test_source_report.py::test_report_rejects_conflicting_cli_options[options0] [call]: passed
+tests/test_source_report.py::test_report_rejects_conflicting_cli_options[options1] [call]: passed
+tests/test_source_report.py::test_actual_cli_report_is_deterministic_and_conversion_artifact_is_opt_in [call]: passed
+tests/test_source_report.py::test_report_output_protection_and_atomic_write_failure [call]: passed
+tests/test_graph_cli.py::test_inventory_is_complete_and_exact [call]: passed
+tests/test_graph_cli.py::test_core_selection_includes_exact_bound_producer_closure [call]: passed
+tests/test_graph_cli.py::test_unbound_inputs_are_declared_external [call]: passed
+tests/test_graph_cli.py::test_unknown_or_short_selection_rejected[CUSTOMERS] [call]: passed
+tests/test_graph_cli.py::test_unknown_or_short_selection_rejected[REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/ABSENT] [call]: passed
+tests/test_graph_cli.py::test_unknown_bindings_rejected[STG_ORDERS-REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS] [call]: passed
+tests/test_graph_cli.py::test_unknown_bindings_rejected[REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_MARTS_CORE/STG_ORDERS2-REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/ABSENT] [call]: passed
+tests/test_graph_cli.py::test_unknown_config_and_duplicate_json_keys [call]: passed
+tests/test_graph_cli.py::test_missing_connector_blocks_only_affected_and_consumers [call]: passed
+tests/test_graph_cli.py::test_missing_port_diagnostic [call]: passed
+tests/test_graph_cli.py::test_cycle_is_detected [call]: passed
+tests/test_graph_cli.py::test_incompatible_binding_and_missing_consumed_column [call]: passed
+tests/test_graph_cli.py::test_unsupported_blocks_producer_and_retains_independent_outputs[unknown_expression] [call]: passed
+tests/test_graph_cli.py::test_unsupported_blocks_producer_and_retains_independent_outputs[unknown_transformation] [call]: passed
+tests/test_graph_cli.py::test_unsupported_blocks_producer_and_retains_independent_outputs[required_preparation] [call]: passed
+tests/test_graph_cli.py::test_required_qualifier_override_is_not_ignored [call]: passed
+tests/test_graph_cli.py::test_collision_is_rejected [call]: passed
+tests/test_graph_cli.py::test_entity_declarations_refused[<!DOCTYPE POWERMART [<!ENTITY e "expand">]><POWERMART>&e;</POWERMART>] [call]: passed
+tests/test_graph_cli.py::test_entity_declarations_refused[<!DOCTYPE POWERMART [<!ENTITY e SYSTEM "file:///nonexistent">]><POWERMART>&e;</POWERMART>] [call]: passed
+tests/test_graph_cli.py::test_external_dtd_is_never_fetched [call]: passed
+tests/test_graph_cli.py::test_malformed_and_unknown_roots_rejected[<broken>] [call]: passed
+tests/test_graph_cli.py::test_malformed_and_unknown_roots_rejected[<OTHER/>] [call]: passed
+tests/test_graph_cli.py::test_destination_refusal_preserves_existing_files [call]: passed
+tests/test_graph_cli.py::test_deterministic_files_include_manifest_and_empty_directory [call]: passed
+tests/test_graph_cli.py::test_cli_success_partial_failure_and_inventory [call]: passed
+tests/test_graph_cli.py::test_cleanup_requires_correct_explicit_original_relation [call]: passed
+tests/test_graph_cli.py::test_supplied_hashes_are_unchanged [call]: passed
+tests/test_graph_cli.py::test_conversion_never_opens_database_or_executes_imported_sql [call]: passed
+tests/test_graph_cli.py::test_installed_cli_help [call]: passed
+tests/test_graph_cli.py::test_session_required_preparation_override_is_not_ignored [call]: passed
+tests/test_graph_cli.py::test_unknown_storage_semantics_are_rejected [call]: passed
+tests/test_graph_cli.py::test_cross_mapping_binding_cycle_is_rejected [call]: passed
+tests/test_graph_cli.py::test_incompatible_session_modes_preserve_independent_outputs[Insert-NO] [call]: passed
+tests/test_graph_cli.py::test_incompatible_session_modes_preserve_independent_outputs[Treat source rows as-Delete] [call]: passed
+tests/test_graph_cli.py::test_incompatible_session_modes_preserve_independent_outputs[Incremental Aggregation-YES] [call]: passed
+tests/test_graph_cli.py::test_malformed_metadata_keeps_independent_selected_paths[source] [call]: passed
+tests/test_graph_cli.py::test_malformed_metadata_keeps_independent_selected_paths[transformation] [call]: passed
+tests/test_graph_cli.py::test_malformed_metadata_keeps_independent_selected_paths[target] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[None-SOURCE] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[None-TARGET] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[0-SOURCE] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[0-TARGET] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[-1-SOURCE] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[-1-TARGET] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[bad-SOURCE] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[bad-TARGET] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[2-SOURCE] [call]: passed
+tests/test_graph_cli.py::test_source_target_ordinals_are_positive_and_unique[2-TARGET] [call]: passed
+tests/test_graph_cli.py::test_output_only_qualifier_port_is_contextually_unsupported [call]: passed
+tests/test_graph_cli.py::test_falsey_nonobject_configuration_is_rejected[configuration0] [call]: passed
+tests/test_graph_cli.py::test_falsey_nonobject_configuration_is_rejected[False] [call]: passed
+tests/test_graph_cli.py::test_falsey_nonobject_configuration_is_rejected[0] [call]: passed
+tests/test_graph_cli.py::test_falsey_nonobject_configuration_is_rejected[] [call]: passed
+tests/test_graph_cli.py::test_aggregator_rejects_ungrouped_and_nested_aggregate_shapes[ORDER_TOTAL] [call]: passed
+tests/test_graph_cli.py::test_aggregator_rejects_ungrouped_and_nested_aggregate_shapes[SUM(ORDER_TOTAL) + TAX_PAID] [call]: passed
+tests/test_graph_cli.py::test_aggregator_rejects_ungrouped_and_nested_aggregate_shapes[SUM(SUM(ORDER_TOTAL))] [call]: passed
+tests/test_graph_cli.py::test_deep_expression_keeps_independent_outputs [call]: passed
+command: uv run pytest -q tests/test_source_report.py tests/test_graph_cli.py
+revision: 57ca4ef43a516b3b8481683c0e48e8ab5e6002ae+code-sha256:f78775426472e5fe248a481710d04fd2c26b31139c5df77fa9d3debeb4b4ddb2
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 0

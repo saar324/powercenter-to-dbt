@@ -1,0 +1,48 @@
+tests/test_source_report.py::test_whole_export_inventory_exact_uses_bindings_and_contexts [call]: passed
+tests/test_source_report.py::test_unused_exact_definitions_missing_and_unknown_metadata [call]: passed
+tests/test_source_report.py::test_catalogue_uses_exact_trimmed_case_insensitive_aliases[ oracle -Oracle] [call]: passed
+tests/test_source_report.py::test_catalogue_uses_exact_trimmed_case_insensitive_aliases[Postgres-PostgreSQL] [call]: passed
+tests/test_source_report.py::test_catalogue_uses_exact_trimmed_case_insensitive_aliases[MYSQL-MySQL] [call]: passed
+tests/test_source_report.py::test_catalogue_uses_exact_trimmed_case_insensitive_aliases[ Microsoft SQL Server -SQL Server] [call]: passed
+tests/test_source_report.py::test_catalogue_uses_exact_trimmed_case_insensitive_aliases[Oracle Compatible-None] [call]: passed
+tests/test_source_report.py::test_connection_metadata_uncertainty_is_explicit[conflicting_subtype] [call]: passed
+tests/test_source_report.py::test_connection_metadata_uncertainty_is_explicit[absent_type] [call]: passed
+tests/test_source_report.py::test_connection_metadata_uncertainty_is_explicit[absent_connection_name] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[disagree] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[wrong_type] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[missing_source] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[absent] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[ambiguous_dsq] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[unknown_task] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[missing_qualifier_declaration] [call]: passed
+tests/test_source_report.py::test_invalid_reader_associations_are_preserved_unassigned[missing_session_declaration] [call]: passed
+tests/test_source_report.py::test_missing_definition_remains_an_unresolved_use [call]: passed
+tests/test_source_report.py::test_binding_availability_and_ingestion_are_separate_for_unselected_use [call]: passed
+tests/test_source_report.py::test_failed_producer_never_becomes_external_ingestion [call]: passed
+tests/test_source_report.py::test_report_only_skips_planning_compilation_and_database [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration0] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration1] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration2] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration3] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration4] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[False] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration6] [call]: passed
+tests/test_source_report.py::test_report_binding_configuration_uses_exact_existing_contract[configuration7] [call]: passed
+tests/test_source_report.py::test_report_rejects_conflicting_cli_options[options0] [call]: passed
+tests/test_source_report.py::test_report_rejects_conflicting_cli_options[options1] [call]: passed
+tests/test_source_report.py::test_actual_cli_report_is_deterministic_and_conversion_artifact_is_opt_in [call]: passed
+tests/test_source_report.py::test_report_output_protection_and_atomic_write_failure [call]: passed
+tests/test_source_report.py::test_report_only_keeps_fatal_xml_and_duplicate_config_guards [call]: passed
+tests/test_source_report.py::test_direct_source_reader_with_invalid_dsq_stays_unassigned [call]: passed
+tests/test_source_report.py::test_definition_and_reader_share_connection_completeness_rule[CONNECTIONTYPE-None] [call]: passed
+tests/test_source_report.py::test_definition_and_reader_share_connection_completeness_rule[CONNECTIONTYPE-  ] [call]: passed
+tests/test_source_report.py::test_definition_and_reader_share_connection_completeness_rule[CONNECTIONNAME-  ] [call]: passed
+tests/test_source_report.py::test_definition_and_reader_share_connection_completeness_rule[CONNECTIONSUBTYPE-  ] [call]: passed
+tests/test_source_report.py::test_reader_subtype_conflict_does_not_invent_absent_source_type [call]: passed
+tests/test_source_report.py::test_report_catalogue_and_row_lists_are_independent [call]: passed
+tests/test_source_report.py::test_worklet_reader_context_is_explicitly_unsupported [call]: passed
+tests/test_source_report.py::test_used_same_name_definitions_keep_exact_metadata_binding_and_reader_ownership [call]: passed
+command: uv run pytest -q tests/test_source_report.py
+revision: 57ca4ef43a516b3b8481683c0e48e8ab5e6002ae+code-sha256:c911d0bd085dc9a3788bd68e57faaa344e6fb1c6cfffac9d5fdc955458242c4f
+environment: Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1
+exit status: 0

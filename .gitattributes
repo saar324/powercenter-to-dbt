@@ -3,6 +3,8 @@ reports/evidence/*.txt -whitespace
 reports/evidence/**/*.txt -whitespace
 # csv.DictWriter uses standard CRLF record endings.
 reports/test-runs.csv whitespace=cr-at-eol
+# Preserve exact captured user prompts, including trailing spaces.
+docs/agent-prompts.md -whitespace
 # Preserve byte-pinned upstream fixtures, including their original whitespace.
 fixtures/references/classic/** -whitespace
 fixtures/references/modern/** -whitespace

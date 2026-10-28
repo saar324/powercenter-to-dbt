@@ -123,11 +123,59 @@ class Mapping:
 
 
 @dataclass(frozen=True)
+class SourceDefinition:
+    repository: str
+    folder: str
+    name: str
+    database_type: str | None
+    owner_name: str | None
+    database_name: str | None
+
+    @property
+    def identity(self) -> tuple[str, str, str]:
+        return self.repository, self.folder, self.name
+
+
+@dataclass(frozen=True)
+class SourceAssociation:
+    mapping: MappingKey
+    source_instance: str | None
+    qualifier_instance: str | None
+    provenance: str
+    session: str | None = None
+    workflow: str | None = None
+    task_instance: str | None = None
+    diagnostics: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class ReaderConnection:
+    repository: str
+    folder: str
+    mapping: MappingKey | None
+    workflow: str | None
+    session: str | None
+    task_instance: str | None
+    reader_instance: str | None
+    provenance: str
+    connection_name: str | None
+    connection_subtype: str | None
+    connection_type: str | None
+    reference_name: str | None
+    source_uses: tuple[InstanceKey, ...] = ()
+    association_provenance: tuple[str, ...] = ()
+    diagnostics: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class Export:
     mappings: dict[MappingKey, Mapping]
     sha256: str
     metadata: dict[str, str]
     unconverted_commands: tuple[str, ...] = ()
+    source_definitions: tuple[SourceDefinition, ...] = ()
+    source_associations: tuple[SourceAssociation, ...] = ()
+    reader_connections: tuple[ReaderConnection, ...] = ()
 
     @property
     def targets(self) -> dict[InstanceKey, Node]:

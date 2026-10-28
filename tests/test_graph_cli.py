@@ -273,7 +273,7 @@ def test_installed_cli_help():
     import sys
     result = subprocess.run([str(Path(sys.executable).parent / 'pwc-to-dbt'), '--help'], capture_output=True, text=True, timeout=15)
     assert result.returncode == 0
-    assert '--bindings' in result.stdout and '--target' in result.stdout and '--inventory' in result.stdout
+    assert all(option in result.stdout for option in ['--bindings', '--target', '--inventory', '--source-report'])
 
 
 @pytest.mark.negative

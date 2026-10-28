@@ -1,0 +1,44 @@
+{
+  "baseline_commit": "57ca4ef43a516b3b8481683c0e48e8ab5e6002ae",
+  "input_sha256": "0c34e0ed2965e117b5de54ca2b1d1333286beb928a6bc63eaf131b04982a3522",
+  "cases": {
+    "required": {
+      "exit_code": 0,
+      "files": 13,
+      "all_file_hashes_match_baseline": true
+    },
+    "all": {
+      "exit_code": 1,
+      "files": 17,
+      "all_file_hashes_match_baseline": true
+    }
+  },
+  "verified_run": "20261028T160227-d20777",
+  "verified_snapshot": "57ca4ef43a516b3b8481683c0e48e8ab5e6002ae+code-sha256:c911d0bd085dc9a3788bd68e57faaa344e6fb1c6cfffac9d5fdc955458242c4f",
+  "test_counts": {
+    "tests/test_source_report.py": 44,
+    "tests/test_graph_cli.py": 57,
+    "tests/test_dbt_results.py": 12,
+    "__pytest_invocation__": 1
+  },
+  "sample_report_sha256": "6a322275d0dc71493a83a44e49dbf3a601c4d70c85ed1c008867cad1ebcb7beb",
+  "sample_report_counts": {
+    "definitions_by_classification": {
+      "external": 7,
+      "mixed": 5
+    },
+    "definitions_by_connector_status": {
+      "available": 12
+    },
+    "source_definitions": 12,
+    "source_uses": 28,
+    "unresolved_source_uses": 0,
+    "uses_by_classification": {
+      "bound": 12,
+      "external": 16
+    }
+  },
+  "reader_references": 35,
+  "source_associations": 56,
+  "task_dsq_declarations": 0
+}

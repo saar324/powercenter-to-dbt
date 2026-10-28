@@ -122,15 +122,12 @@ def _preparation(node: Node, relation_override: dict | None) -> tuple[Preparatio
     return tuple(intents)
 
 
-def plan(export: Export, selected: list[str] | None = None, config: dict | None = None) -> PlanningResult:
+def resolve_configuration(export: Export, config: dict | None = None) -> tuple[dict, dict]:
+    """Validate exact configuration identities without traversing target graphs."""
     config = {} if config is None else config
     if not isinstance(config, dict) or set(config) - {"bindings", "target_relations"}:
         raise ConversionError("error", "Configuration accepts bindings and target_relations objects only")
     targets, sources = export.targets, export.sources
-    names = {key: slug("__".join((key.mapping.repository, key.mapping.folder, key.mapping.mapping, key.instance))) for key in targets}
-    _check_collisions(names, "model name")
-    source_names = {key: slug("__".join((key.mapping.repository, key.mapping.folder, key.mapping.mapping, key.instance))) for key in sources}
-    _check_collisions(source_names, "source name")
     bindings = {}
     raw_bindings = config.get("bindings", {})
     raw_relations = config.get("target_relations", {})
@@ -141,6 +138,16 @@ def plan(export: Export, selected: list[str] | None = None, config: dict | None 
             raise ConversionError("error", "Binding identities must be strings")
         bindings[_resolve(source, sources, "source")] = _resolve(target, targets, "target")
     relations = {_resolve(k, targets, "target relation"): v for k, v in raw_relations.items()}
+    return bindings, relations
+
+
+def plan(export: Export, selected: list[str] | None = None, config: dict | None = None) -> PlanningResult:
+    targets, sources = export.targets, export.sources
+    names = {key: slug("__".join((key.mapping.repository, key.mapping.folder, key.mapping.mapping, key.instance))) for key in targets}
+    _check_collisions(names, "model name")
+    source_names = {key: slug("__".join((key.mapping.repository, key.mapping.folder, key.mapping.mapping, key.instance))) for key in sources}
+    _check_collisions(source_names, "source name")
+    bindings, relations = resolve_configuration(export, config)
     requested = tuple(sorted({_resolve(value, targets, "selected target") for value in selected})) if selected is not None else tuple(sorted(targets))
     outcomes, plans, visiting = {}, {}, set()
 

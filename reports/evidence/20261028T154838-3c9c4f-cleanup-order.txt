@@ -1,0 +1,57 @@
+delete from "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers"
+      
+17:48:53.445565 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+17:48:53.452946 [debug] [Thread-1 (]: Writing runtime sql for node "model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers"
+17:48:53.453898 [debug] [Thread-1 (]: Using duckdb connection "model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers"
+17:48:53.454363 [debug] [Thread-1 (]: On model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers: /* {"app": "dbt", "dbt_version": "1.12.6", "profile_name": "powercenter_converted", "target_name": "local", "node_id": "model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers"} */
+
+  
+    
+    
+
+    create  table
+      "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers__dbt_tmp"
+  
+    as (
+      
+
+WITH
+"step_raw_customers" AS (
+SELECT
+  (CASE WHEN length(NULLIF(CAST("ID" AS VARCHAR), '')) > 100 THEN CAST(CAST('pwc: string exceeds declared precision' AS INTEGER) AS VARCHAR) ELSE NULLIF(CAST("ID" AS VARCHAR), '') END) AS "ID",
+  (CASE WHEN length(NULLIF(CAST("NAME" AS VARCHAR), '')) > 200 THEN CAST(CAST('pwc: string exceeds declared precision' AS INTEGER) AS VARCHAR) ELSE NULLIF(CAST("NAME" AS VARCHAR), '') END) AS "NAME"
+FROM "controlled"."RAW"."RAW_CUSTOMERS"
+),
+"step_sq_raw_customers" AS (
+SELECT
+  (CASE WHEN length(CAST((CASE WHEN length(CAST(p0."ID" AS VARCHAR)) > 100 THEN CAST(CAST('pwc: string exceeds declared precision' AS INTEGER) AS VARCHAR) ELSE CAST(p0."ID" AS VARCHAR) END) AS VARCHAR)) > 100 THEN CAST(CAST('pwc: string exceeds declared precision' AS INTEGER) AS VARCHAR) ELSE CAST((CASE WHEN length(CAST(p0."ID" AS VARCHAR)) > 100 THEN CAST(CAST('pwc: string exceeds declared precision' AS INTEGER) AS VARCHAR) ELSE CAST(p0."ID" AS VARCHAR) END) AS VARCHAR) END) AS "ID",
+  (CASE WHEN length(CAST((CASE WHEN length(CAST(p0."NAME" AS VARCHAR)) > 200 THEN CAST(CAST('pwc: string exceeds declared precision' AS INTEGER) AS VARCHAR) ELSE CAST(p0."NAME" AS VARCHAR) END) AS VARCHAR)) > 200 THEN CAST(CAST('pwc: string exceeds declared precision' AS INTEGER) AS VARCHAR) ELSE CAST((CASE WHEN length(CAST(p0."NAME" AS VARCHAR)) > 200 THEN CAST(CAST('pwc: string exceeds declared precision' AS INTEGER) AS VARCHAR) ELSE CAST(p0."NAME" AS VARCHAR) END) AS VARCHAR) END) AS "NAME"
+FROM "step_raw_customers" p0
+)
+SELECT
+  (CASE WHEN length(NULLIF(CAST(target_input."ID" AS VARCHAR), '')) > 100 THEN CAST(CAST('pwc: string exceeds declared precision' AS INTEGER) AS VARCHAR) ELSE NULLIF(CAST(target_input."ID" AS VARCHAR), '') END) AS "CUSTOMER_ID",
+  (CASE WHEN length(NULLIF(CAST(target_input."NAME" AS VARCHAR), '')) > 200 THEN CAST(CAST('pwc: string exceeds declared precision' AS INTEGER) AS VARCHAR) ELSE NULLIF(CAST(target_input."NAME" AS VARCHAR), '') END) AS "CUSTOMER_NAME"
+FROM "step_sq_raw_customers" AS target_input
+    );
+  
+  
+17:48:53.458501 [debug] [Thread-1 (]: SQL status: OK in 0.004 seconds
+17:48:53.464146 [debug] [Thread-1 (]: Using duckdb connection "model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers"
+17:48:53.464684 [debug] [Thread-1 (]: On model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers: /* {"app": "dbt", "dbt_version": "1.12.6", "profile_name": "powercenter_converted", "target_name": "local", "node_id": "model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers"} */
+
+    SELECT index_name
+    FROM duckdb_indexes()
+    WHERE schema_name = 'converted'
+      AND table_name = 'repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers'
+  
+17:48:53.465848 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+17:48:53.467744 [debug] [Thread-1 (]: Using duckdb connection "model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers"
+17:48:53.468273 [debug] [Thread-1 (]: On model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers: /* {"app": "dbt", "dbt_version": "1.12.6", "profile_name": "powercenter_converted", "target_name": "local", "node_id": "model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers"} */
+
+    SELECT COUNT(*) as remaining_indexes
+    FROM duckdb_indexes()
+    WHERE schema_name = 'converted'
+      AND table_name = 'repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers'
+  
+17:48:53.469711 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+17:48:53.474402 [debug] [Thread-1 (]: Using duckdb connection "model.powercenter_converted.repo_jaffleshop__flowline_demo_jaffle

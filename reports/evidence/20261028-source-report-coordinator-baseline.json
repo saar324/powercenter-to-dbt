@@ -1,0 +1,43 @@
+{
+  "baseline_commit": "57ca4ef43a516b3b8481683c0e48e8ab5e6002ae",
+  "input_sha256": "0c34e0ed2965e117b5de54ca2b1d1333286beb928a6bc63eaf131b04982a3522",
+  "cases": {
+    "required": {
+      "exit_code": 0,
+      "files": 13,
+      "all_file_hashes_match_baseline": true
+    },
+    "all": {
+      "exit_code": 1,
+      "files": 17,
+      "all_file_hashes_match_baseline": true
+    }
+  },
+  "sample_report_sha256": "ea232d57fd9f2a415449db736873fc3728859edbe1c2cb28518b2ab376a93393",
+  "sample_report_counts": {
+    "definitions_by_classification": {
+      "external": 7,
+      "mixed": 5
+    },
+    "definitions_by_connector_status": {
+      "available": 12
+    },
+    "source_definitions": 12,
+    "source_uses": 28,
+    "unresolved_source_uses": 0,
+    "uses_by_classification": {
+      "bound": 12,
+      "external": 16
+    }
+  },
+  "verified_run": "20261028T154947-c70eea",
+  "verified_snapshot": "57ca4ef43a516b3b8481683c0e48e8ab5e6002ae+code-sha256:9c366fb67beff38030783253ec0c7e5c7e5e902f6f7b9e9b8748f60ee312257d",
+  "matrix_passed_tests": {
+    "Whole export": "test_actual_cli_report_is_deterministic_and_conversion_artifact_is_opt_in",
+    "Reuse": "test_unused_exact_definitions_missing_and_unknown_metadata",
+    "Binding": "test_failed_producer_never_becomes_external_ingestion",
+    "Metadata": "test_connection_metadata_uncertainty_is_explicit",
+    "Session context": "test_invalid_reader_associations_are_preserved_unassigned",
+    "CLI": "test_actual_cli_report_is_deterministic_and_conversion_artifact_is_opt_in"
+  }
+}

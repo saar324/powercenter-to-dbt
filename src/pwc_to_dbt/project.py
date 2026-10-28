@@ -69,7 +69,7 @@ def _model(artifact: ModelArtifact) -> str:
 
 
 def write_project(destination: str | Path, export: Export, planning: PlanningResult,
-                  artifacts: dict, outcomes: dict) -> dict:
+                  artifacts: dict, outcomes: dict, *, report: dict | None = None) -> dict:
     destination = Path(destination).absolute()
     if destination.exists() and (not destination.is_dir() or any(destination.iterdir())):
         raise ConversionError("error", f"Destination must be absent or empty: {destination}")
@@ -111,6 +111,8 @@ def write_project(destination: str | Path, export: Export, planning: PlanningRes
                 "unconverted_workflow_commands": list(export.unconverted_commands),
                 "verification": "emission only; execution and result equivalence require separate tests"}
     files["conversion-manifest.json"] = json_text(manifest)
+    if report is not None:
+        files["fivetran-source-report.json"] = json_text(report)
     files["README.md"] = ("# Generated DuckDB dbt project\n\nSupply the declared external input tables, then run from this directory:\n\n"
                            "```sh\ndbt run --project-dir . --profiles-dir .\n```\n\n"
                            "Set PWC_DUCKDB_PATH to an absolute local DuckDB file if needed. Input tables use their exported schema/table names. "

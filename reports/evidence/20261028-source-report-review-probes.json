@@ -1,0 +1,96 @@
+{
+  "missing_qualifier": {
+    "assigned": true,
+    "diagnostics": [
+      "qualifier source association declaration is absent"
+    ]
+  },
+  "missing_dsq": {
+    "assigned": true,
+    "diagnostics": [
+      "session DSQ source association declaration is absent"
+    ]
+  },
+  "direct_invalid_dsq": {
+    "repository": "REPO_Jaffleshop",
+    "folder": "FLOWLINE_DEMO_JAFFLESHOP",
+    "mapping": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL",
+    "workflow": null,
+    "session": "s_FL_JS_STAGING_FULL",
+    "task_instance": null,
+    "reader_instance": "RAW_CUSTOMERS",
+    "provenance": "SESSION/SESSIONEXTENSION/CONNECTIONREFERENCE",
+    "connection_name": "MART_Jaffleshop",
+    "connection_subtype": "Oracle",
+    "connection_type": "Relational",
+    "reference_name": "DB Connection",
+    "source_uses": [
+      "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/RAW_CUSTOMERS"
+    ],
+    "association_provenance": [
+      "SESSIONEXTENSION/SINSTANCENAME (SOURCE)"
+    ],
+    "diagnostics": [],
+    "id": "reader-0036"
+  },
+  "inherited_associations": {
+    "xml_task_dsq_declarations": 0,
+    "report_task_dsq_associations": 7
+  },
+  "association_diagnostics": {
+    "associations": [
+      [],
+      [],
+      []
+    ],
+    "reader": [
+      "qualifier and session source associations disagree"
+    ]
+  },
+  "source_only_error": "No mappings found",
+  "incomplete_summary": {
+    "reader": [
+      "missing CONNECTIONTYPE"
+    ],
+    "definition": [
+      "connection names differ across contexts; effective runtime connection is unresolved"
+    ]
+  },
+  "conflict_wording": [
+    "connection names differ across contexts; effective runtime connection is unresolved",
+    "missing DATABASETYPE",
+    "source database type and associated connection subtype declarations conflict"
+  ],
+  "shared_mutability": {
+    "next_report_review_date": "changed",
+    "other_row_checks": []
+  },
+  "worklet": {
+    "repository": "REPO_Jaffleshop",
+    "folder": "FLOWLINE_DEMO_JAFFLESHOP",
+    "mapping": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL",
+    "workflow": null,
+    "session": "s_FL_JS_STAGING_FULL",
+    "task_instance": null,
+    "reader_instance": "SQ_RAW_CUSTOMERS",
+    "provenance": "SESSION/SESSIONEXTENSION/CONNECTIONREFERENCE",
+    "connection_name": "MART_Jaffleshop",
+    "connection_subtype": "Oracle",
+    "connection_type": "Relational",
+    "reference_name": "DB Connection",
+    "source_uses": [
+      "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/RAW_CUSTOMERS"
+    ],
+    "association_provenance": [
+      "INSTANCE/ASSOCIATED_SOURCE_INSTANCE",
+      "SESSIONEXTENSION/DSQINSTNAME"
+    ],
+    "diagnostics": [],
+    "id": "reader-0001"
+  },
+  "missing_producer_reason": {
+    "outcome_reason": "REPO_Jaffleshop/FLOWLINE_DEMO_JAFFLESHOP/m_FL_JS_STAGING_FULL/STG_ORDERS: instance EXP_ORDERS: Unsupported function or arity UNKNOWN/1",
+    "use_diagnostics": [],
+    "availability": "failed_or_blocked"
+  }
+}

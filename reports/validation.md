@@ -1,6 +1,26 @@
 # Measured validation
 
-Final coordinator invocation: `uv run pytest -q`, run **`20261022T184606-3e7210`** on 22 October 2026: **256 passed, 0 failed, 0 errors, 0 skipped**, in **84.83 seconds**, plus one successful invocation record. This includes the original 149 checks and 107 reference/reporting checks. Earlier 247-pass full and 106-pass correction runs remain historical; they are not mixed into this final result. Test success and measured reference agreement are separate measures.
+## Source report: final affected gate on 28 October 2026
+
+Final coordinator command: `uv run pytest -q tests/test_source_report.py tests/test_graph_cli.py tests/test_dbt_results.py`. Run **`20261028T160227-d20777`** passed **113 checks, 0 failures, 0 errors and 0 skips** in **10.16 seconds**. Tested snapshot: `57ca4ef43a516b3b8481683c0e48e8ab5e6002ae+code-sha256:c911d0bd085dc9a3788bd68e57faaa344e6fb1c6cfffac9d5fdc955458242c4f`. Environment: `Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1`. [Transcript](evidence/20261028T160227-d20777.txt), [actual CSV history](test-runs.csv), [final artifact receipt](evidence/20261028-source-report-final-receipt.json), [native implementation/review record](../_bmad-output/implementation-artifacts/spec-fivetran-source-report.md).
+
+The gate contains **44 source-report checks, 57 existing graph/CLI checks and 12 independent result/lifecycle checks**. Ten complete-result cases match independent expected columns, values and duplicate counts: five required targets on populated input and the same five on empty input. Actual first/repeated dbt execution, cleanup and sorting checks pass. The larger reference matrix below was not rerun; its earlier results are historical evidence, not a current full-suite claim.
+
+The installed CLI reports **12 source definitions and 28 uses**. Example bindings give **12 bound and 16 external uses**, with **five mixed definitions**. All 12 source technologies have Oracle catalogue candidates; client compatibility remains unverified. The report retains 35 reader references, actual session/task provenance, unknown and conflicting metadata, missing associations, unused/folder-distinct definitions and failed/unselected producer states. Review corrections cover incomplete/direct reader associations, inherited declaration provenance, scoped conflicts, unsupported worklet diagnostics, independent returned values and populated metadata/ownership. Three independent native review layers completed; all in-scope findings are corrected and regression-tested.
+
+Default conversion matches the released baseline byte-for-byte across all 13 required-target output files and all 17 whole-export partial-output files, with unchanged exit0/1. Opt-in conversion adds only the report artifact. Fixture hashes, XML security guards, fatal configuration errors, output protection and atomic publication checks pass. No live API, extraction, database access during conversion/reporting, push or submission occurred.
+
+Limits and follow-up:
+
+- The offline catalogue covers Oracle, PostgreSQL, MySQL and SQL Server only. Candidate matches do not verify a client's versions, services, object types, permissions, networking, replication, plan or destination. Oracle regular views are excluded by the cited connector documentation. Verify ingestion separately before declaring migration readiness.
+- The reader still requires at least one mapping. Source-only exports remain unsupported; unused definitions are retained in accepted mapping exports. This pre-existing input restriction is the single deferred review item, B5/E1. Worklet scope is also unresolved and its reader evidence stays explicitly unassigned.
+- Session/task references can differ; runtime precedence and physical endpoints are not inferred. A bound producer may emit without proving that each use can consume its data, so bound-use ingestion remains `not_established`.
+
+Earlier source-report runs remain append-only history: initial85passed/2failed test assumptions, corrected87passed, pre-review102passed, and focused correction44passed. Counts from different snapshots are not combined. The native record preserves the actual agent mistakes, coordinator reproductions and corrections.
+
+## Previous converter/reference gate
+
+Prior full converter/reference coordinator invocation: `uv run pytest -q`, run **`20261022T184606-3e7210`** on 22 October 2026: **256 passed, 0 failed, 0 errors, 0 skipped**, in **84.83 seconds**, plus one successful invocation record. This includes the original 149 checks and 107 reference/reporting checks. Earlier 247-pass full and 106-pass correction runs remain historical; they are not mixed into this final result. Test success and measured reference agreement are separate measures.
 
 Tested snapshot: `30da6cee50afe9c93b9651be0c5753424e6905f2+code-sha256:5f82fb53684ad1f66887b8e0558a6d41bb8bfcd40845fb2d57f3339169e98ae4`. Environment: `Python=3.13.16;platform=Darwin-arm64;pytest=9.0.2;duckdb=1.4.4;dbt-core=1.12.6;dbt-duckdb=1.10.1`. The fingerprint covers source, tests, scripts, retained references, examples, manifest/lock and CI and matches the actual final files. Subsequent report/native/prompt writes are outside that fingerprint. No converter source changed. CI has not run remotely. Deliberately failing isolated reporting probes have separate run IDs; they verify setup/teardown/collection handling and are not failures of this final suite.
 

@@ -39,6 +39,27 @@ Use `--inventory` to list exact target identities. Repeat `--target` to select o
 
 `examples/sample-bindings.json` explicitly connects exact source instances to generated targets. It also declares original target schemas absent from target definitions, checked against the cleanup relation. These declarations are example configuration, not relation-name inference. Unbound inputs become declared dbt sources and must be supplied separately.
 
+## Inspect migration sources
+
+Print a whole-export source report without generating SQL:
+
+```sh
+uv run pwc-to-dbt fixtures/powercenter/FLOWLINE_DEMO_JAFFLESHOP.xml \
+  --source-report --bindings examples/sample-bindings.json
+```
+
+Add `--output .generated/source-review` to convert and include `fivetran-source-report.json` in the same atomic publication. Conversion may also use `--target`; the report still covers the whole export. Without `--output`, `--target` is rejected. `--inventory` and `--source-report` cannot be combined. Report-only exit 0 means the report was generated, including unresolved facts; fatal input/configuration errors return 2. Conversion keeps its existing 0/1/2 statuses and output protection. Without the flag, its output file set is unchanged.
+
+The supplied export has **12 source definitions and 28 uses**. With the example bindings, 12 uses are explicitly bound and 16 are external; five definitions have mixed uses. Definitions are identified by repository/folder/name, and uses by exact mapping/instance. Unused definitions and failed or unselected conversion paths remain visible. Producer availability is `not_evaluated` in report-only mode; conversion records actual emitted, failed/blocked or unselected producers. Emission alone does not verify that a particular use can consume the producer, so bound-use ingestion stays `not_established`.
+
+The MVP requires at least one mapping in the export. A source-only export is rejected by the existing reader with `No mappings found`; unused definitions are retained within an otherwise accepted export. Worklet scope is not resolved: affected reader references remain unassigned with an explicit diagnostic.
+
+The offline catalogue `fivetran-databases-bounded-v1`, reviewed **28 October 2026**, covers only Oracle, PostgreSQL, MySQL and SQL Server. It stores the official [database catalogue](https://fivetran.com/docs/connectors/databases) and connector evidence URLs in the JSON. Aliases are exact after trimming/case folding. `available` identifies a candidate technology; `no_known_match` means no match in this small catalogue, `unknown` means no source technology, and `requires_review` exposes conflicting source/reader declarations. Client compatibility and existing Fivetran configuration always remain `not_verified`.
+
+Reader evidence retains both reusable session and workflow task contexts. In the supplied staging session, `MART_Jaffleshop` and its task override `RAW_Jaffleshop` are separate declarations. The report does not choose runtime precedence, infer servers or count physical connections. Check database version/service, object types, permissions, networking, replication settings, plan and destination support before ingestion. The documented [Oracle connector](https://fivetran.com/docs/connectors/databases/oracle/oracle-connector) supports tables and materialized views, but excludes regular views; the export does not verify a client's object types. No live service, credential, extraction or database access occurs during reporting.
+
+The [source-report contract](./_bmad-output/specs/spec-fivetran-source-report/SPEC.md), [native Build record](./_bmad-output/implementation-artifacts/spec-fivetran-source-report.md) and [measured validation](reports/validation.md) retain requirements, checks and limits.
+
 ## Assumptions and omissions
 
 - Supported relational steps are single-stream Source Qualifiers with empty overrides, pure Expressions, ordinary equality/boolean Joiner conditions for normal and master-outer joins, grouped Aggregators, and Sorters. Supported expression functions and arities are explicit in `expressions.py`. Stateful local variables, Routers, Custom Transformations, arbitrary SQL and session overrides are rejected on affected paths.

@@ -1,0 +1,28 @@
+16:02:32  Running with dbt=1.12.6
+16:02:32  Registered adapter: duckdb=1.10.1
+16:02:32  Unable to do partial parsing because saved manifest not found. Starting full parse.
+16:02:33  Found 5 models, 5 sources, 488 macros
+16:02:33  
+16:02:33  Concurrency: 1 threads (target='local')
+16:02:33  
+16:02:33  1 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [RUN]
+16:02:33  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers" action=absent
+16:02:33  1 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_customers  [OK in 0.04s]
+16:02:33  2 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [RUN]
+16:02:33  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders" action=absent
+16:02:33  2 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_orders  [OK in 0.03s]
+16:02:33  3 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [RUN]
+16:02:33  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products" action=absent
+16:02:33  3 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_products  [OK in 0.02s]
+16:02:33  4 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [RUN]
+16:02:33  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies" action=absent
+16:02:33  4 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_staging_full__stg_supplies  [OK in 0.03s]
+16:02:33  5 of 5 START sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [RUN]
+16:02:33  PWC_CLEAR "controlled"."converted"."repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers" action=absent
+16:02:33  5 of 5 OK created sql table model converted.repo_jaffleshop__flowline_demo_jaffleshop__m_fl_js_marts_core__customers  [OK in 0.02s]
+16:02:33  
+16:02:33  Finished running 5 table models in 0 hours 0 minutes and 0.22 seconds (0.22s).
+16:02:33  
+16:02:33  Completed successfully
+16:02:33  
+16:02:33  Done. PASS=5 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
