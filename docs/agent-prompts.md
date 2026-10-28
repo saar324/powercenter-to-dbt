@@ -1340,3 +1340,9 @@ Run only the tests that cover the files you edit — nothing wider. Full verific
 - tests/test_source_report.py — G2: duplicate-name definitions are tested only when unused — add a compact two-folder used-source case and assert exact use/binding/reader ownership by tuple identity.
 - README.md, reports/validation.md — B5/E1 are deferred because source-only exports are rejected by the unchanged baseline reader — state that the MVP requires at least one mapping; do not implement a source-only parser mode. Preserve native review triage and frozen intent.
 ```
+
+U110 — user — commit and push the completed source-report feature, 28 October 2026:
+
+```text
+commit push it
+```
